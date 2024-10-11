@@ -1,0 +1,46 @@
+.card {
+  width: 280px;
+  height: 380px;
+  border-radius: 10px;
+  cursor: pointer;
+  box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+  position: relative;
+}
+
+.card img {
+  width: 100%;
+  height: 50%;
+  border-radius: 10px 10px 0 0;
+}
+
+.card-body {
+  padding: 0 1rem;
+}
+
+.btn-container {
+  position: absolute;
+  bottom: 1rem;
+}
+
+.btn-details,
+.btn-add-to-cart,
+.btn-bookmark {
+  padding: 0.5rem 0.6rem;
+  border: none;
+  border-radius: 3px;
+  color: #fff;
+  cursor: pointer;
+  margin-right: 10px;
+}
+
+.btn-details {
+  background-color: #256d85;
+}
+
+.btn-add-to-cart {
+  background-color: #2b4865;
+}
+
+.btn-bookmark {
+  background-color: #47b5ff;
+}

@@ -1,0 +1,35 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer components {
+  .my-container {
+    @apply px-4 py-16 mx-auto sm:max-w-xl md:max-w-full lg:max-w-screen-xl md:px-24 lg:px-8 lg:py-20;
+  }
+
+  .product-container {
+    @apply grid gap-8 mb-8 md:grid-cols-2 lg:grid-cols-3;
+  }
+
+  .btn-primary {
+    @apply px-4 py-2 m-2 text-lg font-medium text-gray-700 transition duration-200 border-2 border-transparent rounded-full shadow-md md:mb-0 md:px-8 md:py-3 hover:bg-cyan-400 bg-cyan-200;
+  }
+
+  .btn-outlined {
+    @apply px-4 py-2 m-2 text-lg font-medium text-gray-700 transition duration-200 border-2 rounded-full shadow-md md:mb-0 md:px-8 md:py-3 hover:bg-cyan-400 hover:border-transparent border-cyan-200;
+  }
+
+  .active {
+    @apply font-medium tracking-wide transition-colors duration-200 text-cyan-600;
+  }
+
+  .default {
+    @apply font-medium tracking-wide text-gray-700 transition-colors duration-200 hover:text-cyan-600;
+  }
+}
+
+@layer utilities {
+  .title-text {
+    @apply font-black text-transparent animate-text bg-gradient-to-r from-cyan-500 via-purple-500 to-cyan-400 bg-clip-text;
+  }
+}
