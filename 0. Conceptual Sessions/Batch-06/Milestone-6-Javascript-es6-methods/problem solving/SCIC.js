@@ -21,13 +21,11 @@ const students = [
 const result = students.filter(
   (student) => student.avg >= 50 && student.fiftyPercent === true
 );
-// console.log(result);
 
-result.map((odhom) => {
+result.forEach((odhom) => {
   const { name, email } = odhom;
+
   console.log(`Odhom er naam ${name}. Odhom er email ${email}`);
   console.log(name);
   console.log(email);
-
-  console.log(odhom);
 });

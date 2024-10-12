@@ -7,7 +7,7 @@ const polapain = [
   { Name: 'Mabul', job: 'besorkari', salary: 55000 },
 ];
 
-//  find stable jamai condition => sorkari + 20000  or  besorkari + 40000
+//  find stable jamai condition => "sorkari + 20000"  OR  "besorkari + 40000"
 
 const selected = polapain.filter(
   (pola) =>
@@ -17,6 +17,6 @@ const selected = polapain.filter(
 
 console.log(selected);
 
-selected.map((vaggoban) => {
+selected.forEach((vaggoban) => {
   console.log(vaggoban.Name);
 });

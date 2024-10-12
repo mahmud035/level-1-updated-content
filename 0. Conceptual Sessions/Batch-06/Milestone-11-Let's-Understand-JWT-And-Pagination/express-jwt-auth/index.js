@@ -19,8 +19,8 @@ app.use(cors());
  *  /register
  *  /users (protected)
  */
-const uri =
-  'mongodb+srv://dbuser1:VqlXwmSPGyn961n4@cluster0.yeflywl.mongodb.net/?retryWrites=true&w=majority';
+const uri = `mongodb+srv://${process.env.DB_USER}:${process.env.DB_PASSWORD}@cluster0.yeflywl.mongodb.net/?retryWrites=true&w=majority`;
+
 const client = new MongoClient(uri, {
   useNewUrlParser: true,
   useUnifiedTopology: true,

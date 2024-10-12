@@ -51,16 +51,7 @@ const students = [
 // console.log(students[0]?.student2?.education?.subjects[1]);
 // console.log(students[0]?.student2?.education?.marks?.english);
 
-//* expected output
-//* Need to see this again
-/**
- *          My Name is abul.
-            My age is 17.
-            My gender is Male
-            My subjects are: bangla,english,math
- * 
- */
-students.map((students) => {
+students.forEach((students) => {
   //   console.log(students);
 
   //* loop through students object

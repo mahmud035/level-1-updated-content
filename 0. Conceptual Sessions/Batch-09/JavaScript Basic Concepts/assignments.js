@@ -87,9 +87,8 @@ people speak ${language}`;
    */
 }
 
-{
-  //* LECTURE: Type Conversion and Coercion
-  /* 
+//* LECTURE: Type Conversion and Coercion
+/* 
   // 1. Predicted result:
   // 4
   // 617
@@ -104,11 +103,9 @@ people speak ${language}`;
   console.log('123' < 57); // false
   console.log(5 + 6 + '4' + 9 - 4 - 2); // 1143
    */
-}
 
-{
-  //* LECTURE: Equality Operators: == vs. ===
-  /* 
+//* LECTURE: Equality Operators: == vs. ===
+/* 
   const numNeighbors = prompt(
     'How many neighbor countries does your country have?'
   );
@@ -117,7 +114,6 @@ people speak ${language}`;
   else if (numNeighbors > 1) console.log(`More than 1 border`);
   else console.log(`No borders`);
    */
-}
 
 {
   //* LECTURE: Logical Operators

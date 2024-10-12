@@ -15,11 +15,11 @@
 
   <body>
     <header>
-      <div class="btm-nav z-10">
-        <button class="bg-pink-200 text-pink-600">
+      <div class="z-10 btm-nav">
+        <button class="text-pink-600 bg-pink-200">
           <svg
             xmlns="http://www.w3.org/2000/svg"
-            class="h-5 w-5"
+            class="w-5 h-5"
             fill="none"
             viewBox="0 0 24 24"
             stroke="currentColor"
@@ -36,7 +36,7 @@
         <button class="active bg-neutral text-neutral-content">
           <svg
             xmlns="http://www.w3.org/2000/svg"
-            class="h-5 w-5"
+            class="w-5 h-5"
             fill="none"
             viewBox="0 0 24 24"
             stroke="currentColor"
@@ -50,10 +50,10 @@
           </svg>
           <span class="btm-nav-label">Do Shopping with JS</span>
         </button>
-        <button class="bg-teal-200 text-teal-600">
+        <button class="text-teal-600 bg-teal-200">
           <svg
             xmlns="http://www.w3.org/2000/svg"
-            class="h-5 w-5"
+            class="w-5 h-5"
             fill="none"
             viewBox="0 0 24 24"
             stroke="currentColor"
@@ -69,19 +69,19 @@
         </button>
       </div>
     </header>
-    <main class="w-9/12 mx-auto mt-5 pb-20">
+    <main class="w-9/12 pb-20 mx-auto mt-5">
       <div class="grid grid-cols-2 gap-4 divide-x">
         <div class="grid grid-cols-2 gap-4">
           <!-- product 1 -->
           <div>
-            <div class="card card-compact w-full bg-base-100 shadow-xl">
+            <div class="w-full shadow-xl card card-compact bg-base-100">
               <figure>
                 <img src="img/coffee.jpg" alt="Shoes" class="w-full h-40" />
               </figure>
               <div class="card-body">
                 <h2 class="card-title">Coffee Js</h2>
                 <p>Price: $ <span>108</span></p>
-                <div class="card-actions justify-end">
+                <div class="justify-end card-actions">
                   <button class="btn btn-primary" onclick="addToCart(this)">
                     Buy Now
                   </button>
@@ -91,14 +91,14 @@
           </div>
           <!-- product 2 -->
           <div>
-            <div class="card card-compact w-full bg-base-100 shadow-xl">
+            <div class="w-full shadow-xl card card-compact bg-base-100">
               <figure>
                 <img src="img/heart_js.jpg" alt="Shoes" class="w-full h-40" />
               </figure>
               <div class="card-body">
                 <h2 class="card-title">Heart Js</h2>
                 <p>Price: $ <span>113</span></p>
-                <div class="card-actions justify-end">
+                <div class="justify-end card-actions">
                   <button class="btn btn-primary" onclick="addToCart(this)">
                     Buy Now
                   </button>
@@ -108,14 +108,14 @@
           </div>
           <!-- product 3 -->
           <div>
-            <div class="card card-compact w-full bg-base-100 shadow-xl">
+            <div class="w-full shadow-xl card card-compact bg-base-100">
               <figure>
                 <img src="img/panda.png" alt="Shoes" class="w-full h-40" />
               </figure>
               <div class="card-body">
                 <h2 class="card-title">Panda Js</h2>
                 <p>Price: $ <span>112</span></p>
-                <div class="card-actions justify-end">
+                <div class="justify-end card-actions">
                   <button class="btn btn-primary" onclick="addToCart(this)">
                     Buy Now
                   </button>
@@ -125,14 +125,14 @@
           </div>
           <!-- product 4 -->
           <div>
-            <div class="card card-compact w-full bg-base-100 shadow-xl">
+            <div class="w-full shadow-xl card card-compact bg-base-100">
               <figure>
                 <img src="img/umbrella.png" alt="Shoes" class="w-full h-40" />
               </figure>
               <div class="card-body">
                 <h2 class="card-title">Umberlla Js</h2>
                 <p>Price: $ <span>105</span></p>
-                <div class="card-actions justify-end">
+                <div class="justify-end card-actions">
                   <button class="btn btn-primary" onclick="addToCart(this)">
                     Buy Now
                   </button>
@@ -142,14 +142,14 @@
           </div>
           <!-- product 5 -->
           <div>
-            <div class="card card-compact w-full bg-base-100 shadow-xl">
+            <div class="w-full shadow-xl card card-compact bg-base-100">
               <figure>
                 <img src="img/vue-js.jpg" alt="Shoes" class="w-full h-40" />
               </figure>
               <div class="card-body">
                 <h2 class="card-title">Vue Js</h2>
                 <p>Price: $ <span>125</span></p>
-                <div class="card-actions justify-end">
+                <div class="justify-end card-actions">
                   <button class="btn btn-primary" onclick="addToCart(this)">
                     Buy Now
                   </button>
@@ -165,7 +165,10 @@
             <span id="total-products" class="text-blue-500">0</span>
           </p>
           <div class="overflow-x-auto">
-            <table class="table table-zebra w-full">
+            <table class="table w-full table-zebra">
+              <caption>
+                Product Table
+              </caption>
               <!-- head -->
               <thead>
                 <tr>
@@ -176,10 +179,10 @@
               </thead>
               <tbody id="products-cart">
                 <!-- <tr>
-                            <td>1</td>
-                            <td>Cy Ganderton</td>
-                            <td>Quality Control Specialist</td>
-                          </tr> -->
+                        <td>1</td>
+                        <td>Cy Ganderton</td>
+                        <td>Quality Control Specialist</td>
+                    </tr> -->
               </tbody>
             </table>
           </div>

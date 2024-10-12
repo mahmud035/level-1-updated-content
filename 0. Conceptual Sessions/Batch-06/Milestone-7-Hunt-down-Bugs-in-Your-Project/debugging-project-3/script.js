@@ -1,9 +1,8 @@
-const elementById = (id) => {
-  document.getElementById(id);
-};
+const elementById = (id) => document.getElementById(id);
 
 const handleSearch = () => {
-  const keyword = elementById("keyword");
+  const keyword = elementById('keyword');
+  console.log(keyword);
   const url = `https://theaudiodb.com/api/v1/json/2/search.php?s=${keyword.value}`;
   fetch(url)
     .then((res) => res.json())
@@ -11,10 +10,10 @@ const handleSearch = () => {
 };
 
 const showArtists = (data) => {
-  const artistContainer = elementById("artist");
+  const artistContainer = elementById('artist');
   data?.artists?.forEach((artist) => {
-    const div = document.createElement("div");
-    div.classList.add("artist-card");
+    const div = document.createElement('div');
+    div.classList.add('artist-card');
     div.innerHTML = `<div class="image-container">
     <div class="image-container-inner">
       <img
@@ -41,15 +40,16 @@ const fetchAlbums = (id) => {
   fetch(url)
     .then((res) => res.JSON())
     .then((data) => showAlbum(data));
-  const artistContainer = elementById("artists");
-  artistContainer.innerHTML = "";
+  const artistContainer = elementById('artists');
+  artistContainer.innerHTML = '';
 };
 
 const showAlbum = (data) => {
-  const albumContainer = elementById("albums");
+  const albumContainer = elementById('albums');
+
   album.forEach((item) => {
-    const div = document.createElement("div");
-    div.classList.add("album");
+    const div = document.createElement('div');
+    div.classList.add('album');
     div.innerHTML = `
         <div class="album-image-container">
           <img
@@ -61,7 +61,6 @@ const showAlbum = (data) => {
           <h3>${album.strAlbum}</h3>
         </div>
       `;
-
     albumContainer.appendChild(div);
   });
 };
