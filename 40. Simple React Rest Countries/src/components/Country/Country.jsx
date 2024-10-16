@@ -1,3 +1,5 @@
+import { useState } from 'react';
+
 export default function Country({ country }) {
   const {
     name: { common },
@@ -8,7 +10,13 @@ export default function Country({ country }) {
     cca3,
   } = country || {};
 
+  const [visited, setVisited] = useState(false);
+
   // https://restcountries.com/v3.1/alpha?codes=170
+
+  const handleVisited = () => {
+    setVisited((preValue) => !preValue);
+  };
 
   return (
     <div className="w-full h-[430px] shadow-xl card bg-base-100">
@@ -20,7 +28,12 @@ export default function Country({ country }) {
         <p>Capital: {capital}</p>
         <p>Population: {population}</p>
         <p>Area: {area} Sq. km</p>
-        <button className="btn btn-sm btn-neutral">Visited</button>
+        <button
+          onClick={handleVisited}
+          className={`btn btn-sm ${visited ? 'btn-accent' : 'btn-neutral'}`}
+        >
+          {visited ? 'Visited' : 'Going'}
+        </button>
         <button className="btn btn-sm btn-neutral">Code: {cca3}</button>
       </div>
     </div>
