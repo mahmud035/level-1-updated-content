@@ -1,4 +1,4 @@
-export default function VisitedCountry({ country = { country } }) {
+export default function VisitedCountry({ country }) {
   const {
     name: { common },
     flags: { svg, alt },

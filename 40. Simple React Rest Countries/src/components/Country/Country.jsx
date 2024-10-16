@@ -11,8 +11,6 @@ export default function Country({ country, handleVisitedCountries }) {
 
   const [isVisited, setIsVisited] = useState(false);
 
-  // https://restcountries.com/v3.1/alpha?codes=170
-
   const handleVisited = (country) => {
     setIsVisited((preValue) => !preValue);
     handleVisitedCountries(country);

@@ -42,7 +42,7 @@ export default function CountryList() {
   }, []);
 
   return (
-    <div>
+    <>
       <h2 className="pt-2 text-2xl font-semibold text-center text-accent">
         Visited Country List ✈🗺️
       </h2>
@@ -65,15 +65,21 @@ export default function CountryList() {
         Country List
       </h2>
 
-      <div className="grid grid-cols-1 gap-5 py-5 sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-4">
-        {countries.map((country) => (
-          <Country
-            key={country?.name?.common}
-            country={country}
-            handleVisitedCountries={handleVisitedCountries}
-          />
-        ))}
-      </div>
-    </div>
+      {countries.length > 0 ? (
+        <div className="grid grid-cols-1 gap-5 py-5 sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-4">
+          {countries.map((country) => (
+            <Country
+              key={country?.name?.common}
+              country={country}
+              handleVisitedCountries={handleVisitedCountries}
+            />
+          ))}
+        </div>
+      ) : (
+        <p className="pt-40 text-2xl font-medium text-center text-white">
+          Loading Countries...
+        </p>
+      )}
+    </>
   );
 }
