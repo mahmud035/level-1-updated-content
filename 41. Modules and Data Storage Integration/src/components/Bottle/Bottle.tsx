@@ -2,9 +2,10 @@ import { IBottle } from '../../types';
 
 interface IBottleProps {
   bottle: IBottle;
+  handleAddToCart: (bottle: IBottle) => void;
 }
 
-export default function Bottle({ bottle }: IBottleProps) {
+export default function Bottle({ bottle, handleAddToCart }: IBottleProps) {
   const { name, img, price, quantity, stock, shipping } = bottle;
 
   return (
@@ -18,7 +19,12 @@ export default function Bottle({ bottle }: IBottleProps) {
         <p>Quantity: {quantity}</p>
         <p>Stock: {stock}</p>
         <p>Shipping: {shipping}</p>
-        <button className={`btn btn-sm`}>Button</button>
+        <button
+          onClick={() => handleAddToCart(bottle)}
+          className={`btn btn-sm`}
+        >
+          Purchase
+        </button>
       </div>
     </div>
   );
