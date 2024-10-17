@@ -1,20 +1,9 @@
-import { useEffect, useState } from 'react';
+import useFetchData from '../../hooks/useFetchData';
 import { IWatch } from '../../types';
 import Watch from './Watch';
 
 export default function WatchList() {
-  const [watches, setWatches] = useState<IWatch[]>([]);
-
-  useEffect(() => {
-    const fetchWatch = async () => {
-      const res = await fetch('watches.json');
-      if (!res.ok) throw new Error('Network response was not OK');
-      const data = await res.json();
-      setWatches(data);
-    };
-
-    fetchWatch();
-  }, []);
+  const watches = useFetchData<IWatch>('watches.json');
 
   return (
     <>
