@@ -15,7 +15,7 @@
   {
     "id": "eaff8921-f7eb-446f-b072-d96559685de0",
     "category": "Bottle",
-    "name": "Steel Metal Bottle 1L",
+    "name": "Steel Metal Bottle 2L",
     "seller": "Adidas",
     "price": 40,
     "stock": 14,
@@ -28,7 +28,7 @@
   {
     "id": "96fd22a5-f22f-4ad8-b7b5-f1cfd0852553",
     "category": "Bottle",
-    "name": "Steel Metal Bottle 1 L",
+    "name": "Steel Metal Bottle 3L",
     "seller": "Adidas",
     "price": 46,
     "stock": 2,
@@ -41,7 +41,7 @@
   {
     "id": "e1a7c529-f91b-4ef5-a661-c2317c5c314e",
     "category": "Bottle",
-    "name": "Steel Metal Bottle 1L",
+    "name": "Steel Metal Bottle 4L",
     "seller": "Adidas",
     "price": 20,
     "stock": 14,
@@ -67,7 +67,7 @@
   {
     "id": "afc5d640-9943-437a-b644-ba1f6f12baa9",
     "category": "Bottle",
-    "name": "Steel Straw Metal Bottle 600 ML",
+    "name": "Steel Straw Metal Bottle 900 ML",
     "seller": "Adidas",
     "price": 43,
     "stock": 10,
@@ -80,7 +80,7 @@
   {
     "id": "5b5c43d9-950d-4b9a-b7d9-ca489224a7b2",
     "category": "Bottle",
-    "name": "Steel Metal Bottle 600 ML",
+    "name": "Steel Metal Bottle 700 ML",
     "seller": "Adidas",
     "price": 26,
     "stock": 20,
@@ -93,7 +93,7 @@
   {
     "id": "96239c09-8b1c-4c81-99f9-f43e7613eab3",
     "category": "Bottle",
-    "name": "Squad Glass Bottle 720 ML",
+    "name": "Squad Glass Bottle 40 ML",
     "seller": "Adidas",
     "price": 39,
     "stock": 20,
@@ -106,7 +106,7 @@
   {
     "id": "30698483-f7aa-49ba-9de9-9070f64dc263",
     "category": "Bottle",
-    "name": "Steel Bottle 600 ML",
+    "name": "Steel Bottle 300 ML",
     "seller": "Adidas",
     "price": 23,
     "stock": 11,
