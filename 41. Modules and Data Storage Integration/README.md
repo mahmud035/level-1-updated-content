@@ -1,50 +1,52 @@
-# React + TypeScript + Vite
+# Modules and Data Storage Integration
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+This repository demonstrates how to integrate JavaScript modules with local storage and session storage in a practical and scalable way. The code provided focuses on handling the addition of items to a shopping cart using TypeScript, interacting with local storage for data persistence.
 
-Currently, two official plugins are available:
+- **Live Site URL**: [Shopping Cart](https://41-shopping-cart-batch-09.netlify.app/)
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## Features
 
-## Expanding the ESLint configuration
+- **Modular JavaScript**: Demonstrates how to use ES6 modules (`import`/`export`) to organize code efficiently.
+- **Local Storage Integration**: Functions that store and retrieve shopping cart data from the browser's local storage, ensuring data persistence across sessions.
+- **Shopping Cart Functionality**:
+  - Add items to the cart.
+  - Update the quantity of an item if it already exists in the cart.
+  - Store the cart data in local storage for persistence.
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+## Code Breakdown
 
-- Configure the top-level `parserOptions` property like this:
+### Core Functions
 
-```js
-export default tseslint.config({
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-})
-```
+1. **`handleAddToCart(bottle: IBottle)`**
 
-- Replace `tseslint.configs.recommended` to `tseslint.configs.recommendedTypeChecked` or `tseslint.configs.strictTypeChecked`
-- Optionally add `...tseslint.configs.stylisticTypeChecked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and update the config:
+   - Adds items to the shopping cart and updates their quantities.
+   - Retrieves cart data from local storage.
+   - Updates the cart in local storage after each change.
 
-```js
-// eslint.config.js
-import react from 'eslint-plugin-react'
+2. **`retrieveCart()`**
 
-export default tseslint.config({
-  // Set the react version
-  settings: { react: { version: '18.3' } },
-  plugins: {
-    // Add the react plugin
-    react,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended rules
-    ...react.configs.recommended.rules,
-    ...react.configs['jsx-runtime'].rules,
-  },
-})
-```
+   - Loads the cart from local storage when needed.
+
+3. **`storeCart(cart)`**
+   - Saves the updated cart back to local storage to persist the data.
+
+### Local Storage & Session Storage
+
+- Local storage is used for persisting shopping cart data across multiple sessions.
+- Session storage can be used for temporary data storage, but the current focus is on persistent shopping cart data.
+
+## Usage
+
+1. Clone the repository:
+   ```bash
+   git clone https://github.com/mahmud035/Level-1-Updated-Content
+   ```
+2. Install the dependencies:
+   ```bash
+   npm install
+   ```
+3. To run the project, use the following command:
+   ```bash
+   npm start
+   ```
+   This will start the development server and allow you to interact with the modules and data storage examples.
