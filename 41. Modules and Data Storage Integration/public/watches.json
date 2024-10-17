@@ -1,0 +1,155 @@
+[
+  {
+    "id": 1,
+    "brand": "Apple",
+    "model": "Apple Watch Series 9",
+    "price": 399,
+    "features": [
+      "GPS",
+      "Heart Rate Monitor",
+      "ECG",
+      "Blood Oxygen",
+      "Water Resistant"
+    ],
+    "batteryLife": "18 hours",
+    "availability": true,
+    "releaseYear": 2024
+  },
+  {
+    "id": 2,
+    "brand": "Samsung",
+    "model": "Galaxy Watch 6",
+    "price": 349,
+    "features": [
+      "GPS",
+      "Heart Rate Monitor",
+      "Sleep Tracking",
+      "ECG",
+      "Water Resistant"
+    ],
+    "batteryLife": "40 hours",
+    "availability": true,
+    "releaseYear": 2023
+  },
+  {
+    "id": 3,
+    "brand": "Garmin",
+    "model": "Garmin Venu 2",
+    "price": 299,
+    "features": [
+      "GPS",
+      "Pulse Ox",
+      "Body Battery",
+      "Hydration Tracking",
+      "Water Resistant"
+    ],
+    "batteryLife": "11 days",
+    "availability": false,
+    "releaseYear": 2023
+  },
+  {
+    "id": 4,
+    "brand": "Fitbit",
+    "model": "Fitbit Versa 4",
+    "price": 229,
+    "features": [
+      "GPS",
+      "Heart Rate Monitor",
+      "Sleep Tracking",
+      "Stress Management",
+      "Water Resistant"
+    ],
+    "batteryLife": "6 days",
+    "availability": true,
+    "releaseYear": 2023
+  },
+  {
+    "id": 5,
+    "brand": "Fossil",
+    "model": "Gen 6 Smartwatch",
+    "price": 299,
+    "features": [
+      "GPS",
+      "Heart Rate Monitor",
+      "Sleep Tracking",
+      "SpO2",
+      "Water Resistant"
+    ],
+    "batteryLife": "24 hours",
+    "availability": false,
+    "releaseYear": 2022
+  },
+  {
+    "id": 6,
+    "brand": "Amazfit",
+    "model": "Amazfit GTR 4",
+    "price": 199,
+    "features": [
+      "GPS",
+      "Heart Rate Monitor",
+      "SpO2",
+      "Fitness Tracking",
+      "Water Resistant"
+    ],
+    "batteryLife": "14 days",
+    "availability": true,
+    "releaseYear": 2023
+  },
+  {
+    "id": 7,
+    "brand": "Huawei",
+    "model": "Huawei Watch GT 3 Pro",
+    "price": 329,
+    "features": ["GPS", "ECG", "Heart Rate Monitor", "SpO2", "Water Resistant"],
+    "batteryLife": "14 days",
+    "availability": true,
+    "releaseYear": 2023
+  },
+  {
+    "id": 8,
+    "brand": "TicWatch",
+    "model": "TicWatch Pro 3 Ultra",
+    "price": 249,
+    "features": [
+      "GPS",
+      "Heart Rate Monitor",
+      "Sleep Tracking",
+      "SpO2",
+      "Water Resistant"
+    ],
+    "batteryLife": "45 days",
+    "availability": true,
+    "releaseYear": 2022
+  },
+  {
+    "id": 9,
+    "brand": "Withings",
+    "model": "Withings ScanWatch",
+    "price": 279,
+    "features": [
+      "ECG",
+      "Heart Rate Monitor",
+      "SpO2",
+      "Sleep Tracking",
+      "Water Resistant"
+    ],
+    "batteryLife": "30 days",
+    "availability": true,
+    "releaseYear": 2021
+  },
+  {
+    "id": 10,
+    "brand": "Suunto",
+    "model": "Suunto 7",
+    "price": 399,
+    "features": [
+      "GPS",
+      "Heart Rate Monitor",
+      "Offline Maps",
+      "Water Resistant"
+    ],
+    "batteryLife": "48 hours",
+    "availability": false,
+    "releaseYear": 2021
+  }
+]
