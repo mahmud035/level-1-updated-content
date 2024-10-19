@@ -34,7 +34,7 @@ To get started with this project, follow the steps below:
 3. **Run the application:**:
 
    ```sh
-   npm start
+   npm run dev
    ```
 
 ## Project Structure
