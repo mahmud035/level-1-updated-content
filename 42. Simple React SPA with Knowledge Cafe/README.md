@@ -36,7 +36,7 @@ npm install
 3. To run the project, use the following command:
 
 ```sh
-npm start
+npm run dev
 ```
 
 ## Project Structure
