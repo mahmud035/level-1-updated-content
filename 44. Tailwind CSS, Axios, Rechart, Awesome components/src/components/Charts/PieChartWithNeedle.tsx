@@ -67,7 +67,7 @@ export default function PieChartWithNeedle(): JSX.Element {
   return (
     <div className="w-full py-10">
       <h4 className="py-4 text-2xl">A demo of PieChartWithNeedle:</h4>
-      <PieChart width={400} height={500}>
+      <PieChart width={400} height={300}>
         <Pie
           dataKey="value"
           startAngle={180}

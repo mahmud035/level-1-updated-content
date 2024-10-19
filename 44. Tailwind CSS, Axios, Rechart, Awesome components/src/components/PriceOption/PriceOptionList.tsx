@@ -8,10 +8,10 @@ export default function PriceOptionList() {
       price: 29.99,
       features: [
         'Access to gym during staffed hours',
-        'Free fitness assessment',
         'Locker room access',
-        'Free group fitness classes',
-        'Locker room access',
+        '1 complimentary fitness assessment',
+        '10% discount on protein bars',
+        'Access to treadmills and stationary bikes',
       ],
     },
     {
@@ -19,11 +19,11 @@ export default function PriceOptionList() {
       name: 'Premium Plan',
       price: 79.99,
       features: [
+        '24/7 gym access',
         'Unlimited group fitness classes',
-        'Locker room access with personal locker',
+        'Access to private locker room with towels',
         'Unlimited personal training sessions',
-        'Sauna and spa access',
-        'Nutrition consultation',
+        'Free entry to fitness workshops and seminars',
       ],
     },
     {
@@ -31,11 +31,11 @@ export default function PriceOptionList() {
       name: 'Standard Plan',
       price: 49.99,
       features: [
-        '24/7 gym access for up to 4 family members',
-        'Free group fitness classes',
-        'Locker room access',
-        'Family fitness assessment',
-        'Access to child care during workouts',
+        '24/7 gym access',
+        'Access to all cardio equipment',
+        'Free access to 3 group fitness classes per week',
+        '1 personal training session per month',
+        'Free access to sauna',
       ],
     },
   ];

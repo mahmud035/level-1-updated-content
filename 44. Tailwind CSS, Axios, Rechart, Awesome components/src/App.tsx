@@ -12,6 +12,7 @@ import ThreeDimScatterChart from './components/Charts/ThreeDimScatterChart';
 import TwoLevelPieChart from './components/Charts/TwoLevelPieChart';
 import Navbar from './components/Navbar/Navbar';
 import PriceOptionList from './components/PriceOption/PriceOptionList';
+import ProductList from './components/Product/ProductList';
 
 export default function App() {
   return (
@@ -33,6 +34,8 @@ export default function App() {
         <TwoLevelPieChart />
         <PieChartWithNeedle />
       </div>
+
+      <ProductList />
     </div>
   );
 }

@@ -18,7 +18,7 @@ export default function LineChart() {
     <div className="w-full py-10">
       <h4 className="py-4 text-2xl">A demo of TinyLineChart:</h4>
 
-      <LChart width={600} height={400} data={data} className="mx-auto">
+      <LChart width={380} height={300} data={data} className="mx-auto">
         <Line type="monotone" dataKey="math" stroke="#581c87" />
         <Line type="monotone" dataKey="physics" stroke="#4c1d95" />
         <Line type="monotone" dataKey="chemistry" stroke="#701a75" />
