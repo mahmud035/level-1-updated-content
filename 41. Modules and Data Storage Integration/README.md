@@ -38,9 +38,13 @@ This repository demonstrates how to integrate JavaScript modules with local stor
 ## Usage
 
 1. Clone the repository:
+
    ```bash
    git clone https://github.com/mahmud035/Level-1-Updated-Content
+
+   cd 41. Modules and Data Storage Integration
    ```
+
 2. Install the dependencies:
    ```bash
    npm install
@@ -50,3 +54,42 @@ This repository demonstrates how to integrate JavaScript modules with local stor
    npm start
    ```
    This will start the development server and allow you to interact with the modules and data storage examples.
+
+## Project Structure
+
+The project is organized as follows:
+
+```Level-1-Updated-Content/
+├── 41. Modules and Data Storage Integration/
+│   ├── public/
+│   ├── src/
+│   │   ├── components/
+│   │   │   ├── Bottle/
+│   │   │   │   ├── BottleList.tsx
+│   │   │   │   ├── Bottle.tsx
+│   │   │   ├── Watch/
+│   │   │   │   ├── WatchList.tsx
+│   │   │   │   ├── Watch.tsx
+│   │   ├── hooks/
+│   │   │   ├── useFetchData.ts
+│   │   ├── types/
+│   │   │   ├── index.ts
+│   │   ├── utils/
+│   │   │   ├── index.ts
+│   │   ├── App.tsx
+│   ├── README.md
+│   ├── package.json
+│   └── ...
+```
+
+- **src/components**: Contains reusable React components such as _Bottle_ and _Watch_ components.
+
+- **src/hooks**: Custom hooks for handling data fetching and other logic.
+
+- **src/types**: TypeScript types and interfaces.
+
+- **src/utils**: Utility functions for managing local storage and other tasks.
+
+## Contributing
+
+Contributions are welcome! Please fork this repository and submit a pull request with your changes. Ensure that your code adheres to the project’s coding standards and includes necessary tests.
