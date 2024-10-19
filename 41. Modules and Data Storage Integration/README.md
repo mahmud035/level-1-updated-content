@@ -51,7 +51,7 @@ This repository demonstrates how to integrate JavaScript modules with local stor
    ```
 3. To run the project, use the following command:
    ```bash
-   npm start
+   npm run dev
    ```
    This will start the development server and allow you to interact with the modules and data storage examples.
 
