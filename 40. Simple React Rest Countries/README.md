@@ -21,7 +21,8 @@ To get started with this project, follow the steps below:
 
    ```sh
    git clone https://github.com/mahmud035/Level-1-Updated-Content.git
-   cd Level-1-Updated-Content/40.%20Simple%20React%20Rest%20Countries
+
+   cd 40. Simple React Rest Countries
    ```
 
 2. **Install dependencies:**:
@@ -35,3 +36,34 @@ To get started with this project, follow the steps below:
    ```sh
    npm start
    ```
+
+## Project Structure
+
+The project is organized as follows:
+
+```Level-1-Updated-Content/
+├── 40. Simple React Rest Countries/
+│   ├── public/
+│   ├── src/
+│   │   ├── components/
+│   │   │   ├── CountryList.tsx
+│   │   │   ├── CountryCard.tsx
+│   │   │   ├── CountryDetail.tsx
+│   │   ├── hooks/
+│   │   │   ├── useFetchCountries.ts
+│   │   ├── styles/
+│   │   ├── App.tsx
+│   ├── README.md
+│   ├── package.json
+│   └── ...
+```
+
+- **src/components**: Contains reusable React components such as _CountryList_, _CountryCard_, and _CountryDetail_.
+
+- **src/hooks**: Custom hooks for handling data fetching and other logic.
+
+- **public**: Public assets and files.
+
+## Contributing
+
+Contributions are welcome! Please fork this repository and submit a pull request with your changes. Ensure that your code adheres to the project’s coding standards and includes necessary tests.
