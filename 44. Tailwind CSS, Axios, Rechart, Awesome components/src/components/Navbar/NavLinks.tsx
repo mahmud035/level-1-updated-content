@@ -3,14 +3,14 @@ import Link from './Link';
 
 interface INavLinksProps {
   routes: ILink[];
-  showNavItem: boolean;
+  showNavLinks: boolean;
 }
 
-export default function NavLinks({ routes, showNavItem }: INavLinksProps) {
+export default function NavLinks({ routes, showNavLinks }: INavLinksProps) {
   return (
     <ul
       className={`${
-        showNavItem ? `flex flex-col gap-4 absolute top-3 left-1/2` : 'hidden'
+        showNavLinks ? `flex flex-col gap-4 absolute top-3 left-1/2` : 'hidden'
       } md:flex md:gap-6 xl:gap-8`}
     >
       {routes.map((route: ILink) => (

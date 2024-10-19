@@ -3,7 +3,7 @@ import { FaBars, FaX } from 'react-icons/fa6';
 import NavLinks from './NavLinks';
 
 export default function Navbar() {
-  const [showNavItem, setShowNavItem] = useState(false);
+  const [showNavLinks, setShowNavLinks] = useState(false);
 
   const routes = [
     { id: 1, path: '/', name: 'Home' },
@@ -17,13 +17,13 @@ export default function Navbar() {
     <nav className="relative flex items-center justify-between py-2">
       <h3 className="text-2xl font-bold">Navbar</h3>
 
-      <NavLinks routes={routes} showNavItem={showNavItem} />
+      <NavLinks routes={routes} showNavLinks={showNavLinks} />
 
       <button
-        onClick={() => setShowNavItem((prevValue) => !prevValue)}
+        onClick={() => setShowNavLinks((prevValue) => !prevValue)}
         className="md:hidden"
       >
-        {showNavItem ? <FaX size={24} /> : <FaBars size={24} />}
+        {showNavLinks ? <FaX size={24} /> : <FaBars size={24} />}
       </button>
 
       <button className="hidden px-5 py-2 font-medium rounded-lg md:inline-block bg-cyan-800">
