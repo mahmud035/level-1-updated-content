@@ -2,9 +2,9 @@ import ProfileAvatar from '../assets/images/profile.png';
 
 export default function Header() {
   return (
-    <div className="navbar bg-base-100">
+    <div className="px-0 navbar bg-base-100">
       <div className="flex-1">
-        <a className="text-3xl btn btn-ghost">Knowledge Cafe</a>
+        <a className="pl-0 text-3xl btn btn-ghost">Knowledge Cafe</a>
       </div>
       <div className="flex-none gap-2">
         <div className="dropdown dropdown-end">

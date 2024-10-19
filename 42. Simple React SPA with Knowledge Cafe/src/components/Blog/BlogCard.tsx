@@ -3,9 +3,15 @@ import { IBlog } from '../../types';
 
 interface IBlogCardProps {
   blog: IBlog;
+  handleMarkAsRead: (readTime: number) => void;
+  handleAddToBookmark: (blog: IBlog) => void;
 }
 
-export default function BlogCard({ blog }: IBlogCardProps) {
+export default function BlogCard({
+  blog,
+  handleMarkAsRead,
+  handleAddToBookmark,
+}: IBlogCardProps) {
   const { title, cover, authorImg, author, postedDate, readingTime, hashtags } =
     blog;
 
@@ -41,7 +47,7 @@ export default function BlogCard({ blog }: IBlogCardProps) {
 
             <div className="flex gap-1">
               <p className="text-slate-400">{readingTime} min read</p>
-              <button>
+              <button onClick={() => handleAddToBookmark(blog)}>
                 <FaRegBookmark />
               </button>
             </div>
@@ -54,7 +60,10 @@ export default function BlogCard({ blog }: IBlogCardProps) {
               </span>
             ))}
           </p>
-          <button className="pt-4 font-bold text-purple-800 underline">
+          <button
+            onClick={() => handleMarkAsRead(readingTime)}
+            className="pt-4 font-bold text-purple-800 underline"
+          >
             Mark As Read
           </button>
         </div>

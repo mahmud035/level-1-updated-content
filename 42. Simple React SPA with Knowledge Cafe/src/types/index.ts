@@ -7,4 +7,5 @@ export interface IBlog {
   postedDate: string;
   readingTime: number;
   hashtags: string[];
+  isBookmarked?: boolean;
 }
