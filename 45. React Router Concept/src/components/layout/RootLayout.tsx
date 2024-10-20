@@ -4,7 +4,7 @@ import Header from '../../shared/Header';
 
 export default function RootLayout() {
   return (
-    <div className="max-w-7xl mx-auto p-4">
+    <div className="p-4 mx-auto max-w-7xl">
       <Header />
       <Outlet />
       <Footer />
