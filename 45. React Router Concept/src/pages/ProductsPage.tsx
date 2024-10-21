@@ -1,9 +1,14 @@
+import { useEffect } from 'react';
 import { useLoaderData } from 'react-router-dom';
 import ProductCard from '../components/Product/ProductCard';
 import { ILoaderData, IProduct } from '../types';
 
 export default function ProductsPage() {
   const { products } = useLoaderData() as ILoaderData;
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  });
 
   return (
     <>

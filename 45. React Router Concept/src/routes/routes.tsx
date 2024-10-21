@@ -1,6 +1,7 @@
 import { createBrowserRouter } from 'react-router-dom';
 import ErrorPage from '../components/Error/ErrorPage';
 import RootLayout from '../components/layout/RootLayout';
+import ProductDetails from '../components/Product/ProductDetails';
 import RecipeDetails from '../components/Recipe/RecipeDetails';
 import ContactUsPage from '../pages/ContactUsPage';
 import HomePage from '../pages/HomePage';
@@ -8,7 +9,7 @@ import LoginPage from '../pages/LoginPage';
 import ProductsPage from '../pages/ProductsPage';
 import ProfilePage from '../pages/ProfilePage';
 import RecipesPage from '../pages/RecipesPage';
-import { getProducts } from '../utils/product';
+import { getProduct, getProducts } from '../utils/product';
 import { getRecipe, getRecipes } from '../utils/recipe';
 
 const router = createBrowserRouter([
@@ -30,6 +31,15 @@ const router = createBrowserRouter([
             path: 'products',
             loader: getProducts,
             element: <ProductsPage />,
+          },
+          {
+            path: 'products/:id',
+            loader: ({ params }) => {
+              const id = params.id;
+              if (!id) throw new Error('Product ID is undefined'); // Type guard
+              return getProduct(id);
+            },
+            element: <ProductDetails />,
           },
           {
             path: 'recipes',

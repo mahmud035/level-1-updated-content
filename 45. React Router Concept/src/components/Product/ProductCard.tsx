@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom';
 import { IProduct } from '../../types';
 
 interface IProductCardProps {
@@ -5,7 +6,7 @@ interface IProductCardProps {
 }
 
 export default function ProductCard({ product }: IProductCardProps) {
-  const { title, price, availabilityStatus, stock, category, thumbnail } =
+  const { id, title, price, availabilityStatus, stock, category, thumbnail } =
     product;
 
   return (
@@ -18,7 +19,12 @@ export default function ProductCard({ product }: IProductCardProps) {
         <p>Price: {price}$</p>
         <p>Status: {availabilityStatus}</p>
         <p>Stock: {stock}</p>
-        <button className="btn btn-sm ">Purchase</button>
+        <div className="flex gap-4">
+          <button className="btn btn-sm flex-1">Purchase</button>
+          <Link to={`${id}`} className="btn btn-sm flex-1">
+            See Details
+          </Link>
+        </div>
       </div>
     </div>
   );

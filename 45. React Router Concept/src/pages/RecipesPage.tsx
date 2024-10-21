@@ -1,9 +1,14 @@
+import { useEffect } from 'react';
 import { useLoaderData } from 'react-router-dom';
 import RecipeCard from '../components/Recipe/RecipeCard';
 import { ILoaderData, IRecipe } from '../types';
 
 export default function RecipesPage() {
   const { recipes } = useLoaderData() as ILoaderData;
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  });
 
   return (
     <>

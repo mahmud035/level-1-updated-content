@@ -72,6 +72,7 @@ export interface IRecipe {
 
 export interface ILoaderData {
   products: IProduct[];
+  product: IProduct;
   recipes: IRecipe[];
   recipe: IRecipe;
 }

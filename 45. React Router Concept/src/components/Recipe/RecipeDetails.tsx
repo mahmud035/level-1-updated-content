@@ -1,3 +1,4 @@
+import { useEffect } from 'react';
 import { useLoaderData, useNavigate } from 'react-router-dom';
 import { ILoaderData } from '../../types';
 
@@ -15,6 +16,10 @@ export default function RecipeDetails() {
     instructions,
     ingredients,
   } = recipe;
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  });
 
   return (
     <div className="pb-12">
