@@ -10,10 +10,10 @@ export default function ProductCard({ product }: IProductCardProps) {
     product;
 
   return (
-    <div className="w-full h-[430px] shadow-xl card bg-base-100">
+    <div className="w-full shadow-xl card bg-base-100">
       <img src={thumbnail} alt={title} className="w-full h-48" />
 
-      <div className="p-5 card-body">
+      <div className="p-5 card-body flex flex-col justify-between">
         <h2 className="text-xl font-medium card-title">Name: {title}</h2>
         <p>Category: {category}$</p>
         <p>Price: {price}$</p>

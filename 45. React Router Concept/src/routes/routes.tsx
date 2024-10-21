@@ -6,9 +6,10 @@ import RecipeDetails from '../components/Recipe/RecipeDetails';
 import ContactUsPage from '../pages/ContactUsPage';
 import HomePage from '../pages/HomePage';
 import LoginPage from '../pages/LoginPage';
+import PostsPage from '../pages/PostsPage';
 import ProductsPage from '../pages/ProductsPage';
-import ProfilePage from '../pages/ProfilePage';
 import RecipesPage from '../pages/RecipesPage';
+import { getPosts } from '../utils/post';
 import { getProduct, getProducts } from '../utils/product';
 import { getRecipe, getRecipes } from '../utils/recipe';
 
@@ -56,12 +57,13 @@ const router = createBrowserRouter([
             element: <RecipeDetails />,
           },
           {
-            path: 'contact',
-            element: <ContactUsPage />,
+            path: 'posts',
+            loader: getPosts,
+            element: <PostsPage />,
           },
           {
-            path: 'profile/:profileId',
-            element: <ProfilePage />,
+            path: 'contact',
+            element: <ContactUsPage />,
           },
           {
             path: 'login',
