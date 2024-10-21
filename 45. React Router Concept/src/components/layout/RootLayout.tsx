@@ -6,7 +6,11 @@ export default function RootLayout() {
   return (
     <div className="p-4 mx-auto max-w-7xl">
       <Header />
-      <Outlet />
+
+      <div className="min-h-screen">
+        <Outlet />
+      </div>
+
       <Footer />
     </div>
   );

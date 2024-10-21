@@ -7,8 +7,8 @@ export default function Navbar() {
 
   const routes = [
     { id: 1, path: '/', name: 'Home' },
-    { id: 2, path: '/services', name: 'Services' },
-    { id: 3, path: '/about', name: 'About Us' },
+    { id: 2, path: '/products', name: 'Products' },
+    { id: 3, path: '/recipes', name: 'Recipes' },
     { id: 4, path: '/contact', name: 'Contact Us' },
     { id: 5, path: '/profile/1', name: 'User Profile' },
   ];
@@ -30,11 +30,11 @@ export default function Navbar() {
               to={`${route.path}`}
               className={({ isActive }) =>
                 isActive
-                  ? 'text-cyan-700 font-medium text-xl'
+                  ? 'text-cyan-700 font-medium text-lg'
                   : 'font-medium text-lg'
               }
             >
-              {route.name}{' '}
+              {route.name}
             </NavLink>
           </li>
         ))}

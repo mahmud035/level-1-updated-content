@@ -1,12 +1,15 @@
 import { createBrowserRouter } from 'react-router-dom';
 import ErrorPage from '../components/Error/ErrorPage';
 import RootLayout from '../components/layout/RootLayout';
-import AboutUsPage from '../pages/AboutUsPage';
+import RecipeDetails from '../components/Recipe/RecipeDetails';
 import ContactUsPage from '../pages/ContactUsPage';
 import HomePage from '../pages/HomePage';
 import LoginPage from '../pages/LoginPage';
+import ProductsPage from '../pages/ProductsPage';
 import ProfilePage from '../pages/ProfilePage';
-import ServicesPage from '../pages/ServicesPage';
+import RecipesPage from '../pages/RecipesPage';
+import { getProducts } from '../utils/product';
+import { getRecipe, getRecipes } from '../utils/recipe';
 
 const router = createBrowserRouter([
   {
@@ -24,12 +27,23 @@ const router = createBrowserRouter([
             element: <HomePage />,
           },
           {
-            path: 'services',
-            element: <ServicesPage />,
+            path: 'products',
+            loader: getProducts,
+            element: <ProductsPage />,
           },
           {
-            path: 'about',
-            element: <AboutUsPage />,
+            path: 'recipes',
+            loader: getRecipes,
+            element: <RecipesPage />,
+          },
+          {
+            path: 'recipes/:id',
+            loader: ({ params }) => {
+              const id = params.id;
+              if (!id) throw new Error('Recipe ID is undefined'); // Type guard
+              return getRecipe(id);
+            },
+            element: <RecipeDetails />,
           },
           {
             path: 'contact',
@@ -40,7 +54,7 @@ const router = createBrowserRouter([
             element: <ProfilePage />,
           },
           {
-            path: '/login',
+            path: 'login',
             element: <LoginPage />,
           },
         ],
