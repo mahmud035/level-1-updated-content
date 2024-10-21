@@ -8,8 +8,10 @@ export default function Register() {
     password: '',
   });
 
+  // Generalized event handler
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
+
     setFormData({
       ...formData,
       [name]: value,
@@ -22,8 +24,8 @@ export default function Register() {
   };
 
   return (
-    <div className="container mx-auto p-4">
-      <h2 className="text-3xl font-semibold text-center mb-6">Register</h2>
+    <div className="container p-4 mx-auto">
+      <h2 className="mb-6 text-3xl font-semibold text-center">Register</h2>
       <form onSubmit={handleSubmit} className="max-w-md mx-auto space-y-4">
         <div className="flex flex-col">
           <label htmlFor="firstName" className="mb-1">
@@ -79,7 +81,7 @@ export default function Register() {
         </div>
         <button
           type="submit"
-          className="w-full p-2 bg-blue-600 text-white rounded"
+          className="w-full p-2 text-white bg-blue-600 rounded"
         >
           Register
         </button>
