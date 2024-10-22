@@ -1,6 +1,6 @@
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useState } from 'react';
 
-export default function Register() {
+export default function RegisterTwo() {
   // State to manage all form data
   const [data, setData] = useState({
     firstName: '',
@@ -8,7 +8,6 @@ export default function Register() {
     email: '',
     password: '',
   });
-  const inputRef = useRef<HTMLInputElement>(null);
 
   // Generalized event handler
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -22,16 +21,13 @@ export default function Register() {
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+
     console.log('Form submitted:', data);
   };
 
-  useEffect(() => {
-    inputRef.current?.focus();
-  }, []);
-
   return (
     <div className="container p-4 mx-auto">
-      <h2 className="mb-6 text-3xl font-semibold text-center">Register</h2>
+      <h2 className="mb-6 text-3xl font-semibold text-center">Register Two</h2>
 
       <form onSubmit={handleSubmit} className="max-w-md mx-auto space-y-4">
         <div className="flex flex-col">
@@ -39,7 +35,6 @@ export default function Register() {
             First Name
           </label>
           <input
-            ref={inputRef}
             type="text"
             id="firstName"
             name="firstName"
