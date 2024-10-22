@@ -10,7 +10,6 @@ export default function Navbar() {
     { id: 2, path: '/products', name: 'Products' },
     { id: 3, path: '/recipes', name: 'Recipes' },
     { id: 4, path: '/posts', name: 'Posts' },
-    { id: 5, path: '/contact', name: 'Contact Us' },
   ];
 
   return (
@@ -48,10 +47,10 @@ export default function Navbar() {
       </button>
 
       <Link
-        to="/login"
+        to="/register"
         className="hidden px-5 py-2 text-lg font-medium rounded-lg md:inline-block bg-cyan-800"
       >
-        Login
+        Register
       </Link>
     </nav>
   );

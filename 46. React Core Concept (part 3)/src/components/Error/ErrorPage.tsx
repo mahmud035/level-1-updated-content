@@ -17,7 +17,7 @@ export default function ErrorPage() {
             to="/"
             className="px-8 py-3 font-semibold rounded dark:dark:bg-cyan-800 dark:dark:text-white"
           >
-            Back to Homepage
+            Back to Homepage 🏡
           </Link>
         </div>
       </div>
