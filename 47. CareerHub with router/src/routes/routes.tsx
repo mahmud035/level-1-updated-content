@@ -1,7 +1,10 @@
 import { createBrowserRouter } from 'react-router-dom';
 import ErrorPage from '../components/Error/ErrorPage';
 import RootLayout from '../components/layout/RootLayout';
+import AppliedJobsPage from '../pages/AppliedJobsPage';
+import BlogPage from '../pages/BlogPage';
 import HomePage from '../pages/HomePage';
+import StatisticsPage from '../pages/StatisticsPage';
 
 const router = createBrowserRouter([
   {
@@ -17,6 +20,18 @@ const router = createBrowserRouter([
           {
             index: true,
             element: <HomePage />,
+          },
+          {
+            path: 'applied-jobs',
+            element: <AppliedJobsPage />,
+          },
+          {
+            path: 'statistics',
+            element: <StatisticsPage />,
+          },
+          {
+            path: 'blog',
+            element: <BlogPage />,
           },
         ],
       },
