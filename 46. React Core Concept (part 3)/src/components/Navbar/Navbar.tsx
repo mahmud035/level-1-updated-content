@@ -8,8 +8,6 @@ export default function Navbar() {
   const routes = [
     { id: 1, path: '/', name: 'Home' },
     { id: 2, path: '/products', name: 'Products' },
-    { id: 3, path: '/recipes', name: 'Recipes' },
-    { id: 4, path: '/posts', name: 'Posts' },
   ];
 
   return (

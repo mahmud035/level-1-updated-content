@@ -17,8 +17,10 @@ export default function HomePage() {
       <p>
         In React, reusing components is a fundamental concept that helps
         maintain DRY (Don't Repeat Yourself) principles, improve
-        maintainability, and keep the UI consistent. Here are several ways to
-        reuse components in React:
+        maintainability, and keep the UI consistent.
+      </p>
+      <p className="font-semibold">
+        Here are several ways to reuse components in React:
       </p>
 
       <h2 className="py-4 text-3xl">1. Component Props</h2>
