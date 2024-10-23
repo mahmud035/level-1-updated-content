@@ -14,7 +14,7 @@ export default function Navbar() {
   ];
 
   return (
-    <nav className="py-7 flex justify-between items-center relative">
+    <nav className="relative flex items-center justify-between py-7">
       <Link to="/">
         <img src={Logo} alt="Logo" className="w-36" />
       </Link>
@@ -49,7 +49,7 @@ export default function Navbar() {
         {showNavLinks ? <FaX size={24} /> : <FaBars size={24} />}
       </button>
 
-      <Button label="Start Applying" className="hidden md:block" />
+      <Button label="Start Applying" className="hidden rounded-lg md:block" />
     </nav>
   );
 }

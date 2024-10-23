@@ -4,6 +4,9 @@
 
 @layer components {
   .btn-primary {
-    @apply rounded-lg bg-gradient-to-r from-[#7E90FE] to-[#9873FF] px-7 py-3;
+    @apply bg-gradient-to-r from-[#7E90FE] to-[#9873FF] px-7 py-3;
+  }
+  .btn-secondary {
+    @apply px-3.5 py-1 bg-gradient-to-r from-[#7E90FE] to-[#9873FF] bg-clip-text text-transparent rounded border border-[#7E90FE];
   }
 }

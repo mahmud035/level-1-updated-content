@@ -3,7 +3,7 @@ import Button from '../ui/Button';
 
 export default function Hero() {
   return (
-    <div className="pt-10 flex flex-col gap-4 md:flex-row items-center text-balance">
+    <div className="flex flex-col items-center gap-4 pt-10 md:flex-row text-balance">
       <div className="pb-10">
         <h2 className="text-7xl leading-[90px] font-light">
           <span>One Step</span> <br />
@@ -17,11 +17,11 @@ export default function Hero() {
           need. Its your future. Come find it. Manage all your job application
           from start to finish.
         </p>
-        <Button label="Get Started" />
+        <Button label="Get Started" className="rounded-lg" />
       </div>
 
       <div>
-        <img src={User} alt="User" className="w-full object-cover" />
+        <img src={User} alt="User" className="object-cover w-full" />
       </div>
     </div>
   );
