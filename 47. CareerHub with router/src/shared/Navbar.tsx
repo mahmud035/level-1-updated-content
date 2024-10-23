@@ -27,7 +27,7 @@ export default function Navbar() {
         }`}
       >
         {routes.map((route) => (
-          <li>
+          <li key={route.id}>
             <NavLink
               to={`${route.path}`}
               className={({ isActive }) =>

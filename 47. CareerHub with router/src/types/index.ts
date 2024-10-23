@@ -5,3 +5,10 @@ export interface IError {
   data: string;
   error: object;
 }
+
+export interface IJobCategory {
+  id: number;
+  logo: string;
+  category_name: string;
+  availability: string;
+}
