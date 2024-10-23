@@ -1,3 +1,9 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@layer components {
+  .btn-primary {
+    @apply rounded-lg bg-gradient-to-r from-[#7E90FE] to-[#9873FF] px-7 py-3;
+  }
+}

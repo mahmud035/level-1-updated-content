@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { FaBars, FaX } from 'react-icons/fa6';
 import { Link, NavLink } from 'react-router-dom';
 import Logo from '../assets/logo/CareerHub.png';
+import Button from '../components/ui/Button';
 
 export default function Navbar() {
   const [showNavLinks, setShowNavLinks] = useState(false);
@@ -13,7 +14,7 @@ export default function Navbar() {
   ];
 
   return (
-    <nav className="py-2 flex justify-between items-center relative">
+    <nav className="py-7 flex justify-between items-center relative">
       <Link to="/">
         <img src={Logo} alt="Logo" className="w-36" />
       </Link>
@@ -21,7 +22,7 @@ export default function Navbar() {
       <ul
         className={`md:flex md:gap-6 xl:gap-8 ${
           showNavLinks
-            ? 'absolute top-3 left-1/2 flex flex-col gap-4 duration-1000'
+            ? 'absolute top-7 left-1/2 flex flex-col gap-4 duration-1000'
             : 'hidden'
         }`}
       >
@@ -48,9 +49,7 @@ export default function Navbar() {
         {showNavLinks ? <FaX size={24} /> : <FaBars size={24} />}
       </button>
 
-      <button className="hidden md:block rounded-lg bg-gradient-to-r from-[#7E90FE] to-[#9873FF] px-7 py-3">
-        Start Applying
-      </button>
+      <Button label="Start Applying" className="hidden md:block" />
     </nav>
   );
 }
