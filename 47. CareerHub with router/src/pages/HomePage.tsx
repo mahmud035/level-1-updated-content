@@ -1,13 +1,15 @@
+import { useContext } from 'react';
 import Hero from '../components/Hero/Hero';
 import JobCard from '../components/Job/JobCard';
 import JobCategoryCard from '../components/Job/JobCategoryCard';
 import Button from '../components/ui/Button';
-import useFetchData from '../hooks/useFetchData';
-import { IJob, IJobCategory } from '../types';
+import { JobContext } from '../contexts/JobContext';
 
 export default function HomePage() {
-  const jobCategories = useFetchData<IJobCategory>('categories.json');
-  const jobs = useFetchData<IJob>('jobs.json');
+  const jobContext = useContext(JobContext);
+  if (!jobContext) return <div>Loading...</div>;
+
+  const { jobs, jobCategories } = jobContext;
 
   return (
     <main>
