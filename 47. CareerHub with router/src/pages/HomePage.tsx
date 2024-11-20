@@ -11,8 +11,6 @@ export default function HomePage() {
 
   const { jobs, jobCategories } = jobContext;
 
-  console.log(jobs);
-
   return (
     <main>
       {/* Hero */}
