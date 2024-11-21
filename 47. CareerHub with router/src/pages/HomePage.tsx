@@ -14,11 +14,11 @@ export default function HomePage() {
   return (
     <main>
       {/* Hero */}
-      <div className="bg-[#F9F9FF]">
+      <section className="bg-[#F9F9FF]">
         <div className="px-4 mx-auto max-w-7xl">
           <Hero />
         </div>
-      </div>
+      </section>
 
       {/* Job Category List */}
       <section className="px-4 pt-32 mx-auto font-light max-w-7xl">
