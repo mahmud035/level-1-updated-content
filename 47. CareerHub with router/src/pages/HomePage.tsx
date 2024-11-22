@@ -9,6 +9,7 @@ export default function HomePage() {
   const jobContext = useContext(JobContext);
   const featuredJobsRef = useRef(null);
 
+  // Check for loading state based on jobContext availability
   if (!jobContext) return <div>Loading...</div>;
 
   const { jobs, jobCategories, showAllJobs, setShowAllJobs } = jobContext;

@@ -1,12 +1,12 @@
 import { Link, useRouteError } from 'react-router-dom';
-import { IError } from '../../types';
+import { IError } from '../types';
 
 export default function ErrorPage() {
   const error = useRouteError() as IError;
   console.error(error);
 
   return (
-    <section className="flex items-center p-16 dark:dark:bg-[#030317] dark:dark:text-white">
+    <section className="flex items-center h-screen p-16 dark:dark:bg-[#030317] dark:dark:text-white">
       <div className="container flex flex-col items-center justify-center px-5 mx-auto my-8">
         <div className="max-w-lg text-center">
           <h2 className="text-xl font-medium text-red-500 mb-7">
