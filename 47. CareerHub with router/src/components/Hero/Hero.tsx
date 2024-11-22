@@ -1,7 +1,10 @@
 import User from '../../assets/images/user.png';
+import useExploreJobs from '../../hooks/useExploreJobs';
 import Button from '../ui/Button';
 
 export default function Hero() {
+  const exploreJobs = useExploreJobs();
+
   return (
     <div className="flex flex-col items-center gap-4 pt-10 md:flex-row text-balance">
       <div className="pb-10">
@@ -17,7 +20,11 @@ export default function Hero() {
           need. Its your future. Come find it. Manage all your job application
           from start to finish.
         </p>
-        <Button label="Get Started" className="rounded-lg" />
+        <Button
+          label="Get Started"
+          className="rounded-lg"
+          onClick={exploreJobs}
+        />
       </div>
 
       <div>

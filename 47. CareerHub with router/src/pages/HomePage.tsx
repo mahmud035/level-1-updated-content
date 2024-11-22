@@ -1,4 +1,4 @@
-import { useContext } from 'react';
+import { useContext, useRef } from 'react';
 import Hero from '../components/Hero/Hero';
 import JobCard from '../components/Job/JobCard';
 import JobCategoryCard from '../components/Job/JobCategoryCard';
@@ -7,9 +7,11 @@ import { JobContext } from '../contexts/JobContext';
 
 export default function HomePage() {
   const jobContext = useContext(JobContext);
+  const featuredJobsRef = useRef(null);
+
   if (!jobContext) return <div>Loading...</div>;
 
-  const { jobs, jobCategories } = jobContext;
+  const { jobs, jobCategories, showAllJobs, setShowAllJobs } = jobContext;
 
   return (
     <main>
@@ -38,7 +40,11 @@ export default function HomePage() {
       </section>
 
       {/* Featured Jobs */}
-      <section className="px-4 pt-32 mx-auto font-light max-w-7xl">
+      <section
+        className="px-4 py-32 mx-auto font-light max-w-7xl"
+        id="featured-jobs"
+        ref={featuredJobsRef}
+      >
         <h3 className="text-center text-5xl leading-[60px] text-[#1A1919]">
           Featured Jobs
         </h3>
@@ -48,14 +54,20 @@ export default function HomePage() {
         </p>
 
         <div className="grid grid-cols-1 gap-6 md:grid-cols-2">
-          {jobs.map((job) => (
-            <JobCard key={job.id} job={job} />
-          ))}
+          {showAllJobs
+            ? jobs.map((job) => <JobCard key={job.id} job={job} />)
+            : jobs.slice(0, 4).map((job) => <JobCard key={job.id} job={job} />)}
         </div>
 
-        <div className="flex justify-center pt-10 pb-32">
-          <Button label="See All Jobs" className="rounded-lg" />
-        </div>
+        {!showAllJobs && (
+          <div className="flex justify-center pt-10">
+            <Button
+              label="See All Jobs"
+              className="rounded-lg"
+              onClick={() => setShowAllJobs(true)}
+            />
+          </div>
+        )}
       </section>
     </main>
   );

@@ -3,9 +3,11 @@ import { FaBars, FaX } from 'react-icons/fa6';
 import { Link, NavLink } from 'react-router-dom';
 import Logo from '../assets/logo/CareerHub.png';
 import Button from '../components/ui/Button';
+import useExploreJobs from '../hooks/useExploreJobs';
 
 export default function Navbar() {
   const [showNavLinks, setShowNavLinks] = useState(false);
+  const exploreJobs = useExploreJobs();
 
   const routes = [
     { id: 1, path: '/statistics', name: 'Statistics' },
@@ -14,7 +16,7 @@ export default function Navbar() {
   ];
 
   return (
-    <nav className="relative flex items-center justify-between py-7">
+    <nav className="relative z-50 flex items-center justify-between py-7">
       <Link to="/">
         <img src={Logo} alt="Logo" className="w-36" />
       </Link>
@@ -49,7 +51,11 @@ export default function Navbar() {
         {showNavLinks ? <FaX size={24} /> : <FaBars size={24} />}
       </button>
 
-      <Button label="Start Applying" className="hidden rounded-lg md:block" />
+      <Button
+        label="Start Applying"
+        className="hidden rounded-lg md:block"
+        onClick={exploreJobs}
+      />
     </nav>
   );
 }

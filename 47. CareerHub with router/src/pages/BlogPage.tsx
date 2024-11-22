@@ -1,3 +1,7 @@
 export default function BlogPage() {
-  return <div>BlogPage......Coming Soon</div>;
+  return (
+    <section className="py-32 text-3xl text-center min-h-[calc(100vh-504px)]">
+      Blog Page
+    </section>
+  );
 }
