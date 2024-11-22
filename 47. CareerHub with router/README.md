@@ -2,7 +2,7 @@
 
 ![React](https://img.shields.io/badge/React-18.3.1-blue)
 
-- **Live Site URL**: [Live Site](https://your-netlify-url.netlify.app/)
+- **Live Site URL**: [Live Site](https://47-careerhub-with-router-batch-09.netlify.app/)
 
 ## Overview
 
