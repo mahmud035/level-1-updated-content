@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react';
+import toast from 'react-hot-toast';
 
 export default function App() {
   const [users, setUsers] = useState([]);
@@ -18,6 +19,7 @@ export default function App() {
       const data = await res.json();
       setUsers(data);
     } catch (error) {
+      toast.error(error.message);
       console.error('Error:', error);
     }
   };
@@ -33,6 +35,7 @@ export default function App() {
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(formData),
       });
+      toast.success('User updated successfully');
     } else {
       // Create
       await fetch('http://localhost:5000/users', {
@@ -40,6 +43,7 @@ export default function App() {
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(formData),
       });
+      toast.success('User created successfully');
     }
 
     setFormData({ name: '', email: '' });
@@ -56,6 +60,7 @@ export default function App() {
   // Delete user
   const handleDelete = async (id) => {
     await fetch(`http://localhost:5000/users/${id}`, { method: 'DELETE' });
+    toast.success('User deleted successfully');
     fetchUsers();
   };
 
