@@ -1,30 +1,91 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
+import toast from 'react-hot-toast';
 
 export default function App() {
   const [users, setUsers] = useState([]);
+  const [formData, setFormData] = useState({ name: '', email: '' });
+  const [editingId, setEditingId] = useState(null);
 
   // Fetch all users
+  const fetchUsers = async () => {
+    try {
+      const res = await fetch('http://localhost:5000/users');
+      if (!res.ok) throw new Error('Error fetching users');
+      const data = await res.json();
+      setUsers(data);
+    } catch (error) {
+      toast.error(error.message);
+    }
+  };
+
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setFormData({ ...formData, [name]: value });
+  };
 
   // Create or Update user
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+
+    if (editingId) {
+      // Update
+      await fetch(`http://localhost:5000/users/${editingId}`, {
+        method: 'PUT',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(formData),
+      });
+      toast.success('User updated successfully');
+    } else {
+      // Create
+      await fetch('http://localhost:5000/users', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(formData),
+      });
+      toast.success('User created successfully');
+    }
+
+    setFormData({ name: '', email: '' });
+    setEditingId(null);
+    fetchUsers();
+  };
 
   // Edit user
+  const handleEdit = (user) => {
+    setEditingId(user._id);
+    setFormData({ name: user.name, email: user.email });
+  };
 
   // Delete user
+  const handleDelete = async (id) => {
+    await fetch(`http://localhost:5000/users/${id}`, { method: 'DELETE' });
+    toast.success('User deleted successfully');
+    fetchUsers();
+  };
 
   // Fetch all users when component mounts
+  useEffect(() => {
+    fetchUsers();
+  }, []);
 
   return (
     <div className="max-w-xl p-4 mx-auto">
       <h1 className="mb-4 text-2xl font-bold">User Management</h1>
 
-      <form className="p-4 mb-6 bg-white rounded shadow-md">
+      <form
+        onSubmit={handleSubmit}
+        className="p-4 mb-6 bg-white rounded shadow-md"
+      >
         <div className="mb-4">
           <label htmlFor="name" className="block text-sm font-medium">
             Name
           </label>
           <input
             type="text"
+            name="name"
             id="name"
+            value={formData.name}
+            onChange={handleChange}
             className="w-full p-2 mt-1 border rounded"
             required
           />
@@ -35,7 +96,10 @@ export default function App() {
           </label>
           <input
             type="email"
+            name="email"
             id="email"
+            value={formData.email}
+            onChange={handleChange}
             className="w-full p-2 mt-1 border rounded"
             required
           />
@@ -44,7 +108,7 @@ export default function App() {
           type="submit"
           className="px-4 py-2 text-white bg-blue-500 rounded hover:bg-blue-600"
         >
-          Add User
+          {editingId ? 'Update User' : 'Add User'}
         </button>
       </form>
 
@@ -57,14 +121,20 @@ export default function App() {
               className="flex items-center justify-between p-4 border-b"
             >
               <div>
-                <h3 className="font-semibold"></h3>
-                <p className="text-sm text-gray-500"></p>
+                <h3 className="font-semibold">{user.name}</h3>
+                <p className="text-sm text-gray-500">{user.email}</p>
               </div>
               <div>
-                <button className="px-3 py-1 mr-2 text-white bg-yellow-500 rounded hover:bg-yellow-600">
+                <button
+                  onClick={() => handleEdit(user)}
+                  className="px-3 py-1 mr-2 text-white bg-yellow-500 rounded hover:bg-yellow-600"
+                >
                   Edit
                 </button>
-                <button className="px-3 py-1 text-white bg-red-500 rounded hover:bg-red-600">
+                <button
+                  onClick={() => handleDelete(user._id)}
+                  className="px-3 py-1 text-white bg-red-500 rounded hover:bg-red-600"
+                >
                   Delete
                 </button>
               </div>
