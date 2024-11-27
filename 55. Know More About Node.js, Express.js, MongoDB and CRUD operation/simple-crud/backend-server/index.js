@@ -34,7 +34,15 @@ const users = database.collection('users');
 
 //* GET(READ)
 app.get('/users', async (req, res) => {
-  const result = await users.find({}).toArray();
+  const query = {};
+  const result = await users.find(query).toArray();
+  res.send(result);
+});
+
+app.get('/users/:id', async (req, res) => {
+  const { id } = req.params;
+  const query = { _id: new ObjectId(id) };
+  const result = await users.findOne(query);
   res.send(result);
 });
 
@@ -63,6 +71,6 @@ app.delete('/users/:id', async (req, res) => {
   res.send(result);
 });
 
-app.listen(PORT, () =>
-  console.log(`Server running on http://localhost:${PORT}`)
-);
+app.listen(PORT, () => {
+  console.log(`Server is running on http://localhost:${PORT}`);
+});

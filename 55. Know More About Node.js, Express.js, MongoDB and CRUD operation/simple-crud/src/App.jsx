@@ -6,6 +6,7 @@ export default function App() {
   const [formData, setFormData] = useState({ name: '', email: '' });
   const [editingId, setEditingId] = useState(null);
 
+  // Handle input changes
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData({ ...formData, [name]: value });
@@ -20,7 +21,6 @@ export default function App() {
       setUsers(data);
     } catch (error) {
       toast.error(error.message);
-      console.error('Error:', error);
     }
   };
 
@@ -70,12 +70,12 @@ export default function App() {
   }, []);
 
   return (
-    <div className="max-w-xl mx-auto p-4">
-      <h1 className="text-2xl font-bold mb-4">User Management</h1>
+    <div className="max-w-xl p-4 mx-auto">
+      <h1 className="mb-4 text-2xl font-bold">User Management</h1>
 
       <form
         onSubmit={handleSubmit}
-        className="mb-6 p-4 bg-white shadow-md rounded"
+        className="p-4 mb-6 bg-white rounded shadow-md"
       >
         <div className="mb-4">
           <label htmlFor="name" className="block text-sm font-medium">
@@ -87,7 +87,7 @@ export default function App() {
             id="name"
             value={formData.name}
             onChange={handleChange}
-            className="w-full mt-1 p-2 border rounded"
+            className="w-full p-2 mt-1 border rounded"
             required
           />
         </div>
@@ -101,26 +101,25 @@ export default function App() {
             id="email"
             value={formData.email}
             onChange={handleChange}
-            className="w-full mt-1 p-2 border rounded"
+            className="w-full p-2 mt-1 border rounded"
             required
           />
         </div>
         <button
           type="submit"
-          className="px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600"
+          className="px-4 py-2 text-white bg-blue-500 rounded hover:bg-blue-600"
         >
           {editingId ? 'Update User' : 'Add User'}
         </button>
       </form>
 
       {/* Display list of users */}
-      <div className="bg-white shadow-md rounded">
+      <div className="bg-white rounded shadow-md">
         {users.length > 0 ? (
           users.map((user) => (
             <div
               key={user._id}
-              className="p-4 flex justify-between items-center border-b
-          "
+              className="flex items-center justify-between p-4 border-b "
             >
               <div>
                 <h3 className="font-semibold">{user.name}</h3>
@@ -129,13 +128,13 @@ export default function App() {
               <div>
                 <button
                   onClick={() => handleEdit(user)}
-                  className="px-3 py-1 bg-yellow-500 text-white rounded mr-2 hover:bg-yellow-600"
+                  className="px-3 py-1 mr-2 text-white bg-yellow-500 rounded hover:bg-yellow-600"
                 >
                   Edit
                 </button>
                 <button
                   onClick={() => handleDelete(user._id)}
-                  className="px-3 py-1 bg-red-500 text-white rounded hover:bg-red-600"
+                  className="px-3 py-1 text-white bg-red-500 rounded hover:bg-red-600"
                 >
                   Delete
                 </button>
@@ -143,7 +142,7 @@ export default function App() {
             </div>
           ))
         ) : (
-          <p className="text-center p-10 font-bold text-xl">No User Found!</p>
+          <p className="p-12 text-xl font-bold text-center">No User Found!</p>
         )}
       </div>
     </div>
