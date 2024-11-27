@@ -6,6 +6,12 @@ export default function App() {
   const [formData, setFormData] = useState({ name: '', email: '' });
   const [editingId, setEditingId] = useState(null);
 
+  // Handle input changes
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setFormData({ ...formData, [name]: value });
+  };
+
   // Fetch all users
   const fetchUsers = async () => {
     try {
@@ -16,11 +22,6 @@ export default function App() {
     } catch (error) {
       toast.error(error.message);
     }
-  };
-
-  const handleChange = (e) => {
-    const { name, value } = e.target;
-    setFormData({ ...formData, [name]: value });
   };
 
   // Create or Update user
@@ -70,7 +71,7 @@ export default function App() {
 
   return (
     <div className="max-w-xl p-4 mx-auto">
-      <h1 className="mb-4 text-2xl font-bold">User Management</h1>
+      <h1 className="mb-4 text-2xl font-bold ">User Management</h1>
 
       <form
         onSubmit={handleSubmit}
