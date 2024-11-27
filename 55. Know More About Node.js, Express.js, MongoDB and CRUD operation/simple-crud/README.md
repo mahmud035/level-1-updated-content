@@ -1,9 +1,8 @@
 # Know More About Node.js, Express.js, MongoDB and CRUD Operation (Simple CRUD)
 
-![Node.js](https://img.shields.io/badge/Node.js-14.x-brightgreen)
+![Node.js](https://img.shields.io/badge/Node.js-22.x-brightgreen)
 ![Express.js](https://img.shields.io/badge/Express.js-4.x-blue)
-![MongoDB](https://img.shields.io/badge/MongoDB-4.x-green)
-![Version](https://img.shields.io/badge/version-1.0.0-brightgreen)
+![MongoDB](https://img.shields.io/badge/MongoDB-6.x-green)
 
 ## Overview
 
