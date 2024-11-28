@@ -76,10 +76,10 @@ export default function HomePage() {
   };
 
   return (
-    <div>
-      <div className="container flex flex-col justify-center items-center pb-12">
+    <div className="py-16">
+      <div className="container flex flex-col items-center justify-center pb-12">
         <p className="text-xl">--- Sip & Savor ---</p>
-        <h2 className="text-5xl pt-2 pb-4">Our Popular Products</h2>
+        <h2 className="pt-2 pb-4 text-5xl">Our Popular Products</h2>
         <button
           onClick={() => {
             setFormData(defaultFormData);
