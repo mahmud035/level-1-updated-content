@@ -54,7 +54,8 @@ app.post('/coffees', async (req, res) => {
 //* PUT/PATCH(UPDATE)
 app.put('/coffees/:id', async (req, res) => {
   const { id } = req.params;
-  const updatedCoffee = req.body;
+  const data = req.body;
+  const { _id, ...updatedCoffee } = data; // 👉 separate _id property from coffee data.
   const filter = { _id: new ObjectId(id) };
   const options = { upsert: true };
   const result = await coffees.updateOne(
