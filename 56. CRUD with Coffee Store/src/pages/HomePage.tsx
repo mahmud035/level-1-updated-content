@@ -11,6 +11,7 @@ export default function HomePage() {
   const { coffees, fetchCoffees } = useFetchCoffees<ICoffee>();
   const [formData, setFormData] = useState(defaultFormData);
   const [editingId, setEditingId] = useState<string | null>(null);
+  const [selectedCoffee, setSelectedCoffee] = useState<ICoffee | null>(null);
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
@@ -83,6 +84,7 @@ export default function HomePage() {
           onClick={() => {
             setFormData(defaultFormData);
             setEditingId(null);
+            setSelectedCoffee(null);
             showModal('coffee-modal');
           }}
           className="btn-add-coffee"
@@ -96,6 +98,7 @@ export default function HomePage() {
         coffees={coffees}
         handleEdit={handleEdit}
         handleDelete={handleDelete}
+        setSelectedCoffee={setSelectedCoffee}
       />
 
       <CoffeeModal
@@ -103,6 +106,7 @@ export default function HomePage() {
         handleSubmit={handleSubmit}
         formData={formData}
         editingId={editingId}
+        selectedCoffee={selectedCoffee}
       />
     </div>
   );

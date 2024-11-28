@@ -1,12 +1,9 @@
-import {
-  MdOutlineDeleteOutline,
-  MdOutlineModeEditOutline,
-  MdOutlineRemoveRedEye,
-} from 'react-icons/md';
 import { ICoffee } from '../../types';
+import CoffeeActions from './CoffeeActions';
 
 interface ICoffeeCardProps {
   coffee: ICoffee;
+  setSelectedCoffee: React.Dispatch<React.SetStateAction<ICoffee | null>>;
   handleEdit: (coffee: ICoffee) => void;
   handleDelete: (id: string) => void;
 }
@@ -15,8 +12,9 @@ export default function CoffeeCard({
   coffee,
   handleEdit,
   handleDelete,
+  setSelectedCoffee,
 }: ICoffeeCardProps) {
-  const { _id, name, chef, price } = coffee;
+  const { name, chef, price } = coffee;
 
   return (
     <div className="bg-[#F5F4F1] rounded-xl p-8 flex flex-col xl:flex-row justify-between xl:items-center space-y-6 xl:space-y-0">
@@ -27,32 +25,23 @@ export default function CoffeeCard({
       />
       <div className="space-y-4">
         <p>
-          <span className="text-lg">Name:</span> {name}
+          <span className="text-lg font-medium">Name:</span> {name}
         </p>
         <p>
-          <span className="text-lg">Chef:</span> {chef}
+          <span className="text-lg font-medium">Chef:</span> {chef}
         </p>
         <p>
-          <span className="text-lg">Price:</span> {price}$
+          <span className="text-lg font-medium">Price:</span> {price}$
         </p>
       </div>
-      <div className="flex xl:flex-col gap-3.5 w-fit">
-        <button className="bg-[#D2B48C] p-2 rounded">
-          <MdOutlineRemoveRedEye className=" text-white" />
-        </button>
-        <button
-          onClick={() => handleEdit(coffee)}
-          className="bg-[#3C393B] p-2 rounded"
-        >
-          <MdOutlineModeEditOutline className=" text-white" />
-        </button>
-        <button
-          onClick={() => handleDelete(_id)}
-          className="bg-[#EA4744] p-2 rounded"
-        >
-          <MdOutlineDeleteOutline className=" text-white" />
-        </button>
-      </div>
+
+      {/* Coffee actions */}
+      <CoffeeActions
+        coffee={coffee}
+        handleEdit={handleEdit}
+        handleDelete={handleDelete}
+        setSelectedCoffee={setSelectedCoffee}
+      />
     </div>
   );
 }

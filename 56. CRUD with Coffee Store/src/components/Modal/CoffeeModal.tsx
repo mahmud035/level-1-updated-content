@@ -1,9 +1,12 @@
-import { IFormData } from '../../types';
+import { ICoffee, IFormData } from '../../types';
+import CoffeeDetailsCard from '../Coffee/CoffeeDetailsCard';
 import InputRow from '../ui/InputRow';
+import ModalHeader from './ModalHeader';
 
 interface ICoffeeModalProps {
   formData: IFormData;
   editingId: string | null;
+  selectedCoffee: ICoffee | null;
   handleChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
   handleSubmit: (e: React.FormEvent<HTMLFormElement>) => void;
 }
@@ -13,6 +16,7 @@ export default function CoffeeModal({
   handleSubmit,
   formData,
   editingId,
+  selectedCoffee,
 }: ICoffeeModalProps) {
   return (
     <dialog id="coffee-modal" className="modal">
@@ -22,46 +26,46 @@ export default function CoffeeModal({
             ✕
           </button>
         </form>
-        <div className="text-center">
-          <h3 className="font-bold text-4xl">
-            {editingId ? 'Update Existing Coffee Details' : 'Add New Coffee'}
-          </h3>
-          <p className="py-4 max-w-[900px] mx-auto">
-            It is a long established fact that a reader will be distracted by
-            the readable content of a page when looking at its layout.
-          </p>
-        </div>
 
-        {/* Create or Update Coffee Form */}
-        <form onSubmit={handleSubmit}>
-          <InputRow
-            label1="name"
-            label2="chef"
-            handleChange={handleChange}
-            formData={formData}
-          />
-          <InputRow
-            label1="supplier"
-            label2="taste"
-            handleChange={handleChange}
-            formData={formData}
-          />
-          <InputRow
-            label1="category"
-            label2="details"
-            handleChange={handleChange}
-            formData={formData}
-          />
-          <InputRow
-            label1="price"
-            label2="photoURL"
-            handleChange={handleChange}
-            formData={formData}
-          />
-          <button className="btn-add-update">
-            {editingId ? 'Update Coffee Details' : 'Add Coffee'}
-          </button>
-        </form>
+        {selectedCoffee !== null ? (
+          <CoffeeDetailsCard selectedCoffee={selectedCoffee} />
+        ) : (
+          <>
+            {/* Show add coffee or update coffee */}
+            <ModalHeader editingId={editingId} />
+
+            {/* Create or Update Coffee Form */}
+            <form onSubmit={handleSubmit}>
+              <InputRow
+                label1="name"
+                label2="chef"
+                handleChange={handleChange}
+                formData={formData}
+              />
+              <InputRow
+                label1="supplier"
+                label2="taste"
+                handleChange={handleChange}
+                formData={formData}
+              />
+              <InputRow
+                label1="category"
+                label2="details"
+                handleChange={handleChange}
+                formData={formData}
+              />
+              <InputRow
+                label1="price"
+                label2="photoURL"
+                handleChange={handleChange}
+                formData={formData}
+              />
+              <button className="btn-add-update">
+                {editingId ? 'Update Coffee Details' : 'Add Coffee'}
+              </button>
+            </form>
+          </>
+        )}
       </div>
     </dialog>
   );

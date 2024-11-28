@@ -3,6 +3,7 @@ import CoffeeCard from './CoffeeCard';
 
 interface ICoffeeListProps {
   coffees: ICoffee[];
+  setSelectedCoffee: React.Dispatch<React.SetStateAction<ICoffee | null>>;
   handleEdit: (coffee: ICoffee) => void;
   handleDelete: (id: string) => void;
 }
@@ -11,6 +12,7 @@ export default function CoffeeList({
   coffees,
   handleEdit,
   handleDelete,
+  setSelectedCoffee,
 }: ICoffeeListProps) {
   return (
     <div className="container grid grid-cols-1 md:grid-cols-2 gap-6">
@@ -21,6 +23,7 @@ export default function CoffeeList({
             coffee={coffee}
             handleEdit={handleEdit}
             handleDelete={handleDelete}
+            setSelectedCoffee={setSelectedCoffee}
           />
         ))
       ) : (
