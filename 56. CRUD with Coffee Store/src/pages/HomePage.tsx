@@ -29,7 +29,7 @@ export default function HomePage() {
 
     if (editingId) {
       // Update
-      await fetch(`http://localhost:5000/coffees/${editingId}`, {
+      await fetch(`${import.meta.env.API_BASE_URL}/coffees/${editingId}`, {
         method: 'PUT',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(formData),
@@ -37,7 +37,7 @@ export default function HomePage() {
       showAlert('Coffee updated successfully', 'success', 'Close');
     } else {
       // Create
-      await fetch('http://localhost:5000/coffees', {
+      await fetch(`${import.meta.env.API_BASE_URL}/coffees`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(formData),
@@ -71,7 +71,7 @@ export default function HomePage() {
     }).then(async (result) => {
       if (result.isConfirmed) {
         // Delete
-        await fetch(`http://localhost:5000/coffees/${id}`, {
+        await fetch(`${import.meta.env.API_BASE_URL}/coffees/${id}`, {
           method: 'DELETE',
         });
         showAlert('Coffee deleted successfully', 'success', 'Close');

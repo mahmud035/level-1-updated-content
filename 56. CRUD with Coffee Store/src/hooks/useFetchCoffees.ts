@@ -7,7 +7,7 @@ export default function useFetchCoffees<T>() {
   // Fetch all coffees
   const fetchCoffees = async () => {
     try {
-      const res = await fetch('http://localhost:5000/coffees');
+      const res = await fetch(`${import.meta.env.API_BASE_URL}/coffees`);
       if (!res.ok) throw new Error('Error fetching coffees');
       const data = await res.json();
       setCoffees(data);
