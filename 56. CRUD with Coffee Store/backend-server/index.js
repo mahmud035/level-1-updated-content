@@ -74,6 +74,10 @@ app.delete('/coffees/:id', async (req, res) => {
   res.send(result);
 });
 
+app.get('/', (req, res) => {
+  res.send(`Coffee Store server is running`);
+});
+
 app.listen(PORT, () => {
   console.log(`Server is running on http://localhost:${PORT}`);
 });

@@ -10,7 +10,13 @@ import SectionInfo from '../components/Home/SectionInfo';
 import CoffeeModal from '../components/Modal/CoffeeModal';
 import useFetchCoffees from '../hooks/useFetchCoffees';
 import { ICoffee } from '../types';
-import { closeModal, defaultFormData, showAlert, showModal } from '../utils';
+import {
+  API_BASE_URL,
+  closeModal,
+  defaultFormData,
+  showAlert,
+  showModal,
+} from '../utils';
 
 export default function HomePage() {
   const { coffees, fetchCoffees } = useFetchCoffees<ICoffee>();
@@ -29,7 +35,7 @@ export default function HomePage() {
 
     if (editingId) {
       // Update
-      await fetch(`${import.meta.env.API_BASE_URL}/coffees/${editingId}`, {
+      await fetch(`${API_BASE_URL}/coffees/${editingId}`, {
         method: 'PUT',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(formData),
@@ -37,7 +43,7 @@ export default function HomePage() {
       showAlert('Coffee updated successfully', 'success', 'Close');
     } else {
       // Create
-      await fetch(`${import.meta.env.API_BASE_URL}/coffees`, {
+      await fetch(`${API_BASE_URL}/coffees`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(formData),
@@ -71,7 +77,7 @@ export default function HomePage() {
     }).then(async (result) => {
       if (result.isConfirmed) {
         // Delete
-        await fetch(`${import.meta.env.API_BASE_URL}/coffees/${id}`, {
+        await fetch(`${API_BASE_URL}/coffees/${id}`, {
           method: 'DELETE',
         });
         showAlert('Coffee deleted successfully', 'success', 'Close');
