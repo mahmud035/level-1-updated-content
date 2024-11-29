@@ -1,4 +1,4 @@
-import { ICoffee } from '../../types';
+import { ICoffee } from '../../../types';
 
 interface ICoffeeDetailsCardProps {
   selectedCoffee: ICoffee;

@@ -1,5 +1,5 @@
 import { ICoffee, IFormData } from '../../types';
-import CoffeeDetailsCard from '../Coffee/CoffeeDetailsCard';
+import CoffeeDetailsCard from '../Home/Coffee/CoffeeDetailsCard';
 import InputRow from '../ui/InputRow';
 import ModalHeader from './ModalHeader';
 

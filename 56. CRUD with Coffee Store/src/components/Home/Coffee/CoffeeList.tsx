@@ -1,4 +1,4 @@
-import { ICoffee } from '../../types';
+import { ICoffee } from '../../../types';
 import CoffeeCard from './CoffeeCard';
 
 interface ICoffeeListProps {
@@ -15,7 +15,7 @@ export default function CoffeeList({
   setSelectedCoffee,
 }: ICoffeeListProps) {
   return (
-    <div className="container grid grid-cols-1 md:grid-cols-2 gap-6">
+    <div className="grid gap-6 md:grid-cols-2">
       {coffees.length > 0 ? (
         coffees.map((coffee: ICoffee) => (
           <CoffeeCard
@@ -27,7 +27,7 @@ export default function CoffeeList({
           />
         ))
       ) : (
-        <p className="text-center py-12 text-3xl col-span-2">
+        <p className="col-span-2 py-12 text-3xl text-center">
           No Coffee Found!
         </p>
       )}

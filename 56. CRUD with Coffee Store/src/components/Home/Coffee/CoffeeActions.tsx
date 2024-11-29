@@ -3,8 +3,8 @@ import {
   MdOutlineModeEditOutline,
   MdOutlineRemoveRedEye,
 } from 'react-icons/md';
-import { ICoffee } from '../../types';
-import { showModal } from '../../utils';
+import { ICoffee } from '../../../types';
+import { showModal } from '../../../utils';
 
 interface ICoffeeActionsProps {
   coffee: ICoffee;

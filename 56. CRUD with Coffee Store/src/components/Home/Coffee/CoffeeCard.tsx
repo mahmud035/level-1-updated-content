@@ -1,4 +1,4 @@
-import { ICoffee } from '../../types';
+import { ICoffee } from '../../../types';
 import CoffeeActions from './CoffeeActions';
 
 interface ICoffeeCardProps {
@@ -21,7 +21,7 @@ export default function CoffeeCard({
       <img
         src={`https://images.pexels.com/photos/1694874/pexels-photo-1694874.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1`}
         alt=""
-        className="xl:w-48 h-60 rounded-lg w-full"
+        className="object-cover object-center w-full rounded-lg xl:w-48 h-60 2xl:w-56"
       />
       <div className="space-y-4">
         <p>

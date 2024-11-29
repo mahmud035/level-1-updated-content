@@ -1,7 +1,12 @@
 import { useState } from 'react';
 import { FiCoffee } from 'react-icons/fi';
 import Swal from 'sweetalert2';
-import CoffeeList from '../components/Coffee/CoffeeList';
+import Banner from '../components/Home/Banner';
+import BackgroundImage from '../components/Home/Coffee/BackgroundImage';
+import CoffeeList from '../components/Home/Coffee/CoffeeList';
+import FeatureList from '../components/Home/FeatureList';
+import FollowUs from '../components/Home/FollowUs';
+import SectionInfo from '../components/Home/SectionInfo';
 import CoffeeModal from '../components/Modal/CoffeeModal';
 import useFetchCoffees from '../hooks/useFetchCoffees';
 import { ICoffee } from '../types';
@@ -76,38 +81,57 @@ export default function HomePage() {
   };
 
   return (
-    <div className="py-16">
-      <div className="container flex flex-col items-center justify-center pb-12">
-        <p className="text-xl">--- Sip & Savor ---</p>
-        <h2 className="pt-2 pb-4 text-5xl">Our Popular Products</h2>
-        <button
-          onClick={() => {
-            setFormData(defaultFormData);
-            setEditingId(null);
-            setSelectedCoffee(null);
-            showModal('coffee-modal');
-          }}
-          className="btn-add-coffee"
-        >
-          Add Coffee <FiCoffee />
-        </button>
-      </div>
+    <main>
+      {/* Banner & Features */}
+      <Banner />
+      <FeatureList />
 
-      {/* Display coffee list */}
-      <CoffeeList
-        coffees={coffees}
-        handleEdit={handleEdit}
-        handleDelete={handleDelete}
-        setSelectedCoffee={setSelectedCoffee}
-      />
+      {/* Our Popular Products */}
+      <section className="relative">
+        <div className="container py-28">
+          <div className="flex flex-col items-center justify-center pb-12">
+            <SectionInfo
+              title="Our Popular Products"
+              text="--- Sip & Savor ---"
+            />
+            <button
+              onClick={() => {
+                setFormData(defaultFormData);
+                setEditingId(null);
+                setSelectedCoffee(null);
+                showModal('coffee-modal');
+              }}
+              className="text-2xl font-bold btn-add-coffee"
+            >
+              Add Coffee <FiCoffee />
+            </button>
+          </div>
 
-      <CoffeeModal
-        handleChange={handleChange}
-        handleSubmit={handleSubmit}
-        formData={formData}
-        editingId={editingId}
-        selectedCoffee={selectedCoffee}
-      />
-    </div>
+          {/* Display coffee list */}
+          <CoffeeList
+            coffees={coffees}
+            handleEdit={handleEdit}
+            handleDelete={handleDelete}
+            setSelectedCoffee={setSelectedCoffee}
+          />
+
+          {/* Modal */}
+          <CoffeeModal
+            handleChange={handleChange}
+            handleSubmit={handleSubmit}
+            formData={formData}
+            editingId={editingId}
+            selectedCoffee={selectedCoffee}
+          />
+
+          <BackgroundImage />
+        </div>
+      </section>
+
+      {/* Follow Us */}
+      <section>
+        <FollowUs />
+      </section>
+    </main>
   );
 }

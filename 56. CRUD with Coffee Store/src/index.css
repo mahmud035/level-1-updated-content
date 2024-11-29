@@ -30,6 +30,10 @@
     @apply bg-[#E3B577] py-2 rounded px-3.5 flex gap-2 border items-center hover:bg-transparent transition duration-150 ease-out hover:ease-in;
   }
 
+  .btn-learn-more {
+    @apply px-4 py-2 text-black transition duration-150 ease-in-out bg-[#E3B577] rounded hover:bg-transparent hover:border hover:text-white;
+  }
+
   .btn-add-update {
     @apply w-full bg-[#D2B48C] py-2.5 rounded text-2xl border hover:bg-transparent transition duration-150 ease-out hover:ease-in;
   }
