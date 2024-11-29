@@ -28,19 +28,22 @@ export default function CoffeeActions({
         }}
         className="bg-[#D2B48C] p-2 rounded"
       >
-        <MdOutlineRemoveRedEye className=" text-white" />
+        <MdOutlineRemoveRedEye className="text-white " />
       </button>
       <button
-        onClick={() => handleEdit(coffee)}
+        onClick={() => {
+          setSelectedCoffee(null);
+          handleEdit(coffee);
+        }}
         className="bg-[#3C393B] p-2 rounded"
       >
-        <MdOutlineModeEditOutline className=" text-white" />
+        <MdOutlineModeEditOutline className="text-white " />
       </button>
       <button
         onClick={() => handleDelete(coffee._id)}
         className="bg-[#EA4744] p-2 rounded"
       >
-        <MdOutlineDeleteOutline className=" text-white" />
+        <MdOutlineDeleteOutline className="text-white " />
       </button>
     </div>
   );
