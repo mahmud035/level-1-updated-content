@@ -13,6 +13,16 @@ export const defaultFormData = {
   photoURL: '',
 };
 
+export const defaultRegisterFormData = {
+  name: '',
+  email: '',
+  password: '',
+};
+export const defaultLoginFormData = {
+  email: '',
+  password: '',
+};
+
 export const showModal = (id: string) => {
   (document.getElementById(id) as HTMLDialogElement).showModal();
 };

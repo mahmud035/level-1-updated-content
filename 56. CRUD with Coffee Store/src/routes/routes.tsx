@@ -1,4 +1,6 @@
 import { createBrowserRouter } from 'react-router';
+import LoginForm from '../components/auth/LoginForm';
+import RegisterForm from '../components/auth/RegisterForm';
 import RootLayout from '../components/layout/RootLayout';
 import ErrorPage from '../pages/ErrorPage';
 import HomePage from '../pages/HomePage';
@@ -17,6 +19,14 @@ const router = createBrowserRouter([
           {
             index: true,
             element: <HomePage />,
+          },
+          {
+            path: 'login',
+            element: <LoginForm />,
+          },
+          {
+            path: 'register',
+            element: <RegisterForm />,
           },
         ],
       },
