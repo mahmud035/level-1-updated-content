@@ -24,7 +24,7 @@ export default function LoginForm() {
       .then((result) => console.log(result.user))
       .catch((error) => console.log(error));
 
-    console.log(formData);
+    setFormData(defaultLoginFormData);
   };
 
   const handleGoogleSignIn = () => {

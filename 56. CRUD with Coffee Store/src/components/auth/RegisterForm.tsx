@@ -28,7 +28,6 @@ export default function RegisterForm() {
       .catch((error) => console.log(error));
 
     setFormData(defaultRegisterFormData);
-    console.log(formData);
   };
 
   const handleGoogleSignIn = () => {
