@@ -29,6 +29,7 @@ dbConnect();
 
 //* Collections
 const coffees = database.collection('coffees');
+const users = database.collection('users');
 
 //* GET(READ)
 app.get('/coffees', async (req, res) => {
@@ -48,6 +49,12 @@ app.get('/coffees/:id', async (req, res) => {
 app.post('/coffees', async (req, res) => {
   const coffee = req.body;
   const result = await coffees.insertOne(coffee);
+  res.send(result);
+});
+
+app.post('/users', async (req, res) => {
+  const user = req.body;
+  const result = await users.insertOne(user);
   res.send(result);
 });
 
