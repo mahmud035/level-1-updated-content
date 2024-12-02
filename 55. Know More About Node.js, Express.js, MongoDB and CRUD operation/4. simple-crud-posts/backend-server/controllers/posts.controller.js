@@ -2,7 +2,7 @@ import { ObjectId } from 'mongodb';
 import { posts } from '../index.js';
 
 // @desc   Get all posts
-// @route  Get /posts
+// @route  GET /posts
 export const getPosts = async (req, res) => {
   const query = {};
   const result = await posts.find(query).toArray();
@@ -10,7 +10,7 @@ export const getPosts = async (req, res) => {
 };
 
 // @desc   Get single post
-// @route  Get /posts/:id
+// @route  GET /posts/:id
 export const getPost = async (req, res) => {
   const { id } = req.params;
   const query = { _id: new ObjectId(id) };
@@ -19,7 +19,7 @@ export const getPost = async (req, res) => {
 };
 
 // @desc   Create new post
-// @route  Post /posts
+// @route  POST /posts
 export const createPost = async (req, res) => {
   const post = req.body;
   const result = await posts.insertOne(post);
@@ -27,7 +27,7 @@ export const createPost = async (req, res) => {
 };
 
 // @desc   Update a post
-// @route  Put /posts/:id
+// @route  PUT /posts/:id
 export const updatePost = async (req, res) => {
   const { id } = req.params;
   const updatedPost = req.body;
@@ -38,7 +38,7 @@ export const updatePost = async (req, res) => {
 };
 
 // @desc   Delete a post
-// @route  Delete /posts/:id
+// @route  DELETE /posts/:id
 export const deletePost = async (req, res) => {
   const { id } = req.params;
   const query = { _id: new ObjectId(id) };
