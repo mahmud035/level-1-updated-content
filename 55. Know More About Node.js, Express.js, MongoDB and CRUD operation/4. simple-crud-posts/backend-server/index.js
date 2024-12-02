@@ -25,3 +25,6 @@ app.use('/posts', postsRoutes);
 app.listen(PORT, () => {
   console.log(`Server is running on http://localhost:${PORT}`);
 });
+
+// TODO: Export the app for serverless deployment (vercel)
+export default app;
