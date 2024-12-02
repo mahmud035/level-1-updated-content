@@ -1,6 +1,6 @@
 import Swal, { SweetAlertIcon } from 'sweetalert2';
 
-export const API_BASE_URL = `https://coffee-store-server-alpha-rouge.vercel.app`;
+export const API_BASE_URL = `https://coffee-store-server-beryl-tau.vercel.app`;
 
 export const defaultFormData = {
   name: '',
