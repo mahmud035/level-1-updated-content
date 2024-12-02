@@ -10,7 +10,7 @@
   "keywords": [],
   "author": "",
   "license": "ISC",
-  "description": "",
+  "description": "CRUD - User Management",
   "dependencies": {
     "cors": "^2.8.5",
     "dotenv": "^16.4.5",
