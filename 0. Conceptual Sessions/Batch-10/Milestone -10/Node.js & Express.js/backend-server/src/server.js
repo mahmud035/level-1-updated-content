@@ -2,9 +2,9 @@ import cors from 'cors';
 import dotenv from 'dotenv';
 import express from 'express';
 import morgan from 'morgan';
+import { errorHandler } from './app/middleware/errorHandler.js';
+import { notFound } from './app/middleware/notFound.js';
 import { dbConnect, getDatabase } from './db.js';
-import { errorHandler } from './middleware/errorHandler.js';
-import { notFound } from './middleware/notFound.js';
 
 dotenv.config();
 
@@ -22,7 +22,7 @@ await dbConnect();
 //* MongoDB Collections
 export const users = getDatabase().collection('users');
 
-//* Routes
+//* Application Routes
 
 //* Error Handler
 app.use(notFound);
