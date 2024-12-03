@@ -1,0 +1,93 @@
+import httpStatus from 'http-status';
+import sendResponse from '../../../shared/sendResponse.js';
+import { PostService } from './post.services.js';
+
+// @desc    Get all posts
+// @route   GET /posts
+const getPosts = async (req, res, next) => {
+  const limit = parseInt(req.query.limit) || 10;
+  const result = await PostService.getPosts(limit);
+
+  sendResponse(res, {
+    statusCode: httpStatus.OK,
+    success: true,
+    message: 'Posts retrieved successfully',
+    data: result,
+  });
+};
+
+// @desc    Get single post
+// @route   GET /posts/:id
+const getPost = async (req, res, next) => {
+  const { id } = req.params;
+  const post = await PostService.getPost(id);
+
+  if (!post)
+    return sendResponse(res, {
+      statusCode: httpStatus.NOT_FOUND,
+      success: false,
+      message: 'Post not found',
+    });
+
+  sendResponse(res, {
+    statusCode: httpStatus.OK,
+    success: true,
+    message: 'Post retrieved successfully',
+    data: post,
+  });
+};
+
+// @desc    Create new post
+// @route   POST /posts
+const createPost = async (req, res, next) => {
+  const post = req.body;
+  const result = await PostService.createPost(post);
+
+  sendResponse(res, {
+    statusCode: httpStatus.CREATED,
+    success: true,
+    message: 'Post created successfully',
+  });
+};
+
+// @desc    Update a post
+// @route   PUT /posts/:id
+const updatePost = async (req, res, next) => {
+  const { id } = req.params;
+  const updatedData = req.body;
+  const result = await PostService.updatePost(id, updatedData);
+
+  sendResponse(res, {
+    statusCode: httpStatus.OK,
+    success: true,
+    message: 'Post updated successfully',
+  });
+};
+
+// @desc    Delete a post
+// @route   DELETE /posts/:id
+const deletePost = async (req, res, next) => {
+  const { id } = req.params;
+  const result = await PostService.deletePost(id);
+
+  if (result.deletedCount === 0)
+    return sendResponse(res, {
+      statusCode: httpStatus.NOT_FOUND,
+      success: false,
+      message: 'Post not found',
+    });
+
+  sendResponse(res, {
+    statusCode: httpStatus.OK,
+    success: true,
+    message: 'Post deleted successfully',
+  });
+};
+
+export const PostController = {
+  getPosts,
+  getPost,
+  createPost,
+  updatePost,
+  deletePost,
+};

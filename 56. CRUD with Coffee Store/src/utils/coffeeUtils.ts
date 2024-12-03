@@ -1,8 +1,8 @@
-import { API_BASE_URL, showAlert } from '.';
+import { showAlert } from '.';
 import { IFormData } from '../types';
 
 export const createCoffee = async (formData: IFormData) => {
-  const res = await fetch(`${API_BASE_URL}/coffees`, {
+  const res = await fetch(`${import.meta.env.VITE_API_BASE_URL}/coffees`, {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify(formData),
@@ -16,11 +16,14 @@ export const createCoffee = async (formData: IFormData) => {
 };
 
 export const updateCoffee = async (id: string, formData: IFormData) => {
-  const res = await fetch(`${API_BASE_URL}/coffees/${id}`, {
-    method: 'PUT',
-    headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify(formData),
-  });
+  const res = await fetch(
+    `${import.meta.env.VITE_API_BASE_URL}/coffees/${id}`,
+    {
+      method: 'PUT',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(formData),
+    }
+  );
 
   if (res.ok) {
     showAlert('Coffee updated successfully', 'success', 'Close');
@@ -30,9 +33,12 @@ export const updateCoffee = async (id: string, formData: IFormData) => {
 };
 
 export const deleteCoffee = async (id: string) => {
-  const res = await fetch(`${API_BASE_URL}/coffees/${id}`, {
-    method: 'DELETE',
-  });
+  const res = await fetch(
+    `${import.meta.env.VITE_API_BASE_URL}/coffees/${id}`,
+    {
+      method: 'DELETE',
+    }
+  );
 
   if (res.ok) {
     showAlert('Coffee deleted successfully', 'success', 'Close');
