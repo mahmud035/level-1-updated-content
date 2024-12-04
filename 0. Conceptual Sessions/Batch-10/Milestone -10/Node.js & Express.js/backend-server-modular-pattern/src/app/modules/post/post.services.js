@@ -8,6 +8,11 @@ const getPosts = async (filter) => {
   return result;
 };
 
+const searchPosts = async (filter) => {
+  const result = await posts.find(filter).toArray();
+  return result;
+};
+
 const getPost = async (id) => {
   const query = { _id: new ObjectId(id) };
   const result = await posts.findOne(query);
@@ -34,6 +39,7 @@ const deletePost = async (id) => {
 
 export const PostService = {
   getPosts,
+  searchPosts,
   getPost,
   createPost,
   updatePost,

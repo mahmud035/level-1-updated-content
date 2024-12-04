@@ -21,6 +21,25 @@ const getUsers = async (req, res, next) => {
   });
 };
 
+// @desc    Search users
+// @route   GET /users/search
+const searchUsers = async (req, res, next) => {
+  const searchQuery = req.query.q || ''; // NOTE: Empty string means matches all documents.
+
+  // Partial Matching: The `$regex` operator with the `i` option allows case-insensitive partial matching in `name` field.
+  const filter = {
+    $or: [{ name: { $regex: searchQuery, $options: 'i' } }],
+  };
+  const result = await UserService.searchUsers(filter);
+
+  sendResponse(res, {
+    statusCode: httpStatus.OK,
+    success: true,
+    message: 'Retrieved searched users',
+    data: result,
+  });
+};
+
 // @desc    Get single user
 // @route   GET /users/:id
 const getUser = async (req, res, next) => {
@@ -91,6 +110,7 @@ const deleteUser = async (req, res, next) => {
 
 export const UserController = {
   getUsers,
+  searchUsers,
   getUser,
   createUser,
   updateUser,

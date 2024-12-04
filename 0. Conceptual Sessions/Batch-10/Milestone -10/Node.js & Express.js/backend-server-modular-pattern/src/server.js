@@ -27,9 +27,6 @@ export const coffees = getDatabase().collection('coffees');
 export const posts = getDatabase().collection('posts');
 export const schedules = getDatabase().collection('schedules');
 
-// For implementing search feature
-await schedules.createIndex({ title: 'text', day: 'text' });
-
 //* Application Routes
 app.use('/api/v1', ApplicationRoutes);
 

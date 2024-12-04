@@ -21,11 +21,10 @@ const getSchedules = async (req, res, next) => {
   });
 };
 
-// @desc    Search schedule
+// @desc    Search schedules
 // @route   GET /schedules/search
-const searchSchedule = async (req, res, next) => {
-  // NOTE: Empty string means matches all documents.
-  const searchQuery = req.query.q || '';
+const searchSchedules = async (req, res, next) => {
+  const searchQuery = req.query.q || ''; // NOTE: Empty string means matches all documents.
 
   // Partial Matching: The `$regex` operator with the `i` option allows case-insensitive partial matching in both `title` and `day` fields.
   const filter = {
@@ -39,7 +38,7 @@ const searchSchedule = async (req, res, next) => {
   sendResponse(res, {
     statusCode: httpStatus.OK,
     success: true,
-    message: 'Retrieved searched schedules',
+    message: 'Retrieve searched schedules',
     data: result,
   });
 
@@ -117,7 +116,7 @@ const deleteSchedule = async (req, res, next) => {
 
 export const ScheduleController = {
   getSchedules,
-  searchSchedule,
+  searchSchedules,
   getSchedule,
   createSchedule,
   updateSchedule,

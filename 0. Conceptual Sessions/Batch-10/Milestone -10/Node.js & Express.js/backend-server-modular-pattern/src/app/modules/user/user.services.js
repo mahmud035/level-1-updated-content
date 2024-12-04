@@ -8,6 +8,11 @@ const getUsers = async (filter) => {
   return result;
 };
 
+const searchUsers = async (filter) => {
+  const result = await users.find(filter).toArray();
+  return result;
+};
+
 const getUser = async (id) => {
   const query = { _id: new ObjectId(id) };
   const user = await users.findOne(query);
@@ -34,6 +39,7 @@ const deleteUser = async (id) => {
 
 export const UserService = {
   getUsers,
+  searchUsers,
   getUser,
   createUser,
   updateUser,

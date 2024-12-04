@@ -8,6 +8,11 @@ const getCoffees = async (filter) => {
   return result;
 };
 
+const searchCoffees = async (filter) => {
+  const result = await coffees.find(filter).toArray();
+  return result;
+};
+
 const getCoffee = async (id) => {
   const query = { _id: new ObjectId(id) };
   const result = await coffees.findOne(query);
@@ -38,6 +43,7 @@ const deleteCoffee = async (id) => {
 
 export const CoffeeService = {
   getCoffees,
+  searchCoffees,
   getCoffee,
   createCoffee,
   updateCoffee,

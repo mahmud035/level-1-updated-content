@@ -8,6 +8,11 @@ const getProducts = async (filter) => {
   return result;
 };
 
+const searchProducts = async (filter) => {
+  const result = await products.find(filter).toArray();
+  return result;
+};
+
 const getProduct = async (id) => {
   const query = { _id: new ObjectId(id) };
   const result = await products.findOne(query);
@@ -38,6 +43,7 @@ const deleteProduct = async (id) => {
 
 export const ProductService = {
   getProducts,
+  searchProducts,
   getProduct,
   createProduct,
   updateProduct,

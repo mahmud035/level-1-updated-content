@@ -21,6 +21,25 @@ const getPosts = async (req, res, next) => {
   });
 };
 
+// @desc    Search posts
+// @route   GET /posts/search
+const searchPosts = async (req, res, next) => {
+  const searchQuery = req.query.q || ''; // NOTE: Empty string means matches all documents.
+
+  // Partial Matching: The `$regex` operator with the `i` option allows case-insensitive partial matching in  `title` field.
+  const filter = {
+    $or: [{ title: { $regex: searchQuery, $options: 'i' } }],
+  };
+  const result = await PostService.searchPosts(filter);
+
+  sendResponse(res, {
+    statusCode: httpStatus.OK,
+    success: true,
+    message: 'Retrieve searched posts',
+    data: result,
+  });
+};
+
 // @desc    Get single post
 // @route   GET /posts/:id
 const getPost = async (req, res, next) => {
@@ -91,6 +110,7 @@ const deletePost = async (req, res, next) => {
 
 export const PostController = {
   getPosts,
+  searchPosts,
   getPost,
   createPost,
   updatePost,

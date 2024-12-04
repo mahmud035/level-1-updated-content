@@ -21,6 +21,25 @@ const getProducts = async (req, res, next) => {
   });
 };
 
+// @desc    Search products
+// @route   GET /products/search
+const searchProducts = async (req, res, next) => {
+  const searchQuery = req.query.q || ''; // NOTE: Empty string means matches all documents.
+
+  // Partial Matching: The `$regex` operator with the `i` option allows case-insensitive partial matching in `name` field.
+  const filter = {
+    $or: [{ name: { $regex: searchQuery, $options: 'i' } }],
+  };
+  const result = await ProductService.searchProducts(filter);
+
+  sendResponse(res, {
+    statusCode: httpStatus.OK,
+    success: true,
+    message: 'Retrieved searched products',
+    data: result,
+  });
+};
+
 // @desc    Get single product
 // @route   GET /products/:id
 const getProduct = async (req, res, next) => {
@@ -91,6 +110,7 @@ const deleteProduct = async (req, res, next) => {
 
 export const ProductController = {
   getProducts,
+  searchProducts,
   getProduct,
   createProduct,
   updateProduct,
