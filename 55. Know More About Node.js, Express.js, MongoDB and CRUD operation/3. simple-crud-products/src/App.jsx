@@ -15,10 +15,10 @@ export default function App() {
   // Fetch all products
   const fetchProducts = async () => {
     try {
-      const res = await fetch('http://localhost:5000/products');
+      const res = await fetch(`${import.meta.env.VITE_API_BASE_URL}/products`);
       if (!res.ok) throw new Error('Error fetching products');
       const data = await res.json();
-      setProducts(data);
+      setProducts(data.data);
     } catch (error) {
       toast.error(error.message);
     }
@@ -30,15 +30,18 @@ export default function App() {
 
     if (editingId) {
       // Update
-      await fetch(`http://localhost:5000/products/${editingId}`, {
-        method: 'PUT',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(formData),
-      });
+      await fetch(
+        `${import.meta.env.VITE_API_BASE_URL}/products/${editingId}`,
+        {
+          method: 'PUT',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(formData),
+        }
+      );
       toast.success('Product updated successfully');
     } else {
       // Create
-      await fetch('http://localhost:5000/products', {
+      await fetch(`${import.meta.env.VITE_API_BASE_URL}/products`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(formData),
@@ -59,7 +62,9 @@ export default function App() {
 
   // Delete product
   const handleDelete = async (id) => {
-    await fetch(`http://localhost:5000/products/${id}`, { method: 'DELETE' });
+    await fetch(`${import.meta.env.VITE_API_BASE_URL}/products/${id}`, {
+      method: 'DELETE',
+    });
     toast.success('Product deleted successfully');
     fetchProducts();
   };

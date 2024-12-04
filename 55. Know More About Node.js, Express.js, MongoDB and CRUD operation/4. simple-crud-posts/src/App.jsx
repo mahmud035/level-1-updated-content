@@ -2,8 +2,8 @@ import { useEffect, useState } from 'react';
 import toast from 'react-hot-toast';
 
 export default function App() {
-  const [users, setUsers] = useState([]);
-  const [formData, setFormData] = useState({ name: '', email: '' });
+  const [posts, setPosts] = useState([]);
+  const [formData, setFormData] = useState({ title: '' });
   const [editingId, setEditingId] = useState(null);
 
   // Handle input changes
@@ -12,96 +12,82 @@ export default function App() {
     setFormData({ ...formData, [name]: value });
   };
 
-  // Fetch all users
-  const fetchUsers = async () => {
+  // Fetch all posts
+  const fetchPosts = async () => {
     try {
-      const res = await fetch(`${import.meta.env.VITE_API_BASE_URL}/users`);
-      if (!res.ok) throw new Error('Error fetching users');
+      const res = await fetch(`${import.meta.env.VITE_API_BASE_URL}/posts`);
+      if (!res.ok) throw new Error('Error fetching posts');
       const data = await res.json();
-      setUsers(data.data);
+      setPosts(data.data);
     } catch (error) {
       toast.error(error.message);
     }
   };
 
-  // Create or Update user
+  // Create or Update post
   const handleSubmit = async (e) => {
     e.preventDefault();
 
     if (editingId) {
       // Update
-      await fetch(`${import.meta.env.VITE_API_BASE_URL}/users/${editingId}`, {
+      await fetch(`${import.meta.env.VITE_API_BASE_URL}/posts/${editingId}`, {
         method: 'PUT',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(formData),
       });
-      toast.success('User updated successfully');
+      toast.success('Post updated successfully');
     } else {
       // Create
-      await fetch(`${import.meta.env.VITE_API_BASE_URL}/users`, {
+      await fetch(`${import.meta.env.VITE_API_BASE_URL}/posts`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(formData),
       });
-      toast.success('User created successfully');
+      toast.success('Post created successfully');
     }
 
-    setFormData({ name: '', email: '' });
+    setFormData({ title: '' });
     setEditingId(null);
-    fetchUsers();
+    fetchPosts();
   };
 
-  // Edit user
-  const handleEdit = (user) => {
-    setEditingId(user._id);
-    setFormData({ name: user.name, email: user.email });
+  // Edit post
+  const handleEdit = (post) => {
+    setEditingId(post._id);
+    setFormData({ title: post.title });
   };
 
-  // Delete user
+  // Delete post
   const handleDelete = async (id) => {
-    await fetch(`${import.meta.env.VITE_API_BASE_URL}/users/${id}`, {
+    await fetch(`${import.meta.env.VITE_API_BASE_URL}/posts/${id}`, {
       method: 'DELETE',
     });
-    toast.success('User deleted successfully');
-    fetchUsers();
+    toast.success('Post deleted successfully');
+    fetchPosts();
   };
 
-  // Fetch all users when component mounts
+  // Fetch all posts when component mounts
   useEffect(() => {
-    fetchUsers();
+    fetchPosts();
   }, []);
 
   return (
     <div className="max-w-xl p-4 mx-auto">
-      <h1 className="mb-4 text-2xl font-bold">User Management</h1>
+      <h1 className="mb-4 text-2xl font-bold">Post Management</h1>
 
       <form
         onSubmit={handleSubmit}
         className="p-4 mb-6 bg-white rounded shadow-md"
       >
         <div className="mb-4">
-          <label htmlFor="name" className="block text-sm font-medium">
-            Name
+          <label htmlFor="title" className="block text-sm font-medium">
+            Title
           </label>
           <input
             type="text"
-            name="name"
-            id="name"
-            value={formData.name}
-            onChange={handleChange}
-            className="w-full p-2 mt-1 border rounded"
-            required
-          />
-        </div>
-        <div className="mb-4">
-          <label htmlFor="email" className="block text-sm font-medium">
-            Email
-          </label>
-          <input
-            type="email"
-            name="email"
-            id="email"
-            value={formData.email}
+            name="title"
+            id="title"
+            value={formData.title}
             onChange={handleChange}
             className="w-full p-2 mt-1 border rounded"
             required
@@ -111,31 +97,30 @@ export default function App() {
           type="submit"
           className="px-4 py-2 text-white bg-blue-500 rounded hover:bg-blue-600"
         >
-          {editingId ? 'Update User' : 'Add User'}
+          {editingId ? 'Update Post' : 'Add Post'}
         </button>
       </form>
 
       {/* Display list of users */}
       <div className="bg-white rounded shadow-md">
-        {users.length > 0 ? (
-          users.map((user) => (
+        {posts.length > 0 ? (
+          posts.map((post) => (
             <div
-              key={user._id}
+              key={post._id}
               className="flex items-center justify-between p-4 border-b "
             >
               <div>
-                <h3 className="font-semibold">{user.name}</h3>
-                <p className="text-sm text-gray-500">{user.email}</p>
+                <h3 className="font-semibold">{post.title}</h3>
               </div>
               <div>
                 <button
-                  onClick={() => handleEdit(user)}
+                  onClick={() => handleEdit(post)}
                   className="px-3 py-1 mr-2 text-white bg-yellow-500 rounded hover:bg-yellow-600"
                 >
                   Edit
                 </button>
                 <button
-                  onClick={() => handleDelete(user._id)}
+                  onClick={() => handleDelete(post._id)}
                   className="px-3 py-1 text-white bg-red-500 rounded hover:bg-red-600"
                 >
                   Delete
@@ -144,7 +129,7 @@ export default function App() {
             </div>
           ))
         ) : (
-          <p className="p-12 text-xl font-bold text-center">No User Found!</p>
+          <p className="p-12 text-xl font-bold text-center">No Post Found!</p>
         )}
       </div>
     </div>

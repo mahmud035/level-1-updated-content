@@ -15,10 +15,10 @@ export default function App() {
   // Fetch all users
   const fetchUsers = async () => {
     try {
-      const res = await fetch('http://localhost:5000/users');
+      const res = await fetch(`${import.meta.env.VITE_API_BASE_URL}/users`);
       if (!res.ok) throw new Error('Error fetching users');
       const data = await res.json();
-      setUsers(data);
+      setUsers(data.data);
     } catch (error) {
       toast.error(error.message);
     }
@@ -30,7 +30,7 @@ export default function App() {
 
     if (editingId) {
       // Update
-      await fetch(`http://localhost:5000/users/${editingId}`, {
+      await fetch(`${import.meta.env.VITE_API_BASE_URL}/users/${editingId}`, {
         method: 'PUT',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(formData),
@@ -38,7 +38,7 @@ export default function App() {
       toast.success('User updated successfully');
     } else {
       // Create
-      await fetch('http://localhost:5000/users', {
+      await fetch(`${import.meta.env.VITE_API_BASE_URL}/users`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(formData),
@@ -59,7 +59,9 @@ export default function App() {
 
   // Delete user
   const handleDelete = async (id) => {
-    await fetch(`http://localhost:5000/users/${id}`, { method: 'DELETE' });
+    await fetch(`${import.meta.env.VITE_API_BASE_URL}/users/${id}`, {
+      method: 'DELETE',
+    });
     toast.success('User deleted successfully');
     fetchUsers();
   };
@@ -71,7 +73,7 @@ export default function App() {
 
   return (
     <div className="max-w-xl p-4 mx-auto">
-      <h1 className="mb-4 text-2xl font-bold ">User Management</h1>
+      <h1 className="mb-4 text-2xl font-bold">User Management</h1>
 
       <form
         onSubmit={handleSubmit}
@@ -119,7 +121,7 @@ export default function App() {
           users.map((user) => (
             <div
               key={user._id}
-              className="flex items-center justify-between p-4 border-b"
+              className="flex items-center justify-between p-4 border-b "
             >
               <div>
                 <h3 className="font-semibold">{user.name}</h3>
