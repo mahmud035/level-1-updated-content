@@ -5,13 +5,18 @@ import { ProductService } from './product.services.js';
 // @desc    Get all products
 // @route   GET /products
 const getProducts = async (req, res, next) => {
+  const page = parseInt(req.query.page) || 1;
   const limit = parseInt(req.query.limit) || 10;
-  const products = await ProductService.getProducts(limit);
+  const skip = (page - 1) * limit;
+  const filter = { limit, skip };
+
+  const products = await ProductService.getProducts(filter);
 
   sendResponse(res, {
     statusCode: httpStatus.OK,
     success: true,
     message: 'Products retrieved successfully',
+    meta: { page, limit },
     data: products,
   });
 };

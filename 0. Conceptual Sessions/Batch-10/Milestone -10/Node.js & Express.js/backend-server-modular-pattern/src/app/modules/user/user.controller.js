@@ -5,14 +5,19 @@ import { UserService } from './user.services.js';
 // @desc    Get all users
 // @route   GET /users
 const getUsers = async (req, res, next) => {
+  const page = parseInt(req.query.page) || 1;
   const limit = parseInt(req.query.limit) || 10;
-  const result = await UserService.getUsers(limit);
+  const skip = (page - 1) * limit;
+  const filter = { limit, skip };
+
+  const users = await UserService.getUsers(filter);
 
   sendResponse(res, {
     statusCode: httpStatus.OK,
     success: true,
     message: 'Users retrieved successfully',
-    data: result,
+    meta: { page, limit },
+    data: users,
   });
 };
 

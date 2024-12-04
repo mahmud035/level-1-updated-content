@@ -1,9 +1,10 @@
 import { ObjectId } from 'mongodb';
 import { products } from '../../../server.js';
 
-const getProducts = async (limit) => {
+const getProducts = async (filter) => {
+  const { limit, skip } = filter;
   const query = {};
-  const result = await products.find(query).limit(limit).toArray();
+  const result = await products.find(query).limit(limit).skip(skip).toArray();
   return result;
 };
 

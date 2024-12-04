@@ -1,9 +1,10 @@
 import { ObjectId } from 'mongodb';
 import { users } from '../../../server.js';
 
-const getUsers = async (limit) => {
+const getUsers = async (filter) => {
+  const { limit, skip } = filter;
   const query = {};
-  const result = await users.find(query).limit(limit).toArray();
+  const result = await users.find(query).limit(limit).skip(skip).toArray();
   return result;
 };
 

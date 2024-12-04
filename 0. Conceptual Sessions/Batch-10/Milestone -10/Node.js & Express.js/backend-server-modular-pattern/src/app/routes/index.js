@@ -1,4 +1,5 @@
 import express from 'express';
+import { CoffeeRoutes } from '../modules/coffee/coffee.route.js';
 import { PostRoutes } from '../modules/post/post.route.js';
 import { ProductRoutes } from '../modules/product/product.route.js';
 import { ScheduleRoutes } from '../modules/schedule/schedule.route.js';
@@ -12,9 +13,8 @@ router.use('/products', ProductRoutes);
 
 router.use('/posts', PostRoutes);
 
-router.use('/schedules', ScheduleRoutes);
+router.use('/coffees', CoffeeRoutes);
 
-// router.use('/coffees', CoffeeRoutes);
-// router.use('/posts', PostRoutes);
+router.use('/schedules', ScheduleRoutes);
 
 export default router;

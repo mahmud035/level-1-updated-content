@@ -5,14 +5,19 @@ import { PostService } from './post.services.js';
 // @desc    Get all posts
 // @route   GET /posts
 const getPosts = async (req, res, next) => {
+  const page = parseInt(req.query.page) || 10;
   const limit = parseInt(req.query.limit) || 10;
-  const result = await PostService.getPosts(limit);
+  const skip = (page - 1) * limit;
+  const filter = { limit, skip };
+
+  const posts = await PostService.getPosts(filter);
 
   sendResponse(res, {
     statusCode: httpStatus.OK,
     success: true,
     message: 'Posts retrieved successfully',
-    data: result,
+    meta: { page, limit },
+    data: posts,
   });
 };
 
