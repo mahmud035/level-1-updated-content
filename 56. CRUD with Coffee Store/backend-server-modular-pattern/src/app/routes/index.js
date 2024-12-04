@@ -17,7 +17,4 @@ router.use('/coffees', CoffeeRoutes);
 
 router.use('/schedules', ScheduleRoutes);
 
-// router.use('/coffees', CoffeeRoutes);
-// router.use('/posts', PostRoutes);
-
 export default router;

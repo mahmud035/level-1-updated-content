@@ -5,14 +5,38 @@ import { ProductService } from './product.services.js';
 // @desc    Get all products
 // @route   GET /products
 const getProducts = async (req, res, next) => {
+  const page = parseInt(req.query.page) || 1;
   const limit = parseInt(req.query.limit) || 10;
-  const products = await ProductService.getProducts(limit);
+  const skip = (page - 1) * limit;
+  const filter = { limit, skip };
+
+  const products = await ProductService.getProducts(filter);
 
   sendResponse(res, {
     statusCode: httpStatus.OK,
     success: true,
     message: 'Products retrieved successfully',
+    meta: { page, limit },
     data: products,
+  });
+};
+
+// @desc    Search products
+// @route   GET /products/search
+const searchProducts = async (req, res, next) => {
+  const searchQuery = req.query.q || ''; // NOTE: Empty string means matches all documents.
+
+  // Partial Matching: The `$regex` operator with the `i` option allows case-insensitive partial matching in `name` field.
+  const filter = {
+    $or: [{ name: { $regex: searchQuery, $options: 'i' } }],
+  };
+  const result = await ProductService.searchProducts(filter);
+
+  sendResponse(res, {
+    statusCode: httpStatus.OK,
+    success: true,
+    message: 'Retrieved searched products',
+    data: result,
   });
 };
 
@@ -86,6 +110,7 @@ const deleteProduct = async (req, res, next) => {
 
 export const ProductController = {
   getProducts,
+  searchProducts,
   getProduct,
   createProduct,
   updateProduct,

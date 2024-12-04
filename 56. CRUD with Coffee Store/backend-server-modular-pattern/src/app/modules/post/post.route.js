@@ -7,6 +7,9 @@ const router = express.Router();
 // Get all posts
 router.get('/', PostController.getPosts);
 
+// Search posts
+router.get('/search', PostController.searchPosts);
+
 // Get single post
 router.get('/:id', PostValidation.getPostValidation, PostController.getPost);
 

@@ -33,7 +33,7 @@ const searchSchedules = async (req, res, next) => {
       { day: { $regex: searchQuery, $options: 'i' } },
     ],
   };
-  const result = await ScheduleService.searchSchedule(filter);
+  const result = await ScheduleService.searchSchedules(filter);
 
   sendResponse(res, {
     statusCode: httpStatus.OK,

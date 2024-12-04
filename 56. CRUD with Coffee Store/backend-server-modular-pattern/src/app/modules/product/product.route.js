@@ -7,6 +7,9 @@ const router = express.Router();
 // Get all products
 router.get('/', ProductController.getProducts);
 
+// Search products
+router.get('/search', ProductController.searchProducts);
+
 // Get single product
 router.get(
   '/:id',

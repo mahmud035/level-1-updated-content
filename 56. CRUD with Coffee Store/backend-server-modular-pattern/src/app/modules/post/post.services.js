@@ -1,9 +1,15 @@
 import { ObjectId } from 'mongodb';
 import { posts } from '../../../server.js';
 
-const getPosts = async (limit) => {
+const getPosts = async (filter) => {
+  const { limit, skip } = filter;
   const query = {};
-  const result = await posts.find(query).limit(limit).toArray();
+  const result = await posts.find(query).limit(limit).skip(skip).toArray();
+  return result;
+};
+
+const searchPosts = async (filter) => {
+  const result = await posts.find(filter).toArray();
   return result;
 };
 
@@ -33,6 +39,7 @@ const deletePost = async (id) => {
 
 export const PostService = {
   getPosts,
+  searchPosts,
   getPost,
   createPost,
   updatePost,

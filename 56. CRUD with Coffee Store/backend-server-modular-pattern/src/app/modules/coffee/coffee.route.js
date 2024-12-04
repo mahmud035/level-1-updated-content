@@ -7,6 +7,9 @@ const router = express.Router();
 // Get all coffees
 router.get('/', CoffeeController.getCoffees);
 
+// Search coffees
+router.get('/search', CoffeeController.searchCoffees);
+
 // Get single coffee
 router.get(
   '/:id',

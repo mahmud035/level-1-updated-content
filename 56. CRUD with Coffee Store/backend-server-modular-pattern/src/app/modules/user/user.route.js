@@ -7,6 +7,9 @@ const router = express.Router();
 // Get all users
 router.get('/', UserController.getUsers);
 
+// Search users
+router.get('/search', UserController.searchUsers);
+
 // Get single user
 router.get('/:id', UserValidation.getUserValidation, UserController.getUser);
 

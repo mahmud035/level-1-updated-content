@@ -1,9 +1,15 @@
 import { ObjectId } from 'mongodb';
 import { coffees } from '../../../server.js';
 
-const getCoffees = async (limit) => {
+const getCoffees = async (filter) => {
+  const { limit, skip } = filter;
   const query = {};
-  const result = await coffees.find(query).limit(limit).toArray();
+  const result = await coffees.find(query).limit(limit).skip(skip).toArray();
+  return result;
+};
+
+const searchCoffees = async (filter) => {
+  const result = await coffees.find(filter).toArray();
   return result;
 };
 
@@ -37,6 +43,7 @@ const deleteCoffee = async (id) => {
 
 export const CoffeeService = {
   getCoffees,
+  searchCoffees,
   getCoffee,
   createCoffee,
   updateCoffee,

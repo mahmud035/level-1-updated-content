@@ -5,13 +5,37 @@ import { UserService } from './user.services.js';
 // @desc    Get all users
 // @route   GET /users
 const getUsers = async (req, res, next) => {
+  const page = parseInt(req.query.page) || 1;
   const limit = parseInt(req.query.limit) || 10;
-  const result = await UserService.getUsers(limit);
+  const skip = (page - 1) * limit;
+  const filter = { limit, skip };
+
+  const users = await UserService.getUsers(filter);
 
   sendResponse(res, {
     statusCode: httpStatus.OK,
     success: true,
     message: 'Users retrieved successfully',
+    meta: { page, limit },
+    data: users,
+  });
+};
+
+// @desc    Search users
+// @route   GET /users/search
+const searchUsers = async (req, res, next) => {
+  const searchQuery = req.query.q || ''; // NOTE: Empty string means matches all documents.
+
+  // Partial Matching: The `$regex` operator with the `i` option allows case-insensitive partial matching in `name` field.
+  const filter = {
+    $or: [{ name: { $regex: searchQuery, $options: 'i' } }],
+  };
+  const result = await UserService.searchUsers(filter);
+
+  sendResponse(res, {
+    statusCode: httpStatus.OK,
+    success: true,
+    message: 'Retrieved searched users',
     data: result,
   });
 };
@@ -86,6 +110,7 @@ const deleteUser = async (req, res, next) => {
 
 export const UserController = {
   getUsers,
+  searchUsers,
   getUser,
   createUser,
   updateUser,
