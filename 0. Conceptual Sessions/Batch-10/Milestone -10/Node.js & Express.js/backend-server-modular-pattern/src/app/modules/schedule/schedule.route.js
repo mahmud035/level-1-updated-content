@@ -7,6 +7,9 @@ const router = express.Router();
 // Get all schedules
 router.get('/', ScheduleController.getSchedules);
 
+// Search schedule
+router.get('/search', ScheduleController.searchSchedule);
+
 // Get single schedule
 router.get(
   '/:id',

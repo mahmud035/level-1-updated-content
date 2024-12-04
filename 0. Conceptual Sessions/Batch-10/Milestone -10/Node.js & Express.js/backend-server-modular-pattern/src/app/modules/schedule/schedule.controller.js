@@ -21,6 +21,31 @@ const getSchedules = async (req, res, next) => {
   });
 };
 
+// @desc    Search schedule
+// @route   GET /schedules/search
+const searchSchedule = async (req, res, next) => {
+  // NOTE: Empty string means matches all documents.
+  const searchQuery = req.query.q || '';
+
+  // Partial Matching: The `$regex` operator with the `i` option allows case-insensitive partial matching in both `title` and `day` fields.
+  const filter = {
+    $or: [
+      { title: { $regex: searchQuery, $options: 'i' } },
+      { day: { $regex: searchQuery, $options: 'i' } },
+    ],
+  };
+  const result = await ScheduleService.searchSchedule(filter);
+
+  sendResponse(res, {
+    statusCode: httpStatus.OK,
+    success: true,
+    message: 'Retrieved searched schedules',
+    data: result,
+  });
+
+  // ChatGPT: https://chatgpt.com/share/67500655-7e94-8009-8f28-62ed1479a013
+};
+
 // @desc    Get single schedule
 // @route   GET /schedules/:id
 const getSchedule = async (req, res, next) => {
@@ -92,6 +117,7 @@ const deleteSchedule = async (req, res, next) => {
 
 export const ScheduleController = {
   getSchedules,
+  searchSchedule,
   getSchedule,
   createSchedule,
   updateSchedule,

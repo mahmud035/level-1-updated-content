@@ -8,6 +8,11 @@ const getSchedules = async (filter) => {
   return result;
 };
 
+const searchSchedule = async (filter) => {
+  const result = await schedules.find(filter).toArray();
+  return result;
+};
+
 const getSchedule = async (id) => {
   const query = { _id: new ObjectId(id) };
   const result = await schedules.findOne(query);
@@ -38,6 +43,7 @@ const deleteSchedule = async (id) => {
 
 export const ScheduleService = {
   getSchedules,
+  searchSchedule,
   getSchedule,
   createSchedule,
   updateSchedule,
