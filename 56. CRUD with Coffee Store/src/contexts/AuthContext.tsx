@@ -12,9 +12,8 @@ import {
   User,
   UserCredential,
 } from 'firebase/auth';
-import {
+import React, {
   createContext,
-  ReactNode,
   useCallback,
   useEffect,
   useMemo,
@@ -22,10 +21,6 @@ import {
 } from 'react';
 import app from '../firebase/firebase.init';
 import { IUpdatedInfo } from '../types';
-
-interface IAuthProviderProps {
-  children: ReactNode;
-}
 
 // Define the shape of the context value
 interface IAuthContext {
@@ -40,7 +35,11 @@ interface IAuthContext {
   logout: () => Promise<void>;
 }
 
-const AuthContext = createContext<IAuthContext | undefined>(undefined);
+interface IAuthProviderProps {
+  children: React.ReactNode;
+}
+
+const AuthContext = createContext<IAuthContext | null>(null);
 const auth = getAuth(app);
 
 export default function AuthProvider({ children }: IAuthProviderProps) {
