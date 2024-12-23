@@ -1,18 +1,14 @@
-import { useContext, useRef } from 'react';
+import { useRef } from 'react';
 import Hero from '../components/Hero/Hero';
 import JobCard from '../components/Job/JobCard';
 import JobCategoryCard from '../components/Job/JobCategoryCard';
 import Button from '../components/ui/Button';
-import { JobContext } from '../contexts/JobContext';
+import useJobInfo from '../hooks/useJobInfo';
 
 export default function HomePage() {
-  const jobContext = useContext(JobContext);
+  const jobInfo = useJobInfo();
   const featuredJobsRef = useRef(null);
-
-  // Check for loading state based on jobContext availability
-  if (!jobContext) return <div>Loading...</div>;
-
-  const { jobs, jobCategories, showAllJobs, setShowAllJobs } = jobContext;
+  const { jobs, jobCategories, showAllJobs, setShowAllJobs } = jobInfo;
 
   return (
     <main>

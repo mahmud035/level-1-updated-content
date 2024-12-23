@@ -1,11 +1,7 @@
-import { createContext, ReactNode, useState } from 'react';
+import React, { createContext, useState } from 'react';
 import useFetchData from '../hooks/useFetchData';
 import { IJob, IJobCategory } from '../types';
 import { getAppliedJobs } from '../utils';
-
-interface IJobProviderProps {
-  children: ReactNode;
-}
 
 interface IJobContext {
   jobs: IJob[];
@@ -16,7 +12,11 @@ interface IJobContext {
   setAppliedJobs: React.Dispatch<React.SetStateAction<IJob[]>>;
 }
 
-export const JobContext = createContext<IJobContext | undefined>(undefined);
+interface IJobProviderProps {
+  children: React.ReactNode;
+}
+
+const JobContext = createContext<IJobContext | null>(null);
 
 export default function JobProvider({ children }: IJobProviderProps) {
   // Fetch jobs and job categories data using custom hooks
@@ -39,3 +39,5 @@ export default function JobProvider({ children }: IJobProviderProps) {
 
   return <JobContext.Provider value={jobInfo}>{children}</JobContext.Provider>;
 }
+
+export { JobContext };
