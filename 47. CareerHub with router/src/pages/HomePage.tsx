@@ -10,8 +10,6 @@ export default function HomePage() {
   const featuredJobsRef = useRef(null);
   const { jobs, jobCategories, showAllJobs, setShowAllJobs } = jobInfo;
 
-  console.log(jobs);
-
   return (
     <main>
       {/* Hero */}
