@@ -3,7 +3,7 @@ import Header from '../shared/Header';
 
 export default function RootLayout() {
   return (
-    <div>
+    <div className="container">
       <Header />
       <Outlet />
     </div>

@@ -1,0 +1,107 @@
+import {
+  createUserWithEmailAndPassword,
+  getAuth,
+  GoogleAuthProvider,
+  onAuthStateChanged,
+  signInWithEmailAndPassword,
+  signInWithPopup,
+  signOut,
+  updateProfile,
+  User,
+  UserCredential,
+} from 'firebase/auth';
+import React, { createContext, useEffect, useMemo, useState } from 'react';
+import app from '../config/firebase.config';
+
+interface IAuthContext {
+  user: User | null;
+  loading: boolean;
+  createUser: (email: string, password: string) => Promise<UserCredential>;
+  loginUser: (email: string, password: string) => Promise<UserCredential>;
+  loginWithGoogle: () => Promise<UserCredential>;
+  updateUserProfile: (
+    displayName: string,
+    photoURL: string
+  ) => Promise<void> | undefined;
+  logout: () => Promise<void>;
+}
+
+interface IAuthProviderProps {
+  children: React.ReactNode;
+}
+
+const AuthContext = createContext<IAuthContext | null>(null);
+const auth = getAuth(app);
+
+export default function AuthProvider({ children }: IAuthProviderProps) {
+  const [user, setUser] = useState<User | null>(null);
+  const [loading, setLoading] = useState(true);
+
+  const googleProvider = useMemo(() => new GoogleAuthProvider(), []);
+
+  //* Create New User
+  const createUser = (
+    email: string,
+    password: string
+  ): Promise<UserCredential> => {
+    return createUserWithEmailAndPassword(auth, email, password);
+  };
+
+  //* Login Existing User
+  const loginUser = (
+    email: string,
+    password: string
+  ): Promise<UserCredential> => {
+    return signInWithEmailAndPassword(auth, email, password);
+  };
+
+  //* Login with Google
+  const loginWithGoogle = (): Promise<UserCredential> => {
+    return signInWithPopup(auth, googleProvider);
+  };
+
+  //* Update a User's Profile
+  const updateUserProfile = (
+    displayName: string,
+    photoURL: string
+  ): Promise<void> | undefined => {
+    if (auth.currentUser) {
+      return updateProfile(auth.currentUser, { displayName, photoURL });
+    }
+  };
+
+  //* Logout a User
+  const logout = (): Promise<void> => {
+    return signOut(auth);
+  };
+
+  //* Get the Currently Logged-in User
+  useEffect(() => {
+    const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
+      if (currentUser) {
+        setUser(currentUser);
+        setLoading(false);
+      }
+
+      return () => {
+        unsubscribe();
+      };
+    });
+  });
+
+  const authInfo = {
+    user,
+    loading,
+    createUser,
+    loginUser,
+    loginWithGoogle,
+    updateUserProfile,
+    logout,
+  };
+
+  return (
+    <AuthContext.Provider value={authInfo}>{children}</AuthContext.Provider>
+  );
+}
+
+export { AuthContext };
