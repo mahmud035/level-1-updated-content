@@ -12,6 +12,13 @@ const getJobs = async (req, res, next) => {
 
   const jobs = await JobService.getJobs(filter);
 
+  if (!Array.isArray(jobs))
+    return sendResponse(res, {
+      statusCode: httpStatus.BAD_REQUEST,
+      success: false,
+      message: 'Something went wrong',
+    });
+
   sendResponse(res, {
     statusCode: httpStatus.OK,
     success: true,
@@ -24,8 +31,15 @@ const getJobs = async (req, res, next) => {
 // @desc    Get single job
 // @route   GET /jobs/:id
 const getJob = async (req, res, next) => {
-  const id = req.params;
-  const job = await JobService.getJob(id);
+  const jobId = req.params;
+  const job = await JobService.getJob(jobId);
+
+  if (!job)
+    return sendResponse(res, {
+      statusCode: httpStatus.BAD_REQUEST,
+      success: false,
+      message: 'Job not found',
+    });
 
   sendResponse(res, {
     statusCode: httpStatus.OK,
@@ -37,15 +51,65 @@ const getJob = async (req, res, next) => {
 
 // @desc    Create new job
 // @route   POST /jobs
-const createJob = async (req, res, next) => {};
+const createJob = async (req, res, next) => {
+  const data = req.body;
+  const result = await JobService.createJob(data);
+
+  if (!result.insertedId)
+    return sendResponse(res, {
+      statusCode: httpStatus.BAD_REQUEST,
+      success: false,
+      message: 'Something went wrong',
+    });
+
+  sendResponse(res, {
+    statusCode: httpStatus.OK,
+    success: true,
+    message: 'Job created successfully',
+  });
+};
 
 // @desc    Update a job
 // @route   PUT /jobs/:id
-const updateJob = async (req, res, next) => {};
+const updateJob = async (req, res, next) => {
+  const jobId = req.params;
+  const data = req.body;
+
+  const result = await JobService.updateJob(jobId, data);
+
+  if (result.modifiedCount === 0)
+    return sendResponse(res, {
+      statusCode: httpStatus.BAD_REQUEST,
+      success: false,
+      message: 'Job not found',
+    });
+
+  sendResponse(res, {
+    statusCode: httpStatus.OK,
+    success: true,
+    message: 'Job updated successfully',
+  });
+};
 
 // @desc    Delete a job
 // @route   DELETE /jobs/:id
-const deleteJob = async (req, res, next) => {};
+const deleteJob = async (req, res, next) => {
+  const jobId = req.params;
+  const result = await JobService.deleteJob(jobId);
+
+  if (result.deletedCount === 0)
+    return sendResponse(res, {
+      statusCode: httpStatus.BAD_REQUEST,
+      success: false,
+      message: 'Job not found',
+    });
+
+  sendResponse(res, {
+    statusCode: httpStatus.OK,
+    success: true,
+    message: 'Job deleted successfully',
+  });
+};
 
 export const JobController = {
   getJobs,

@@ -6,7 +6,7 @@ dotenv.config();
 //* MongoDB Connection
 const uri = process.env.DATABASE_URI;
 const client = new MongoClient(uri);
-const dbName = process.env.DB_NAME;
+const dbName = process.env.DATABASE_NAME;
 
 let database;
 

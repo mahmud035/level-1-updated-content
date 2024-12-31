@@ -8,17 +8,30 @@ const getJobs = async (filter) => {
   return result;
 };
 
-const getJob = async (id) => {
-  const query = { _id: new ObjectId(id) };
+const getJob = async (jobId) => {
+  const query = { _id: new ObjectId(jobId) };
   const result = await jobs.findOne(query);
   return result;
 };
 
-const createJob = async (data) => {};
+const createJob = async (data) => {
+  const result = await jobs.insertOne(data);
+  return result;
+};
 
-const updateJob = async (id, updatedData) => {};
+const updateJob = async (jobId, data) => {
+  const filter = { _id: new ObjectId(jobId) };
+  const options = { upsert: true };
+  const updatedJob = { $set: data };
+  const result = await jobs.updateOne(filter, updatedJob, options);
+  return result;
+};
 
-const deleteJob = async (id) => {};
+const deleteJob = async (jobId) => {
+  const query = { _id: new ObjectId(jobId) };
+  const result = await jobs.deleteOne(query);
+  return result;
+};
 
 export const JobService = {
   getJobs,
