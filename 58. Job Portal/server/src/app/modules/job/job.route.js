@@ -6,6 +6,12 @@ const router = express.Router();
 // Get all jobs
 router.get('/', JobController.getJobs);
 
+// Search jobs
+// router.get('/search', JobController.searchJobs);
+
+// Filter jobs
+// router.get('/filter', JobController.filterJobs);
+
 // Get single job
 router.get('/:id', JobController.getJob);
 
