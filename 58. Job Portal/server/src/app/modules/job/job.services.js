@@ -1,3 +1,4 @@
+import { ObjectId } from 'mongodb';
 import { jobs } from '../../../server.js';
 
 const getJobs = async (filter) => {
@@ -7,7 +8,11 @@ const getJobs = async (filter) => {
   return result;
 };
 
-const getJob = async (id) => {};
+const getJob = async (id) => {
+  const query = { _id: new ObjectId(id) };
+  const result = await jobs.findOne(query);
+  return result;
+};
 
 const createJob = async (data) => {};
 

@@ -16,14 +16,24 @@ const getJobs = async (req, res, next) => {
     statusCode: httpStatus.OK,
     success: true,
     message: 'Jobs fetched successfully',
-    meta: { page, limit },
+    meta: { page, limit, total: jobs.length },
     data: jobs,
   });
 };
 
 // @desc    Get single job
 // @route   GET /jobs/:id
-const getJob = async (req, res, next) => {};
+const getJob = async (req, res, next) => {
+  const id = req.params;
+  const job = await JobService.getJob(id);
+
+  sendResponse(res, {
+    statusCode: httpStatus.OK,
+    success: true,
+    message: 'Job fetched successfully',
+    data: job,
+  });
+};
 
 // @desc    Create new job
 // @route   POST /jobs
