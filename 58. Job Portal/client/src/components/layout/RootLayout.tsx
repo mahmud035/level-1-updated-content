@@ -1,11 +1,17 @@
 import { Outlet } from 'react-router';
+import Footer from '../shared/Footer';
 import Header from '../shared/Header';
 
 export default function RootLayout() {
   return (
     <div className="container">
       <Header />
-      <Outlet />
+
+      <div className="min-h-[calc(100vh-84px)] pb-12">
+        <Outlet />
+      </div>
+
+      <Footer />
     </div>
   );
 }

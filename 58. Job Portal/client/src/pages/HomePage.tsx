@@ -1,4 +1,5 @@
 import { useGetJobQuery, useGetJobsQuery } from '../api/job/job.hooks';
+import Banner from '../components/home/Banner';
 
 export default function HomePage() {
   const getJobsQuery = useGetJobsQuery();
@@ -6,5 +7,9 @@ export default function HomePage() {
   console.log('getJobsQuery', getJobsQuery);
   console.log('getJobQuery', getJobQuery);
 
-  return <div>HomePage</div>;
+  return (
+    <div>
+      <Banner />
+    </div>
+  );
 }

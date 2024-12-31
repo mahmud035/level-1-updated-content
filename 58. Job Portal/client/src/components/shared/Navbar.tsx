@@ -1,19 +1,34 @@
-import { Link } from 'react-router';
+import { Link, NavLink, useNavigate } from 'react-router';
+import logo from '../../assets/icons/job-logo.png';
+import useAuth from '../../hooks/useAuth';
 
 export default function Navbar() {
+  const { user, setUser, logout } = useAuth();
+  const navigate = useNavigate();
+
   const links = (
     <>
       <li>
-        <a>Item 1</a>
+        <NavLink to="/">Home</NavLink>
       </li>
       <li>
-        <a>Item 3</a>
+        <NavLink to="/jobs">Jobs</NavLink>
+      </li>
+      <li>
+        <NavLink to="/about">About</NavLink>
       </li>
     </>
   );
 
+  const handleLogout = () => {
+    logout().then(() => {
+      setUser(null);
+      navigate('/login');
+    });
+  };
+
   return (
-    <div className="navbar bg-base-100">
+    <div className="px-0 navbar bg-base-100">
       <div className="navbar-start">
         <div className="dropdown">
           <div tabIndex={0} role="button" className="btn btn-ghost lg:hidden">
@@ -39,18 +54,29 @@ export default function Navbar() {
             {links}
           </ul>
         </div>
-        <a className="text-xl btn btn-ghost">daisyUI</a>
+        <Link to="/" className="pl-0 text-xl btn btn-ghost">
+          <img src={logo} alt="" className="h-12" />
+          Job Portal
+        </Link>
       </div>
       <div className="hidden navbar-center lg:flex">
         <ul className="px-1 menu menu-horizontal">{links}</ul>
       </div>
       <div className="flex gap-3 navbar-end">
-        <Link to="/login">
-          <button className="btn">Login</button>
-        </Link>
-        <Link to="/register">
-          <button className="btn">Register</button>
-        </Link>
+        {user ? (
+          <button onClick={handleLogout} className="btn">
+            Logout
+          </button>
+        ) : (
+          <>
+            <Link to="/login">
+              <button className="btn">Login</button>
+            </Link>
+            <Link to="/register">
+              <button className="btn">Register</button>
+            </Link>
+          </>
+        )}
       </div>
     </div>
   );

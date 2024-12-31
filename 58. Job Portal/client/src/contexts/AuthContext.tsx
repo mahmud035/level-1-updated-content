@@ -1,6 +1,5 @@
 import {
   createUserWithEmailAndPassword,
-  getAuth,
   GoogleAuthProvider,
   onAuthStateChanged,
   signInWithEmailAndPassword,
@@ -11,10 +10,11 @@ import {
   UserCredential,
 } from 'firebase/auth';
 import React, { createContext, useEffect, useMemo, useState } from 'react';
-import app from '../config/firebase.config';
+import auth from '../config/firebase.config';
 
 interface IAuthContext {
   user: User | null;
+  setUser: React.Dispatch<React.SetStateAction<User | null>>;
   loading: boolean;
   createUser: (email: string, password: string) => Promise<UserCredential>;
   loginUser: (email: string, password: string) => Promise<UserCredential>;
@@ -31,7 +31,6 @@ interface IAuthProviderProps {
 }
 
 const AuthContext = createContext<IAuthContext | null>(null);
-const auth = getAuth(app);
 
 export default function AuthProvider({ children }: IAuthProviderProps) {
   const [user, setUser] = useState<User | null>(null);
@@ -44,6 +43,7 @@ export default function AuthProvider({ children }: IAuthProviderProps) {
     email: string,
     password: string
   ): Promise<UserCredential> => {
+    setLoading(true);
     return createUserWithEmailAndPassword(auth, email, password);
   };
 
@@ -52,11 +52,13 @@ export default function AuthProvider({ children }: IAuthProviderProps) {
     email: string,
     password: string
   ): Promise<UserCredential> => {
+    setLoading(true);
     return signInWithEmailAndPassword(auth, email, password);
   };
 
   //* Login with Google
   const loginWithGoogle = (): Promise<UserCredential> => {
+    setLoading(true);
     return signInWithPopup(auth, googleProvider);
   };
 
@@ -91,6 +93,7 @@ export default function AuthProvider({ children }: IAuthProviderProps) {
 
   const authInfo = {
     user,
+    setUser,
     loading,
     createUser,
     loginUser,
