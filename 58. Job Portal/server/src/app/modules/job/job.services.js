@@ -91,9 +91,8 @@ const createJob = async (data) => {
 const updateJob = async (jobId, data) => {
   const timestamp = new Date();
   const filter = { _id: new ObjectId(jobId) };
-  const options = { upsert: true };
   const updatedJob = { $set: { ...data, updatedAt: timestamp } };
-  const result = await jobs.updateOne(filter, updatedJob, options);
+  const result = await jobs.updateOne(filter, updatedJob);
   return result;
 };
 

@@ -188,7 +188,7 @@ const updateJob = async (req, res, next) => {
       return sendResponse(res, {
         statusCode: httpStatus.BAD_REQUEST,
         success: false,
-        message: 'Job not found',
+        message: 'Job not found or no changes made',
       });
 
     sendResponse(res, {
