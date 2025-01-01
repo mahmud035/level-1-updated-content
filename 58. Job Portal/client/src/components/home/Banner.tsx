@@ -4,7 +4,7 @@ import team2 from '../../assets/images/banner/team2.jpg';
 
 export default function Banner() {
   return (
-    <div className="overflow-x-hidden min-h-fit hero">
+    <header className="overflow-x-hidden min-h-fit hero">
       <div className="flex-col hero-content lg:flex-row-reverse">
         <div className="flex-1">
           <motion.img
@@ -46,9 +46,9 @@ export default function Banner() {
             excepturi exercitationem quasi. In deleniti eaque aut repudiandae et
             a id nisi.
           </p>
-          <button className="btn btn-primary">Apply Now</button>
+          <button className="text-white btn bg-violet-500">Apply Now</button>
         </div>
       </div>
-    </div>
+    </header>
   );
 }

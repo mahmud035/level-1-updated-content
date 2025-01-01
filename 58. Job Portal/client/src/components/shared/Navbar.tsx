@@ -28,7 +28,7 @@ export default function Navbar() {
   };
 
   return (
-    <div className="px-0 navbar bg-base-100">
+    <nav className="px-0 navbar bg-base-100">
       <div className="navbar-start">
         <div className="dropdown">
           <div tabIndex={0} role="button" className="btn btn-ghost lg:hidden">
@@ -49,7 +49,7 @@ export default function Navbar() {
           </div>
           <ul
             tabIndex={0}
-            className="menu menu-sm dropdown-content bg-base-100 rounded-box z-[1] mt-3 w-52 p-2 shadow"
+            className="menu menu-sm dropdown-content bg-base-100 gap-3 rounded-box z-[1] mt-3 w-52 p-2 shadow"
           >
             {links}
           </ul>
@@ -60,7 +60,7 @@ export default function Navbar() {
         </Link>
       </div>
       <div className="hidden navbar-center lg:flex">
-        <ul className="px-1 menu menu-horizontal">{links}</ul>
+        <ul className="gap-3 px-1 menu menu-horizontal">{links}</ul>
       </div>
       <div className="flex gap-3 navbar-end">
         {user ? (
@@ -78,6 +78,6 @@ export default function Navbar() {
           </>
         )}
       </div>
-    </div>
+    </nav>
   );
 }

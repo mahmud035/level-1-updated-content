@@ -1,7 +1,7 @@
 import Lottie from 'lottie-react';
 import { useState } from 'react';
 import toast from 'react-hot-toast';
-import { Link, useNavigate } from 'react-router';
+import { Link, useLocation, useNavigate } from 'react-router';
 import loginAnimation from '../../assets/images/lottie/login.json';
 import useAuth from '../../hooks/useAuth';
 import { defaultLoginFormData } from '../../utils';
@@ -10,6 +10,8 @@ export default function LoginPage() {
   const [formData, setFormData] = useState(defaultLoginFormData);
   const { loginUser, loginWithGoogle } = useAuth();
   const navigate = useNavigate();
+  const location = useLocation();
+  const from = location.state || '/';
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
@@ -20,7 +22,7 @@ export default function LoginPage() {
     e.preventDefault();
     loginUser(formData.email, formData.password)
       .then(() => {
-        navigate('/');
+        navigate(from, { replace: true });
       })
       .catch(() => {
         toast.error('Failed to login');
