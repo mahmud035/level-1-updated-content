@@ -6,6 +6,12 @@ const router = express.Router();
 // Get specific user's job applications
 router.get('/', JobApplicationController.getJobApplications);
 
+// Get the number of applications for a specific job
+router.get(
+  '/:id/applications/count',
+  JobApplicationController.getJobApplicationCount
+);
+
 // Save job application
 router.post('/', JobApplicationController.saveJobApplication);
 

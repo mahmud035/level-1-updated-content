@@ -71,6 +71,13 @@ const filterJobs = async (options) => {
 };
 */
 
+const getRecruiterJobs = async (recruiterEmail) => {
+  const query = { hr_email: recruiterEmail };
+  const result = await jobs.find(query).toArray();
+  const total = await jobs.countDocuments(query);
+  return { jobs: result, total };
+};
+
 const getJob = async (jobId) => {
   const query = { _id: new ObjectId(jobId) };
   const result = await jobs.findOne(query);
@@ -88,22 +95,23 @@ const createJob = async (data) => {
   return result;
 };
 
-const updateJob = async (jobId, data) => {
+const updateJob = async (jobId, recruiterEmail, data) => {
   const timestamp = new Date();
-  const filter = { _id: new ObjectId(jobId) };
+  const filter = { _id: new ObjectId(jobId), hr_email: recruiterEmail };
   const updatedJob = { $set: { ...data, updatedAt: timestamp } };
   const result = await jobs.updateOne(filter, updatedJob);
   return result;
 };
 
-const deleteJob = async (jobId) => {
-  const query = { _id: new ObjectId(jobId) };
+const deleteJob = async (jobId, recruiterEmail) => {
+  const query = { _id: new ObjectId(jobId), hr_email: recruiterEmail };
   const result = await jobs.deleteOne(query);
   return result;
 };
 
 export const JobService = {
   getJobs,
+  getRecruiterJobs,
   // searchJobs,
   // filterJobs,
   getJob,

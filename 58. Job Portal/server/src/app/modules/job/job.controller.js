@@ -126,6 +126,25 @@ const filterJobs = async (req, res, next) => {
 }; 
 */
 
+// @desc    Get recruiter's posted jobs
+// @route   GET /jobs/recruiters-job?email=
+const getRecruiterJobs = async (req, res, next) => {
+  try {
+    const recruiterEmail = req.query.email;
+    const { jobs, total } = await JobService.getRecruiterJobs(recruiterEmail);
+
+    sendResponse(res, {
+      statusCode: httpStatus.OK,
+      success: true,
+      message: 'Recruiter jobs fetched successfully',
+      meta: { total },
+      data: jobs,
+    });
+  } catch (error) {
+    next(error);
+  }
+};
+
 // @desc    Get single job
 // @route   GET /jobs/:id
 const getJob = async (req, res, next) => {
@@ -180,9 +199,10 @@ const createJob = async (req, res, next) => {
 const updateJob = async (req, res, next) => {
   try {
     const jobId = req.params.id;
+    const recruiterEmail = req.query.email;
     const data = req.body;
 
-    const result = await JobService.updateJob(jobId, data);
+    const result = await JobService.updateJob(jobId, recruiterEmail, data);
 
     if (result.modifiedCount === 0)
       return sendResponse(res, {
@@ -202,11 +222,12 @@ const updateJob = async (req, res, next) => {
 };
 
 // @desc    Delete a job
-// @route   DELETE /jobs/:id
+// @route   DELETE /jobs/:id?email=
 const deleteJob = async (req, res, next) => {
   try {
     const jobId = req.params.id;
-    const result = await JobService.deleteJob(jobId);
+    const recruiterEmail = req.query.email;
+    const result = await JobService.deleteJob(jobId, recruiterEmail);
 
     if (result.deletedCount === 0)
       return sendResponse(res, {
@@ -227,6 +248,7 @@ const deleteJob = async (req, res, next) => {
 
 export const JobController = {
   getJobs,
+  getRecruiterJobs,
   // searchJobs,
   // filterJobs,
   getJob,

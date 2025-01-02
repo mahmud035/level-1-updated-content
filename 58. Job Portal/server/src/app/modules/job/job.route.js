@@ -6,6 +6,9 @@ const router = express.Router();
 // Get jobs with pagination, searching, and filtering
 router.get('/', JobController.getJobs);
 
+// Get recruiter posted jobs
+router.get('/recruiter-jobs', JobController.getRecruiterJobs);
+
 // Search jobs
 // router.get('/search', JobController.searchJobs);
 

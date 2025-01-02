@@ -29,7 +29,30 @@ const getJobApplications = async (applicantEmail) => {
   return jobDetailsList;
 };
 
+const getJobApplicationCount = async (jobId) => {
+  const query = { jobId: jobId };
+  const applications = await jobApplications.find(query).toArray();
+  const total = await jobApplications.countDocuments(query);
+  return { applications, total };
+};
+
 const saveJobApplication = async (data) => {
+  // ---------------------------------------------------------------------
+  // NOTE: NOT the best way. Use MongoDB Aggregate.
+  // Add an `applicationCount` property to the job document inside the jobs collection to track the number of applications for that job.
+  const jobId = data?.jobId;
+  const query = { _id: new ObjectId(jobId) };
+  const job = await jobs.findOne(query);
+  let numberOfApplication = 0;
+  if (job.applicationCount) numberOfApplication = job.applicationCount + 1;
+  else numberOfApplication = 1;
+
+  // Update the job document
+  const filter = { _id: new ObjectId(jobId) };
+  const updatedDoc = { $set: { applicationCount: numberOfApplication } };
+  const updatedJob = await jobs.updateOne(filter, updatedDoc);
+  // ---------------------------------------------------------------------
+
   const timestamp = new Date();
   const result = await jobApplications.insertOne({
     ...data,
@@ -47,6 +70,7 @@ const deleteJobApplication = async (id, applicantEmail) => {
 
 export const JobApplicationServices = {
   getJobApplications,
+  getJobApplicationCount,
   saveJobApplication,
   deleteJobApplication,
 };

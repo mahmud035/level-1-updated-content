@@ -26,6 +26,10 @@ await dbConnect();
 export const jobs = getDatabase().collection('jobs');
 export const jobApplications = getDatabase().collection('jobApplications');
 
+// For Optimizing Queries
+await jobs.createIndex({ title: 'text', location: 'text' });
+await jobApplications.createIndex({ 'applicantInfo.email': 1 });
+
 //* Application Routes
 app.use('/api/v1', ApplicationRoutes);
 

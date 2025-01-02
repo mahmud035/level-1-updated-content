@@ -22,6 +22,26 @@ const getJobApplications = async (req, res, next) => {
   }
 };
 
+// @desc    Get the number of applications for a specific job
+// @route   GET /job-applications/:id/applications/count
+const getJobApplicationCount = async (req, res, next) => {
+  try {
+    const jobId = req.params.id;
+    const { applications, total } =
+      await JobApplicationServices.getJobApplicationCount(jobId);
+
+    sendResponse(res, {
+      statusCode: httpStatus.OK,
+      success: true,
+      message: 'Fetched number of applications for a specific job successfully',
+      meta: { total },
+      data: applications,
+    });
+  } catch (error) {
+    next(error);
+  }
+};
+
 // @desc    Save job application
 // @route   POST /job-applications
 const saveJobApplication = async (req, res, next) => {
@@ -76,6 +96,7 @@ const deleteJobApplication = async (req, res, next) => {
 
 export const JobApplicationController = {
   getJobApplications,
+  getJobApplicationCount,
   saveJobApplication,
   deleteJobApplication,
 };
