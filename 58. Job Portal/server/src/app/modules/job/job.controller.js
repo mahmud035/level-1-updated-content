@@ -130,7 +130,7 @@ const filterJobs = async (req, res, next) => {
 // @route   GET /jobs/:id
 const getJob = async (req, res, next) => {
   try {
-    const jobId = req.params;
+    const jobId = req.params.id;
     const job = await JobService.getJob(jobId);
 
     if (!job)
@@ -179,7 +179,7 @@ const createJob = async (req, res, next) => {
 // @route   PUT /jobs/:id
 const updateJob = async (req, res, next) => {
   try {
-    const jobId = req.params;
+    const jobId = req.params.id;
     const data = req.body;
 
     const result = await JobService.updateJob(jobId, data);
@@ -205,7 +205,7 @@ const updateJob = async (req, res, next) => {
 // @route   DELETE /jobs/:id
 const deleteJob = async (req, res, next) => {
   try {
-    const jobId = req.params;
+    const jobId = req.params.id;
     const result = await JobService.deleteJob(jobId);
 
     if (result.deletedCount === 0)

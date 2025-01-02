@@ -3,7 +3,7 @@ import { JobController } from './job.controller.js';
 
 const router = express.Router();
 
-// Get all jobs
+// Get jobs with pagination, searching, and filtering
 router.get('/', JobController.getJobs);
 
 // Search jobs

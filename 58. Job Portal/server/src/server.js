@@ -24,6 +24,7 @@ await dbConnect();
 
 //* MongoDB Collections
 export const jobs = getDatabase().collection('jobs');
+export const jobApplications = getDatabase().collection('jobApplications');
 
 //* Application Routes
 app.use('/api/v1', ApplicationRoutes);
