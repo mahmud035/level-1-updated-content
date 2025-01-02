@@ -11,12 +11,11 @@ export default function Navbar() {
       <li>
         <NavLink to="/">Home</NavLink>
       </li>
-      <li>
-        <NavLink to="/jobs">Jobs</NavLink>
-      </li>
-      <li>
-        <NavLink to="/about">About</NavLink>
-      </li>
+      {user?.email && (
+        <li>
+          <NavLink to="/my-applications">My Applications</NavLink>
+        </li>
+      )}
     </>
   );
 

@@ -1,6 +1,13 @@
 import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
-import { ISaveJobApplication } from '../../types/jobApplication';
-import { getJobApplications, saveJobApplication } from './jobApplication.api';
+import {
+  IDeleteJobApplication,
+  ISaveJobApplication,
+} from '../../types/jobApplication';
+import {
+  deleteJobApplication,
+  getJobApplications,
+  saveJobApplication,
+} from './jobApplication.api';
 
 //* Queries Hook
 export const useGetJobApplicationsQuery = (email: string) => {
@@ -16,6 +23,18 @@ export const useSaveJobApplicationMutation = () => {
 
   return useMutation({
     mutationFn: (data: ISaveJobApplication) => saveJobApplication(data),
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ['job-applications'] });
+    },
+  });
+};
+
+export const useDeleteJobApplicationMutation = () => {
+  const queryClient = useQueryClient();
+
+  return useMutation({
+    mutationFn: (jobInfo: IDeleteJobApplication) =>
+      deleteJobApplication(jobInfo),
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ['job-applications'] });
     },

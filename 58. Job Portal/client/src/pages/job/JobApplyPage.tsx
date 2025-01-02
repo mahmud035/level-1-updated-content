@@ -1,6 +1,8 @@
 import Lottie from 'lottie-react';
 import { useState } from 'react';
-import { useParams } from 'react-router';
+import toast from 'react-hot-toast';
+import { useNavigate, useParams } from 'react-router';
+import { useSaveJobApplicationMutation } from '../../api/jobApplication/jobApplication.hooks';
 import jobApplyAnimation from '../../assets/images/lottie/jobApply.json';
 import useAuth from '../../hooks/useAuth';
 import { defaultJobApplyFormData } from '../../utils';
@@ -9,6 +11,8 @@ export default function JobApplyPage() {
   const [formData, setFormData] = useState(defaultJobApplyFormData);
   const { id } = useParams();
   const { user } = useAuth();
+  const navigate = useNavigate();
+  const saveJobApplicationMutation = useSaveJobApplicationMutation();
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
@@ -17,7 +21,18 @@ export default function JobApplyPage() {
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    console.log({ ...formData, jobId: id, userEmail: user?.email });
+    if (!id || !user?.email) return toast.error('Invalid Info');
+
+    const applicationData = {
+      jobId: id,
+      applicantInfo: { email: user?.email, ...formData },
+    };
+    saveJobApplicationMutation.mutate(applicationData, {
+      onSuccess: () => {
+        toast.success('Job applied successfully');
+        navigate('/my-applications');
+      },
+    });
   };
 
   return (

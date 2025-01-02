@@ -1,5 +1,8 @@
 import axiosInstance from '../../config/axios.config';
-import { ISaveJobApplication } from '../../types/jobApplication';
+import {
+  IDeleteJobApplication,
+  ISaveJobApplication,
+} from '../../types/jobApplication';
 
 export const getJobApplications = async (email: string) => {
   const { data } = await axiosInstance.get(`/job-applications?email=${email}`);
@@ -12,6 +15,16 @@ export const saveJobApplication = async (
   const { data } = await axiosInstance.post(
     `/job-applications`,
     applicationData
+  );
+  return data;
+};
+
+export const deleteJobApplication = async ({
+  jobId,
+  applicantEmail,
+}: IDeleteJobApplication) => {
+  const { data } = await axiosInstance.delete(
+    `/job-applications/${jobId}?email=${applicantEmail}`
   );
   return data;
 };

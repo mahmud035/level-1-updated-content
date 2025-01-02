@@ -1,13 +1,22 @@
 import { FaDollarSign } from 'react-icons/fa6';
 import { MdOutlineLocationOn } from 'react-icons/md';
 import { Link } from 'react-router';
+import { useGetJobApplicationsQuery } from '../../api/jobApplication/jobApplication.hooks';
+import useAuth from '../../hooks/useAuth';
 import { IJob } from '../../types/job';
+import { IJobApplication } from '../../types/jobApplication';
 
 interface IFeaturedJobCardProps {
   job: IJob;
 }
 
 export default function FeaturedJobCard({ job }: IFeaturedJobCardProps) {
+  const { user } = useAuth();
+  const getJobApplicationsQuery = useGetJobApplicationsQuery(user?.email || '');
+  const alreadyApplied = getJobApplicationsQuery?.data?.data?.find(
+    (appliedJob: IJobApplication) => appliedJob._id === job._id
+  );
+
   const {
     _id,
     title,
@@ -53,11 +62,17 @@ export default function FeaturedJobCard({ job }: IFeaturedJobCardProps) {
           {min} - {max}
         </p>
         <div className="justify-end card-actions">
-          <Link to={`/jobs/${_id}`}>
-            <button className="px-4 py-2 font-medium text-white rounded bg-violet-500 hover:bg-violet-700">
-              Apply
+          {alreadyApplied ? (
+            <button className="px-4 py-2 font-medium text-white rounded cursor-not-allowed bg-violet-400">
+              Already Applied
             </button>
-          </Link>
+          ) : (
+            <Link to={`/jobs/${_id}`}>
+              <button className="px-4 py-2 font-medium text-white rounded bg-violet-500 hover:bg-violet-700">
+                Apply
+              </button>
+            </Link>
+          )}
         </div>
       </div>
     </div>
