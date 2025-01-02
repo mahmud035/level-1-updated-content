@@ -1,12 +1,13 @@
 import { useGetJobsQuery } from '../../api/job/job.hooks';
 import { IJob } from '../../types/job';
+import Loading from '../shared/Loading';
 import FeaturedJobCard from './FeaturedJobCard';
 
 export default function FeaturedJobList() {
   const getJobsQuery = useGetJobsQuery();
   const { isPending, data } = getJobsQuery;
 
-  if (isPending) return <p>Loading...</p>;
+  if (isPending) return <Loading />;
 
   return (
     <section id="featured-jobs" className="py-24">
@@ -20,7 +21,7 @@ export default function FeaturedJobList() {
       </div>
 
       <div className="grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-3 2xl:grid-cols-4">
-        {data.data.map((job: IJob) => (
+        {data?.data?.map((job: IJob) => (
           <FeaturedJobCard key={job._id} job={job} />
         ))}
       </div>

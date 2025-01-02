@@ -11,10 +11,21 @@ export default function Navbar() {
       <li>
         <NavLink to="/">Home</NavLink>
       </li>
+      <li>
+        <NavLink to="/all-jobs">All Jobs</NavLink>
+      </li>
       {user?.email && (
-        <li>
-          <NavLink to="/my-applications">My Applications</NavLink>
-        </li>
+        <>
+          <li>
+            <NavLink to="/my-applications">My Applications</NavLink>
+          </li>
+          <li>
+            <NavLink to="/add-job">Add Job</NavLink>
+          </li>
+          <li>
+            <NavLink to="/my-posted-jobs">My Posted Jobs</NavLink>
+          </li>
+        </>
       )}
     </>
   );
@@ -48,7 +59,7 @@ export default function Navbar() {
           </div>
           <ul
             tabIndex={0}
-            className="menu menu-sm dropdown-content bg-base-100 gap-3 rounded-box z-[1] mt-3 w-52 p-2 shadow"
+            className="menu menu-sm dropdown-content bg-base-100 gap-2.5 rounded-box z-[1] mt-3 w-52 p-2 shadow"
           >
             {links}
           </ul>
@@ -59,7 +70,7 @@ export default function Navbar() {
         </Link>
       </div>
       <div className="hidden navbar-center lg:flex">
-        <ul className="gap-3 px-1 menu menu-horizontal">{links}</ul>
+        <ul className="gap-2.5 px-1 menu menu-horizontal">{links}</ul>
       </div>
       <div className="flex gap-3 navbar-end">
         {user ? (

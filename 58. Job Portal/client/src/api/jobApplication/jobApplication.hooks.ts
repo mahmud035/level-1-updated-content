@@ -5,6 +5,7 @@ import {
 } from '../../types/jobApplication';
 import {
   deleteJobApplication,
+  getJobApplicationCount,
   getJobApplications,
   saveJobApplication,
 } from './jobApplication.api';
@@ -14,6 +15,13 @@ export const useGetJobApplicationsQuery = (email: string) => {
   return useQuery({
     queryKey: ['job-applications', { email }],
     queryFn: () => getJobApplications(email),
+  });
+};
+
+export const useGetJobApplicationCountQuery = (jobId: string) => {
+  return useQuery({
+    queryKey: ['job-applications', jobId, 'applications', 'count'],
+    queryFn: () => getJobApplicationCount(jobId),
   });
 };
 

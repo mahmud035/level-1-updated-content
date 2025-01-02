@@ -9,6 +9,13 @@ export const getJobApplications = async (email: string) => {
   return data;
 };
 
+export const getJobApplicationCount = async (jobId: string) => {
+  const { data } = await axiosInstance.get(
+    `/job-applications/${jobId}/applications/count`
+  );
+  return data;
+};
+
 export const saveJobApplication = async (
   applicationData: ISaveJobApplication
 ) => {

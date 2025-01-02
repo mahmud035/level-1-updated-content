@@ -4,9 +4,12 @@ import ErrorPage from '../pages/ErrorPage';
 import HomePage from '../pages/HomePage';
 import LoginPage from '../pages/auth/LoginPage';
 import RegistrationPage from '../pages/auth/RegistrationPage';
+import AddJobPage from '../pages/job/AddJobPage';
+import AllJobPage from '../pages/job/AllJobPage';
 import JobApplyPage from '../pages/job/JobApplyPage';
 import JobDetailsPage from '../pages/job/JobDetailsPage';
 import MyApplicationsPage from '../pages/job/MyApplicationsPage';
+import MyPostedJobPage from '../pages/job/MyPostedJobPage';
 import PrivateRoute from './PrivateRoute';
 
 const router = createBrowserRouter([
@@ -21,6 +24,10 @@ const router = createBrowserRouter([
           {
             index: true,
             element: <HomePage />,
+          },
+          {
+            path: 'all-jobs',
+            element: <AllJobPage />,
           },
           {
             path: 'jobs/:id',
@@ -39,7 +46,7 @@ const router = createBrowserRouter([
             ),
           },
           {
-            path: '/my-applications',
+            path: 'my-applications',
             element: (
               <PrivateRoute>
                 <MyApplicationsPage />
@@ -47,11 +54,27 @@ const router = createBrowserRouter([
             ),
           },
           {
-            path: '/login',
+            path: 'add-job',
+            element: (
+              <PrivateRoute>
+                <AddJobPage />
+              </PrivateRoute>
+            ),
+          },
+          {
+            path: 'my-posted-jobs',
+            element: (
+              <PrivateRoute>
+                <MyPostedJobPage />
+              </PrivateRoute>
+            ),
+          },
+          {
+            path: 'login',
             element: <LoginPage />,
           },
           {
-            path: '/register',
+            path: 'register',
             element: <RegistrationPage />,
           },
         ],
