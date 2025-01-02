@@ -4,10 +4,9 @@ import FeaturedJobCard from './FeaturedJobCard';
 
 export default function FeaturedJobList() {
   const getJobsQuery = useGetJobsQuery();
-  const { isPending, isError, error, data } = getJobsQuery;
+  const { isPending, data } = getJobsQuery;
 
   if (isPending) return <p>Loading...</p>;
-  if (isError) return <p>Error: {error.message}</p>;
 
   return (
     <section>

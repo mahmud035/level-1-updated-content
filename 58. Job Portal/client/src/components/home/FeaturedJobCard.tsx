@@ -16,8 +16,8 @@ export default function FeaturedJobCard({ job }: IFeaturedJobCardProps) {
     company,
     location,
     requirements,
-    salaryRange: { min, max },
-  } = job;
+    salaryRange: { min, max } = {},
+  } = job || {};
 
   return (
     <div className="shadow-xl card card-compact bg-base-100">
@@ -38,7 +38,7 @@ export default function FeaturedJobCard({ job }: IFeaturedJobCardProps) {
         </h2>
         <p>{description}</p>
         <div className="flex flex-wrap gap-2">
-          {requirements.map((skill) => (
+          {requirements?.map((skill) => (
             <p
               key={skill}
               className="bg-blue-100 p-0.5 rounded text-center hover:text-blue-300"

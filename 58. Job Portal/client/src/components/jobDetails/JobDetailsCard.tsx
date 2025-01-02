@@ -20,8 +20,8 @@ export default function JobDetailsCard({ job }: IJobDetailsCardProps) {
     location,
     requirements,
     responsibilities,
-    salaryRange: { min, max },
-  } = job;
+    salaryRange: { min, max } = {},
+  } = job || {};
 
   return (
     <div className="shadow-xl card card-compact bg-base-100">
@@ -42,7 +42,7 @@ export default function JobDetailsCard({ job }: IJobDetailsCardProps) {
         </h2>
         <p>{description}</p>
         <div className="flex flex-wrap gap-2">
-          {requirements.map((skill: string) => (
+          {requirements?.map((skill: string) => (
             <p
               key={skill}
               className="bg-blue-100 p-0.5 rounded text-center hover:text-blue-300"
@@ -53,7 +53,7 @@ export default function JobDetailsCard({ job }: IJobDetailsCardProps) {
         </div>
         <p>Responsibilities: </p>
         <ul className="flex flex-col gap-2">
-          {responsibilities.map((responsibility: string) => (
+          {responsibilities?.map((responsibility: string) => (
             <li key={responsibility}>* {responsibility}</li>
           ))}
         </ul>
@@ -66,9 +66,9 @@ export default function JobDetailsCard({ job }: IJobDetailsCardProps) {
         <p>Category: {category}</p>
         <p>Deadline: {applicationDeadline}</p>
         <div className="card-actions">
-          <Link to={`/jobs/${_id}`} className="w-full">
+          <Link to={`/job-apply/${_id}`} className="w-full">
             <button className="w-full px-4 py-2 font-medium text-white rounded bg-violet-500 hover:bg-violet-700">
-              Apply
+              Apply Now
             </button>
           </Link>
         </div>

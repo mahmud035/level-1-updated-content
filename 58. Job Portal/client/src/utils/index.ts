@@ -8,3 +8,9 @@ export const defaultLoginFormData = {
   email: '',
   password: '',
 };
+
+export const defaultJobApplyFormData = {
+  linkedInURL: '',
+  githubURL: '',
+  resumeURL: '',
+};
