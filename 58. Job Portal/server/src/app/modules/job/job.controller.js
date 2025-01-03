@@ -131,6 +131,13 @@ const filterJobs = async (req, res, next) => {
 const getRecruiterJobs = async (req, res, next) => {
   try {
     const recruiterEmail = req.query.email;
+
+    if (req.query.email !== req.user.email)
+      return sendResponse(res, {
+        statusCode: httpStatus.FORBIDDEN,
+        message: 'Forbidden',
+      });
+
     const { jobs, total } = await JobService.getRecruiterJobs(recruiterEmail);
 
     sendResponse(res, {
@@ -195,12 +202,18 @@ const createJob = async (req, res, next) => {
 };
 
 // @desc    Update a job
-// @route   PUT /jobs/:id
+// @route   PUT /jobs/:id?email=
 const updateJob = async (req, res, next) => {
   try {
     const jobId = req.params.id;
     const recruiterEmail = req.query.email;
     const data = req.body;
+
+    if (req.query.email !== req.user.email)
+      return sendResponse(res, {
+        statusCode: httpStatus.FORBIDDEN,
+        message: 'Forbidden',
+      });
 
     const result = await JobService.updateJob(jobId, recruiterEmail, data);
 
@@ -227,6 +240,13 @@ const deleteJob = async (req, res, next) => {
   try {
     const jobId = req.params.id;
     const recruiterEmail = req.query.email;
+
+    if (req.query.email !== req.user.email)
+      return sendResponse(res, {
+        statusCode: httpStatus.FORBIDDEN,
+        message: 'Forbidden',
+      });
+
     const result = await JobService.deleteJob(jobId, recruiterEmail);
 
     if (result.deletedCount === 0)

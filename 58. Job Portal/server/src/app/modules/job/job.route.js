@@ -1,4 +1,5 @@
 import express from 'express';
+import auth from '../../middlewares/auth.js';
 import { JobController } from './job.controller.js';
 
 const router = express.Router();
@@ -7,7 +8,7 @@ const router = express.Router();
 router.get('/', JobController.getJobs);
 
 // Get recruiter posted jobs
-router.get('/recruiter-jobs', JobController.getRecruiterJobs);
+router.get('/recruiter-jobs', auth, JobController.getRecruiterJobs);
 
 // Search jobs
 // router.get('/search', JobController.searchJobs);
@@ -19,12 +20,12 @@ router.get('/recruiter-jobs', JobController.getRecruiterJobs);
 router.get('/:id', JobController.getJob);
 
 // Create new job
-router.post('/', JobController.createJob);
+router.post('/', auth, JobController.createJob);
 
 // Update a job
-router.patch('/:id', JobController.updateJob);
+router.patch('/:id', auth, JobController.updateJob);
 
 // Delete a job
-router.delete('/:id', JobController.deleteJob);
+router.delete('/:id', auth, JobController.deleteJob);
 
 export const JobRoutes = router;

@@ -7,6 +7,13 @@ import { JobApplicationServices } from './jobApplication.services.js';
 const getJobApplications = async (req, res, next) => {
   try {
     const applicantEmail = req.query.email;
+
+    if (req.query.email !== req.user.email)
+      return sendResponse(res, {
+        statusCode: httpStatus.FORBIDDEN,
+        message: 'Forbidden',
+      });
+
     const jobApplications = await JobApplicationServices.getJobApplications(
       applicantEmail
     );

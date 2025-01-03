@@ -1,20 +1,19 @@
 import cookieParser from 'cookie-parser';
 import cors from 'cors';
-import dotenv from 'dotenv';
 import express from 'express';
 import morgan from 'morgan';
 import errorHandler from './app/middlewares/errorHandler.js';
 import notFound from './app/middlewares/notFound.js';
 import ApplicationRoutes from './app/routes/index.js';
+import config from './config/index.js';
 import { dbConnect, getDatabase } from './db.js';
-
-dotenv.config();
+import { corsOptions } from './utils/index.js';
 
 const app = express();
-const PORT = process.env.PORT || 5000;
+const PORT = config.port || 5000;
 
 //* Middlewares
-app.use(cors());
+app.use(cors(corsOptions));
 app.use(express.json());
 app.use(cookieParser());
 app.use(morgan('dev'));

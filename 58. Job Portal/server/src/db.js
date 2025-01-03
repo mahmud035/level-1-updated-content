@@ -1,12 +1,10 @@
-import dotenv from 'dotenv';
 import { MongoClient } from 'mongodb';
-
-dotenv.config();
+import config from './config/index.js';
 
 //* MongoDB Connection
-const uri = process.env.DATABASE_URI;
+const uri = config.database_uri;
 const client = new MongoClient(uri);
-const dbName = process.env.DATABASE_NAME;
+const dbName = config.database_name;
 
 let database;
 
