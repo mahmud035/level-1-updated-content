@@ -73,7 +73,7 @@ export default function MyPostedJobCard({ job }: IMyPostedJobCardProps) {
         </p>
         <p className="text-lg font-bold">
           Applications Count:&nbsp;
-          {getJobApplicationCountQuery?.data?.meta?.total}
+          {getJobApplicationCountQuery?.data?.meta?.total ?? 0}
         </p>
         <div className="justify-end gap-3 card-actions">
           <button className="px-4 py-2 font-medium text-white rounded bg-violet-500 hover:bg-violet-700">
