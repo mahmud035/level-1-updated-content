@@ -1,3 +1,4 @@
+import { useQueryClient } from '@tanstack/react-query';
 import { Link, NavLink, useNavigate } from 'react-router';
 import { useClearTokensMutation } from '../../api/auth/auth.hooks';
 import logo from '../../assets/icons/job-logo.png';
@@ -7,6 +8,7 @@ export default function Navbar() {
   const { user, setUser, logout } = useAuth();
   const navigate = useNavigate();
   const clearTokensMutation = useClearTokensMutation();
+  const queryClient = useQueryClient();
 
   const links = (
     <>
@@ -16,7 +18,7 @@ export default function Navbar() {
       <li>
         <NavLink to="/all-jobs">All Jobs</NavLink>
       </li>
-      {user?.email && (
+      {user && (
         <>
           <li>
             <NavLink to="/my-applications">My Applications</NavLink>
@@ -34,14 +36,10 @@ export default function Navbar() {
 
   const handleLogout = () => {
     logout().then(() => {
-      const userInfo = { email: user?.email || '' };
-
-      clearTokensMutation.mutate(userInfo, {
-        onSuccess: () => {
-          setUser(null);
-          navigate('/login');
-        },
-      });
+      clearTokensMutation.mutate();
+      queryClient.cancelQueries(); // Cancel ongoing queries
+      setUser(null);
+      navigate('/login');
     });
   };
 

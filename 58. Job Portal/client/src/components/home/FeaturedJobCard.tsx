@@ -12,6 +12,7 @@ interface IFeaturedJobCardProps {
 
 export default function FeaturedJobCard({ job }: IFeaturedJobCardProps) {
   const { user } = useAuth();
+
   const getJobApplicationsQuery = useGetJobApplicationsQuery(user?.email || '');
   const alreadyApplied = getJobApplicationsQuery?.data?.data?.find(
     (appliedJob: IJobApplication) => appliedJob._id === job._id

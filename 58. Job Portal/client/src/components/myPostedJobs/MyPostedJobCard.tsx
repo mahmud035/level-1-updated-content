@@ -2,7 +2,6 @@ import toast from 'react-hot-toast';
 import { FaDollarSign } from 'react-icons/fa6';
 import { MdOutlineLocationOn } from 'react-icons/md';
 import { useDeleteJobMutation } from '../../api/job/job.hooks';
-import { useGetJobApplicationCountQuery } from '../../api/jobApplication/jobApplication.hooks';
 import useAuth from '../../hooks/useAuth';
 import { IJob } from '../../types/job';
 
@@ -22,7 +21,6 @@ export default function MyPostedJobCard({ job }: IMyPostedJobCardProps) {
   } = job || {};
   const { user } = useAuth();
   const deleteJobMutation = useDeleteJobMutation();
-  const getJobApplicationCountQuery = useGetJobApplicationCountQuery(_id);
 
   const handleDeleteJob = (jobId: string) => {
     if (!user?.email) return toast.error('Invalid Info');
@@ -73,7 +71,7 @@ export default function MyPostedJobCard({ job }: IMyPostedJobCardProps) {
         </p>
         <p className="text-lg font-bold">
           Applications Count:&nbsp;
-          {getJobApplicationCountQuery?.data?.meta?.total ?? 0}
+          {job?.applicationCount ?? 0}
         </p>
         <div className="justify-end gap-3 card-actions">
           <button className="px-4 py-2 font-medium text-white rounded bg-violet-500 hover:bg-violet-700">

@@ -14,6 +14,6 @@ export const useGenerateTokensMutation = () => {
 
 export const useClearTokensMutation = () => {
   return useMutation({
-    mutationFn: (user: IUser) => clearTokens(user),
+    mutationFn: () => clearTokens(),
   });
 };

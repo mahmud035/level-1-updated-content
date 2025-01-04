@@ -16,7 +16,7 @@ export default function MyPostedJobPage() {
       <div className="grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-3 2xl:grid-cols-4">
         {data?.data?.length > 0 ? (
           data?.data?.map((job: IJob) => (
-            <MyPostedJobCard key={job._id} job={job} />
+            <MyPostedJobCard key={job?._id} job={job} />
           ))
         ) : (
           <p className="col-span-4 py-12 text-2xl text-center">

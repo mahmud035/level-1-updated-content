@@ -20,6 +20,7 @@ export interface IJob {
   hr_email: string;
   company: string;
   company_logo: string;
+  applicationCount?: number;
 }
 
 export interface IAddJob {

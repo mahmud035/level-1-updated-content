@@ -1,5 +1,6 @@
 import { createBrowserRouter } from 'react-router';
 import RootLayout from '../components/layout/RootLayout';
+import AxiosProvider from '../contexts/AxiosContext';
 import ErrorPage from '../pages/ErrorPage';
 import HomePage from '../pages/HomePage';
 import LoginPage from '../pages/auth/LoginPage';
@@ -15,7 +16,11 @@ import PrivateRoute from './PrivateRoute';
 const router = createBrowserRouter([
   {
     path: '/',
-    element: <RootLayout />,
+    element: (
+      <AxiosProvider>
+        <RootLayout />
+      </AxiosProvider>
+    ),
     errorElement: <ErrorPage />,
     children: [
       {

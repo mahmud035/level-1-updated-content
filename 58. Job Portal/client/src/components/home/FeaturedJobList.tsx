@@ -22,7 +22,7 @@ export default function FeaturedJobList() {
 
       <div className="grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-3 2xl:grid-cols-4">
         {data?.data?.map((job: IJob) => (
-          <FeaturedJobCard key={job._id} job={job} />
+          <FeaturedJobCard key={job?._id} job={job} />
         ))}
       </div>
     </section>

@@ -34,7 +34,7 @@ const AuthContext = createContext<IAuthContext | null>(null);
 
 export default function AuthProvider({ children }: IAuthProviderProps) {
   const [user, setUser] = useState<User | null>(null);
-  const [loading, setLoading] = useState(true);
+  const [loading, setLoading] = useState<boolean>(true);
 
   const googleProvider = useMemo(() => new GoogleAuthProvider(), []);
 
@@ -68,28 +68,26 @@ export default function AuthProvider({ children }: IAuthProviderProps) {
     photoURL: string
   ): Promise<void> | undefined => {
     if (auth.currentUser) {
+      setLoading(true);
       return updateProfile(auth.currentUser, { displayName, photoURL });
     }
   };
 
   //* Logout a User
   const logout = (): Promise<void> => {
+    setLoading(true);
     return signOut(auth);
   };
 
   //* Get the Currently Logged-in User
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
-      if (currentUser) {
-        setUser(currentUser);
-        setLoading(false);
-      }
-
-      return () => {
-        unsubscribe();
-      };
+      if (currentUser) setUser(currentUser);
+      setLoading(false);
     });
-  });
+
+    return () => unsubscribe(); // Proper cleanup
+  }, []);
 
   const authInfo = {
     user,

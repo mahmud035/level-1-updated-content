@@ -8,7 +8,7 @@ export const generateTokens = async (user: IUser) => {
   return data;
 };
 
-export const clearTokens = async (user: IUser) => {
-  const { data } = await axiosInstance.post('/auth/logout', user);
+export const clearTokens = async () => {
+  const { data } = await axiosInstance.post('/auth/logout');
   return data;
 };
