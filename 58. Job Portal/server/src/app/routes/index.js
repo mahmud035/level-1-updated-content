@@ -6,7 +6,9 @@ import { JobApplicationRoutes } from '../modules/jobApplication/jobApplication.r
 const router = express.Router();
 
 router.use('/jobs', JobRoutes);
+
 router.use('/job-applications', JobApplicationRoutes);
+
 router.use('/auth', AuthRoutes);
 
 export default router;

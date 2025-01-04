@@ -12,7 +12,7 @@ export const loginUser = async (req, res, next) => {
       loginData
     );
 
-    //* Set accessToken & refreshToken into cookie
+    //* Set accessToken & refreshToken into res.cookie()
     // Format: res.cookie('name', value, cookieOptions)
     res.cookie('accessToken', accessToken, cookieOptions);
     res.cookie('refreshToken', refreshToken, cookieOptions);
@@ -28,6 +28,8 @@ export const loginUser = async (req, res, next) => {
   }
 };
 
+// @desc    Logout (Clear Tokens)
+// @route   POST /auth/logout
 const logoutUser = async (req, res, next) => {
   try {
     //* Delete accessToken & refreshToken from cookie

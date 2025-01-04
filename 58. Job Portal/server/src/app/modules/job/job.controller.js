@@ -135,7 +135,7 @@ const getRecruiterJobs = async (req, res, next) => {
     if (req.query.email !== req.user.email)
       return sendResponse(res, {
         statusCode: httpStatus.FORBIDDEN,
-        message: 'Forbidden',
+        message: 'Forbidden access',
       });
 
     const { jobs, total } = await JobService.getRecruiterJobs(recruiterEmail);
@@ -212,7 +212,7 @@ const updateJob = async (req, res, next) => {
     if (req.query.email !== req.user.email)
       return sendResponse(res, {
         statusCode: httpStatus.FORBIDDEN,
-        message: 'Forbidden',
+        message: 'Forbidden access',
       });
 
     const result = await JobService.updateJob(jobId, recruiterEmail, data);
@@ -244,7 +244,7 @@ const deleteJob = async (req, res, next) => {
     if (req.query.email !== req.user.email)
       return sendResponse(res, {
         statusCode: httpStatus.FORBIDDEN,
-        message: 'Forbidden',
+        message: 'Forbidden access',
       });
 
     const result = await JobService.deleteJob(jobId, recruiterEmail);

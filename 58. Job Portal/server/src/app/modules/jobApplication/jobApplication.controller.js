@@ -11,7 +11,7 @@ const getJobApplications = async (req, res, next) => {
     if (req.query.email !== req.user.email)
       return sendResponse(res, {
         statusCode: httpStatus.FORBIDDEN,
-        message: 'Forbidden',
+        message: 'Forbidden access',
       });
 
     const jobApplications = await JobApplicationServices.getJobApplications(
