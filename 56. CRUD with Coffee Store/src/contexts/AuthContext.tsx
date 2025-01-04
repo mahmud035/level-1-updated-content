@@ -100,13 +100,11 @@ export default function AuthProvider({ children }: IAuthProviderProps) {
   //* Get the Currently Logged-in User
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
-      if (currentUser) {
-        setUser(currentUser);
-        setLoading(false);
-      }
-
-      return () => unsubscribe();
+      if (currentUser) setUser(currentUser);
+      setLoading(false);
     });
+
+    return () => unsubscribe(); // Proper cleanup
   }, []);
 
   const authInfo = {
