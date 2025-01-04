@@ -1,6 +1,5 @@
 import {
   createUserWithEmailAndPassword,
-  getAuth,
   GithubAuthProvider,
   GoogleAuthProvider,
   onAuthStateChanged,
@@ -12,25 +11,22 @@ import {
   User,
   UserCredential,
 } from 'firebase/auth';
-import React, {
-  createContext,
-  useCallback,
-  useEffect,
-  useMemo,
-  useState,
-} from 'react';
-import app from '../firebase/firebase.init';
-import { IUpdatedInfo } from '../types';
+import React, { createContext, useEffect, useMemo, useState } from 'react';
+import auth from '../config/firebase.config';
 
 // Define the shape of the context value
 interface IAuthContext {
   user: User | null;
+  setUser: React.Dispatch<React.SetStateAction<User | null>>;
   loading: boolean;
   createUser: (email: string, password: string) => Promise<UserCredential>;
-  signIn: (email: string, password: string) => Promise<UserCredential>;
-  googleSignIn: () => Promise<UserCredential>;
-  githubSignIn: () => Promise<UserCredential>;
-  updateUserProfile: (updatedInfo: IUpdatedInfo) => Promise<void> | undefined;
+  loginUser: (email: string, password: string) => Promise<UserCredential>;
+  loginWithGoogle: () => Promise<UserCredential>;
+  loginWithGithub: () => Promise<UserCredential>;
+  updateUserProfile: (
+    displayName: string,
+    photoURL: string
+  ) => Promise<void> | undefined;
   passwordReset: (email: string) => Promise<void>;
   logout: () => Promise<void>;
 }
@@ -40,7 +36,6 @@ interface IAuthProviderProps {
 }
 
 const AuthContext = createContext<IAuthContext | null>(null);
-const auth = getAuth(app);
 
 export default function AuthProvider({ children }: IAuthProviderProps) {
   const [user, setUser] = useState<User | null>(null);
@@ -49,7 +44,7 @@ export default function AuthProvider({ children }: IAuthProviderProps) {
   const googleProvider = useMemo(() => new GoogleAuthProvider(), []);
   const githubProvider = useMemo(() => new GithubAuthProvider(), []);
 
-  //* Create user
+  //* Create New User
   const createUser = (
     email: string,
     password: string
@@ -58,63 +53,74 @@ export default function AuthProvider({ children }: IAuthProviderProps) {
     return createUserWithEmailAndPassword(auth, email, password);
   };
 
-  //* SignIn (email & password)
-  const signIn = (email: string, password: string): Promise<UserCredential> => {
+  //* Login Existing User
+  const loginUser = (
+    email: string,
+    password: string
+  ): Promise<UserCredential> => {
     setLoading(true);
     return signInWithEmailAndPassword(auth, email, password);
   };
 
-  //* Update profile
+  //* Login with Google
+  const loginWithGoogle = (): Promise<UserCredential> => {
+    setLoading(true);
+    return signInWithPopup(auth, googleProvider);
+  };
+
+  //* Login with Github
+  const loginWithGithub = (): Promise<UserCredential> => {
+    setLoading(true);
+    return signInWithPopup(auth, githubProvider);
+  };
+
+  //* Update a User's Profile
   const updateUserProfile = (
-    updatedInfo: IUpdatedInfo
+    displayName: string,
+    photoURL: string
   ): Promise<void> | undefined => {
-    if (auth.currentUser) return updateProfile(auth.currentUser, updatedInfo);
+    if (auth.currentUser) {
+      setLoading(true);
+      return updateProfile(auth.currentUser, { displayName, photoURL });
+    }
   };
 
   //* Password reset
   const passwordReset = (email: string): Promise<void> => {
+    setLoading(true);
     return sendPasswordResetEmail(auth, email);
   };
 
-  //* Google signIn
-  const googleSignIn = useCallback((): Promise<UserCredential> => {
-    return signInWithPopup(auth, googleProvider);
-  }, [googleProvider]);
-
-  //* Github signIn
-  const githubSignIn = useCallback((): Promise<UserCredential> => {
-    return signInWithPopup(auth, githubProvider);
-  }, [githubProvider]);
-
-  //* Logout
+  //* Logout a User
   const logout = (): Promise<void> => {
+    setLoading(true);
     return signOut(auth);
   };
 
-  //* Get the currently signed-in user
+  //* Get the Currently Logged-in User
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
-      setUser(currentUser);
-      setLoading(false);
-    });
+      if (currentUser) {
+        setUser(currentUser);
+        setLoading(false);
+      }
 
-    return () => unsubscribe();
+      return () => unsubscribe();
+    });
   }, []);
 
-  const authInfo = useMemo<IAuthContext>(
-    () => ({
-      user,
-      loading,
-      createUser,
-      signIn,
-      googleSignIn,
-      githubSignIn,
-      updateUserProfile,
-      passwordReset,
-      logout,
-    }),
-    [user, loading, googleSignIn, githubSignIn]
-  );
+  const authInfo = {
+    user,
+    setUser,
+    loading,
+    createUser,
+    loginUser,
+    loginWithGoogle,
+    loginWithGithub,
+    updateUserProfile,
+    passwordReset,
+    logout,
+  };
 
   return (
     <AuthContext.Provider value={authInfo}>{children}</AuthContext.Provider>

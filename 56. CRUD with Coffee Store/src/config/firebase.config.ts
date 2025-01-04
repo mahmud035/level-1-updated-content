@@ -1,4 +1,5 @@
 import { initializeApp } from 'firebase/app';
+import { getAuth } from 'firebase/auth';
 
 // NOTE: Firebase project name => CRUD
 
@@ -15,4 +16,7 @@ const firebaseConfig = {
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
 
-export default app;
+// Initialize firebase authentication and get a reference to the service
+const auth = getAuth(app);
+
+export default auth;
