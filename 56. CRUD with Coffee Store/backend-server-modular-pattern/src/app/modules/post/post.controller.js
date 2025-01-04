@@ -26,17 +26,18 @@ const getPosts = async (req, res, next) => {
 const searchPosts = async (req, res, next) => {
   const searchQuery = req.query.q || ''; // NOTE: Empty string means matches all documents.
 
-  // Partial Matching: The `$regex` operator with the `i` option allows case-insensitive partial matching in  `title` field.
+  // Partial Matching: The `$regex` operator with the `i` option allows case-insensitive partial matching in `title` field.
   const filter = {
     $or: [{ title: { $regex: searchQuery, $options: 'i' } }],
   };
-  const result = await PostService.searchPosts(filter);
+  const posts = await PostService.searchPosts(filter);
 
   sendResponse(res, {
     statusCode: httpStatus.OK,
     success: true,
     message: 'Retrieve searched posts',
-    data: result,
+    meta: { total: posts.length },
+    data: posts,
   });
 };
 
