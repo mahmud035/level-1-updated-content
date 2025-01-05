@@ -6,11 +6,11 @@ import useAuth from '../../hooks/useAuth';
 import { IJob } from '../../types/job';
 import { IJobApplication } from '../../types/jobApplication';
 
-interface IFeaturedJobCardProps {
+interface IJobCardProps {
   job: IJob;
 }
 
-export default function FeaturedJobCard({ job }: IFeaturedJobCardProps) {
+export default function JobCard({ job }: IJobCardProps) {
   const { user } = useAuth();
 
   const getJobApplicationsQuery = useGetJobApplicationsQuery(user?.email || '');

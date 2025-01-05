@@ -1,4 +1,9 @@
-import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
+import {
+  keepPreviousData,
+  useMutation,
+  useQuery,
+  useQueryClient,
+} from '@tanstack/react-query';
 import { IAddJob, IDeleteJob, IJob, IUpdateJob } from '../../types/job';
 import {
   createJob,
@@ -10,10 +15,11 @@ import {
 } from './job.api';
 
 //* Queries Hook
-export const useGetJobsQuery = () => {
+export const useGetJobsQuery = (page = 1, searchQuery = '') => {
   return useQuery({
-    queryKey: ['jobs'],
-    queryFn: getJobs,
+    queryKey: ['jobs', { page, searchQuery }],
+    queryFn: () => getJobs(page, searchQuery),
+    placeholderData: keepPreviousData,
   });
 };
 

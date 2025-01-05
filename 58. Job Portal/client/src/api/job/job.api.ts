@@ -1,8 +1,10 @@
 import axiosInstance from '../../config/axios.config';
 import { IAddJob, IDeleteJob, IUpdateJob } from '../../types/job';
 
-export const getJobs = async () => {
-  const { data } = await axiosInstance.get('/jobs');
+export const getJobs = async (page = 1, searchQuery = '') => {
+  const { data } = await axiosInstance.get(
+    `/jobs?page=${page}&q=${searchQuery}`
+  );
   return data;
 };
 

@@ -1,7 +1,8 @@
+import { Link } from 'react-router';
 import { useGetJobsQuery } from '../../api/job/job.hooks';
 import { IJob } from '../../types/job';
 import Loading from '../shared/Loading';
-import FeaturedJobCard from './FeaturedJobCard';
+import JobCard from './JobCard';
 
 export default function FeaturedJobList() {
   const getJobsQuery = useGetJobsQuery();
@@ -22,8 +23,17 @@ export default function FeaturedJobList() {
 
       <div className="grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-3 2xl:grid-cols-4">
         {data?.data?.map((job: IJob) => (
-          <FeaturedJobCard key={job?._id} job={job} />
+          <JobCard key={job?._id} job={job} />
         ))}
+      </div>
+
+      <div className="flex items-center justify-center w-full pt-14">
+        <Link
+          to={`/all-jobs`}
+          className="px-4 py-2 font-medium text-white rounded bg-violet-500 hover:bg-violet-700"
+        >
+          <button>See All Jobs</button>
+        </Link>
       </div>
     </section>
   );
