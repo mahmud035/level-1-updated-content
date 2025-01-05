@@ -1,14 +1,11 @@
-import { useQueryClient } from '@tanstack/react-query';
-import { Link, NavLink, useNavigate } from 'react-router';
-import { useClearTokensMutation } from '../../api/auth/auth.hooks';
+import { Link, NavLink } from 'react-router';
 import logo from '../../assets/icons/job-logo.png';
 import useAuth from '../../hooks/useAuth';
+import useLogout from '../../hooks/useLogout';
 
 export default function Navbar() {
-  const { user, setUser, logout } = useAuth();
-  const navigate = useNavigate();
-  const clearTokensMutation = useClearTokensMutation();
-  const queryClient = useQueryClient();
+  const { user } = useAuth();
+  const logoutUser = useLogout();
 
   const links = (
     <>
@@ -33,15 +30,6 @@ export default function Navbar() {
       )}
     </>
   );
-
-  const handleLogout = () => {
-    logout().then(() => {
-      clearTokensMutation.mutate();
-      queryClient.cancelQueries(); // Cancel ongoing queries
-      setUser(null);
-      navigate('/login');
-    });
-  };
 
   return (
     <nav className="px-0 navbar bg-base-100">
@@ -80,7 +68,7 @@ export default function Navbar() {
       </div>
       <div className="flex gap-3 navbar-end">
         {user ? (
-          <button onClick={handleLogout} className="btn">
+          <button onClick={logoutUser} className="btn">
             Logout
           </button>
         ) : (

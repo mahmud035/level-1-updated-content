@@ -1,6 +1,6 @@
 import { useMutation } from '@tanstack/react-query';
 import { IUser } from '../../types/auth';
-import { clearTokens, generateTokens } from './auth.api';
+import { clearTokens, generateTokens, refreshAccessToken } from './auth.api';
 
 //* Mutation Hooks
 
@@ -9,6 +9,12 @@ import { clearTokens, generateTokens } from './auth.api';
 export const useGenerateTokensMutation = () => {
   return useMutation({
     mutationFn: (user: IUser) => generateTokens(user),
+  });
+};
+
+export const useRefreshAccessTokenMutation = () => {
+  return useMutation({
+    mutationFn: () => refreshAccessToken(),
   });
 };
 

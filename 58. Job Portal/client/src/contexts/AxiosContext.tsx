@@ -1,10 +1,8 @@
-import { useQueryClient } from '@tanstack/react-query';
 import React, { createContext, useEffect } from 'react';
-import toast from 'react-hot-toast';
-import { useNavigate } from 'react-router';
-import { useClearTokensMutation } from '../api/auth/auth.hooks';
+// import toast from 'react-hot-toast';
+import { useRefreshAccessTokenMutation } from '../api/auth/auth.hooks';
 import axiosInstance from '../config/axios.config';
-import useAuth from '../hooks/useAuth';
+import useLogout from '../hooks/useLogout';
 
 interface IAxiosProviderProps {
   children: React.ReactNode;
@@ -16,26 +14,32 @@ interface IAxiosProviderProps {
 const AxiosContext = createContext(axiosInstance);
 
 export default function AxiosProvider({ children }: IAxiosProviderProps) {
-  const clearTokensMutation = useClearTokensMutation();
-  const queryClient = useQueryClient();
-  const { setUser, logout } = useAuth();
-  const navigate = useNavigate();
+  const refreshAccessTokenMutation = useRefreshAccessTokenMutation();
+  const logoutUser = useLogout();
 
   useEffect(() => {
     //* Axios Response Interceptor
     const responseInterceptor = axiosInstance.interceptors.response.use(
       (response) => response,
-      (error) => {
-        toast.error(error?.response?.data?.message || 'Invalid token');
+      async (error) => {
+        const originalRequest = error.config;
 
-        if (error.status === 401 || error.status === 403) {
-          logout().then(() => {
-            clearTokensMutation.mutate();
-            queryClient.cancelQueries(); // Cancel ongoing queries
-            setUser(null);
-            navigate('/login');
-          });
+        // Check for expired access token (401)
+        if (error.status === 401 && !originalRequest._retry) {
+          originalRequest._retry = true;
+
+          try {
+            await refreshAccessTokenMutation.mutateAsync(); // Call refresh token endpoint
+            return axiosInstance(originalRequest); // Retry the original request
+          } catch (refreshError) {
+            console.error('Failed to refresh token:', refreshError);
+            logoutUser();
+          }
         }
+
+        // Check for forbidden access (403)
+        if (error.status === 403) logoutUser();
+
         return Promise.reject(error);
       }
     );
@@ -44,7 +48,7 @@ export default function AxiosProvider({ children }: IAxiosProviderProps) {
     return () => {
       axiosInstance.interceptors.response.eject(responseInterceptor);
     };
-  }, [clearTokensMutation, logout, navigate, queryClient, setUser]);
+  }, [refreshAccessTokenMutation, logoutUser]);
 
   return (
     <AxiosContext.Provider value={axiosInstance}>

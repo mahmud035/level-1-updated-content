@@ -8,6 +8,11 @@ export const generateTokens = async (user: IUser) => {
   return data;
 };
 
+export const refreshAccessToken = async () => {
+  const { data } = await axiosInstance.post('/auth/refresh-token');
+  return data;
+};
+
 export const clearTokens = async () => {
   const { data } = await axiosInstance.post('/auth/logout');
   return data;
