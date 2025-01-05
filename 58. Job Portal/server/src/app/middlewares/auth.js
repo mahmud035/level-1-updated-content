@@ -1,5 +1,6 @@
 import httpStatus from 'http-status';
 import config from '../../config/index.js';
+import handleJwtErrors from '../../errors/tokenErrorHandler.js';
 import { jwtHelper } from '../../helpers/jwtHelpers.js';
 import sendResponse from '../../shared/sendResponse.js';
 
@@ -22,19 +23,11 @@ const auth = (req, res, next) => {
 
     // TODO: Step 3: Implement role based authentication here
 
+    //* Step 4: Set verifiedUser into req object
     req.user = verifiedUser;
     next();
   } catch (error) {
-    if (error.name === 'TokenExpiredError')
-      return sendResponse(res, {
-        statusCode: httpStatus.UNAUTHORIZED,
-        message: 'Token expired, please login again',
-      });
-
-    return sendResponse(res, {
-      statusCode: httpStatus.UNAUTHORIZED,
-      message: 'Invalid token',
-    });
+    handleJwtErrors(error, res, 'access');
   }
 };
 
