@@ -2,8 +2,8 @@ import cookieParser from 'cookie-parser';
 import cors from 'cors';
 import express from 'express';
 import morgan from 'morgan';
-import errorHandler from './app/middlewares/errorHandler.js';
-import notFound from './app/middlewares/notFound.js';
+import globalErrorHandler from './app/middlewares/globalErrorHandler.js';
+import notFoundRoute from './app/middlewares/notFoundRoute.js';
 import ApplicationRoutes from './app/routes/index.js';
 import config from './config/index.js';
 import { dbConnect, getDatabase } from './db.js';
@@ -36,9 +36,11 @@ app.get('/', (req, res) => {
   res.send('Job Portal API');
 });
 
-//* Error Handler
-app.use(notFound);
-app.use(errorHandler);
+//* Global Error Handler
+app.use(globalErrorHandler);
+
+//* Handle Not Found Route
+app.use(notFoundRoute);
 
 app.listen(PORT, () => {
   console.log(`Server is running on http://localhost:${PORT}`);

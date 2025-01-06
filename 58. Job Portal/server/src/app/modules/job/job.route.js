@@ -1,6 +1,8 @@
 import express from 'express';
 import auth from '../../middlewares/auth.js';
+import validateRequest from '../../middlewares/validateRequest.js';
 import { JobController } from './job.controller.js';
+import { JobValidation } from './job.validation.js';
 
 const router = express.Router();
 
@@ -20,10 +22,20 @@ router.get('/recruiter-jobs', auth, JobController.getRecruiterJobs);
 router.get('/:id', JobController.getJob);
 
 // Create new job
-router.post('/', auth, JobController.createJob);
+router.post(
+  '/',
+  validateRequest(JobValidation.createJobZodSchema),
+  auth,
+  JobController.createJob
+);
 
 // Update a job
-router.patch('/:id', auth, JobController.updateJob);
+router.patch(
+  '/:id',
+  validateRequest(JobValidation.updateJobZodSchema),
+  auth,
+  JobController.updateJob
+);
 
 // Delete a job
 router.delete('/:id', auth, JobController.deleteJob);

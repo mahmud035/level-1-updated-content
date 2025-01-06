@@ -1,6 +1,5 @@
 import httpStatus from 'http-status';
 import config from '../../config/index.js';
-import handleJwtErrors from '../../errors/tokenErrorHandler.js';
 import { jwtHelper } from '../../helpers/jwtHelpers.js';
 import sendResponse from '../../shared/sendResponse.js';
 
@@ -27,7 +26,7 @@ const auth = (req, res, next) => {
     req.user = verifiedUser;
     next();
   } catch (error) {
-    handleJwtErrors(error, res, 'access');
+    next(error);
   }
 };
 

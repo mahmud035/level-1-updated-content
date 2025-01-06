@@ -1,6 +1,5 @@
 import httpStatus from 'http-status';
 import config from '../../../config/index.js';
-import handleJwtErrors from '../../../errors/tokenErrorHandler.js';
 import { jwtHelper } from '../../../helpers/jwtHelpers.js';
 import sendResponse from '../../../shared/sendResponse.js';
 import { AuthService } from './auth.services.js';
@@ -63,7 +62,7 @@ const refreshAccessToken = async (req, res, next) => {
       message: 'Generate NEW accessToken & refreshToken successfully',
     });
   } catch (error) {
-    handleJwtErrors(error, res, 'refresh');
+    next(error);
   }
 };
 
