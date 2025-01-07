@@ -1,4 +1,3 @@
-import { useRef } from 'react';
 import Hero from '../components/Hero/Hero';
 import JobCard from '../components/Job/JobCard';
 import JobCategoryCard from '../components/Job/JobCategoryCard';
@@ -7,7 +6,6 @@ import useJobInfo from '../hooks/useJobInfo';
 
 export default function HomePage() {
   const jobInfo = useJobInfo();
-  const featuredJobsRef = useRef(null);
   const { jobs, jobCategories, showAllJobs, setShowAllJobs } = jobInfo;
 
   return (
@@ -38,9 +36,8 @@ export default function HomePage() {
 
       {/* Featured Jobs */}
       <section
-        className="px-4 py-32 mx-auto font-light max-w-7xl"
         id="featured-jobs"
-        ref={featuredJobsRef}
+        className="px-4 py-32 mx-auto font-light max-w-7xl"
       >
         <h3 className="text-center text-5xl leading-[60px] text-[#1A1919]">
           Featured Jobs

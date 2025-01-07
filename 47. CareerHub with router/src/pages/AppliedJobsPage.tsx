@@ -5,12 +5,12 @@ import {
 } from '../assets/images/bg1.png';
 import AppliedJobCard from '../components/Job/AppliedJobCard';
 import { JobContext } from '../contexts/JobContext';
-import useExploreJobs from '../hooks/useExploreJobs';
+import useScroll from '../hooks/useScroll';
 import { IJob } from '../types';
 
 export default function AppliedJobsPage() {
   const jobContext = useContext(JobContext);
-  const exploreJobs = useExploreJobs();
+  const handleScroll = useScroll('/', 'featured-jobs');
   const [filteredJobs, setFilteredJobs] = useState<IJob[]>([]);
 
   useEffect(() => {
@@ -68,15 +68,12 @@ export default function AppliedJobsPage() {
         ) : (
           <div className="text-3xl text-center">
             You haven't applied for any job!&nbsp;
-            <span
-              onClick={exploreJobs}
+            <button
+              onClick={handleScroll}
               className="text-blue-500 underline cursor-pointer"
-              role="button"
-              tabIndex={0}
-              onKeyDown={(e) => e.key === 'Enter' && exploreJobs()}
             >
               Explore different jobs.
-            </span>
+            </button>
           </div>
         )}
       </div>

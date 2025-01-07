@@ -1,9 +1,9 @@
 import User from '../../assets/images/user.png';
-import useExploreJobs from '../../hooks/useExploreJobs';
+import useScroll from '../../hooks/useScroll';
 import Button from '../ui/Button';
 
 export default function Hero() {
-  const exploreJobs = useExploreJobs();
+  const handleScroll = useScroll('/', 'featured-jobs');
 
   return (
     <div className="flex flex-col items-center gap-4 pt-10 md:flex-row text-balance">
@@ -21,9 +21,9 @@ export default function Hero() {
           from start to finish.
         </p>
         <Button
+          onClick={handleScroll}
           label="Get Started"
           className="rounded-lg"
-          onClick={exploreJobs}
         />
       </div>
 

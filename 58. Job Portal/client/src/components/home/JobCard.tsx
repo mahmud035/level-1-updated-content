@@ -14,6 +14,7 @@ export default function JobCard({ job }: IJobCardProps) {
   const { user } = useAuth();
 
   const getJobApplicationsQuery = useGetJobApplicationsQuery(user?.email || '');
+  const isJobPostedByUser = job?.hr_email === user?.email;
   const alreadyApplied = getJobApplicationsQuery?.data?.data?.find(
     (appliedJob: IJobApplication) => appliedJob._id === job._id
   );
@@ -63,16 +64,22 @@ export default function JobCard({ job }: IJobCardProps) {
           {min} - {max}
         </p>
         <div className="justify-end card-actions">
-          {alreadyApplied ? (
-            <button className="px-4 py-2 font-medium text-white rounded cursor-not-allowed bg-violet-400">
-              Already Applied
-            </button>
-          ) : (
-            <Link to={`/jobs/${_id}`}>
-              <button className="px-4 py-2 font-medium text-white rounded bg-violet-500 hover:bg-violet-700">
-                Apply
+          {!isJobPostedByUser ? (
+            alreadyApplied ? (
+              <button className="px-4 py-2 font-medium text-white rounded cursor-not-allowed bg-violet-400">
+                Already Applied
               </button>
-            </Link>
+            ) : (
+              <Link to={`/jobs/${_id}`}>
+                <button className="px-4 py-2 font-medium text-white rounded bg-violet-500 hover:bg-violet-700">
+                  Apply
+                </button>
+              </Link>
+            )
+          ) : (
+            <button className="px-4 py-2 font-medium text-white rounded cursor-not-allowed bg-violet-400">
+              You Post This Job
+            </button>
           )}
         </div>
       </div>

@@ -3,11 +3,11 @@ import { FaBars, FaX } from 'react-icons/fa6';
 import { Link, NavLink } from 'react-router-dom';
 import Logo from '../assets/logo/CareerHub.png';
 import Button from '../components/ui/Button';
-import useExploreJobs from '../hooks/useExploreJobs';
+import useScroll from '../hooks/useScroll';
 
 export default function Navbar() {
   const [showNavLinks, setShowNavLinks] = useState(false);
-  const exploreJobs = useExploreJobs();
+  const handleScroll = useScroll('/', 'featured-jobs');
 
   const routes = [
     { id: 1, path: '/statistics', name: 'Statistics' },
@@ -52,9 +52,9 @@ export default function Navbar() {
       </button>
 
       <Button
+        onClick={handleScroll}
         label="Start Applying"
         className="hidden rounded-lg md:block"
-        onClick={exploreJobs}
       />
     </nav>
   );
