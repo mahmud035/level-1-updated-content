@@ -9,16 +9,21 @@ import { jobs } from '../../../server.js';
         { location: { $regex: "engineer", $options: "i" } }
       ],
       jobType: "Remote",
-      "salaryRange.min": { $gte: 50000 },
-      "salaryRange.max": { $lte: 80000 }
+      category: "Engineering",
     }
  */
 
-const getJobs = async (filter) => {
-  const { limit, skip, searchQuery, jobType, minSalary, maxSalary } = filter;
+const getJobs = async (options) => {
+  const { page, limit, sortBy, sortOrder, searchQuery, filters } = options;
   const query = {};
 
-  // Search across multiple fields
+  // 1. Pagination
+  const skip = (page - 1) * limit;
+
+  // 2. Sorting
+  const sort = { [sortBy]: sortOrder === 'asc' ? 1 : -1 };
+
+  // 3. Add searchQuery for partial and case-insensitive matching
   if (searchQuery) {
     query.$or = [
       { title: { $regex: searchQuery, $options: 'i' } },
@@ -26,15 +31,19 @@ const getJobs = async (filter) => {
     ];
   }
 
-  // Filter by job type
-  if (jobType) query.jobType = jobType;
+  // 4. Add filters dynamically
+  if (Object.keys(filters).length) {
+    Object.entries(filters).map(([key, value]) => {
+      if (value) query[key] = value;
+    });
+  }
 
-  // Filter by salary range
-  if (minSalary !== null) query['salaryRange.min'] = { $gte: minSalary };
-  if (maxSalary !== null) query['salaryRange.max'] = { $lte: maxSalary };
-
-  // Query database with pagination
-  const result = await jobs.find(query).skip(skip).limit(limit).toArray();
+  const result = await jobs
+    .find(query)
+    .sort(sort)
+    .skip(skip)
+    .limit(limit)
+    .toArray();
   const total = await jobs.countDocuments(query);
 
   return { jobs: result, total };

@@ -1,5 +1,21 @@
 import { z } from 'zod';
 
+const getJobsZodSchema = z.object({
+  query: z.object({
+    page: z
+      .string()
+      .regex(/^[1-9]\d*$/, 'Page must be a positive integer starting from 1')
+      .optional(),
+    limit: z
+      .string()
+      .regex(/^[1-9]\d*$/, 'Limit must be a positive integer starting from 1')
+      .optional(),
+    sortBy: z.string().optional(), // Field to sort by
+    sortOrder: z.enum(['asc', 'desc']).optional(), // Sorting order
+    searchQuery: z.string().optional(), // Text search input
+  }),
+});
+
 // NOTE: This schema is for testing purpose only. When using actual project, it MUST be improved.
 
 const createJobZodSchema = z.object({
@@ -23,7 +39,6 @@ const createJobZodSchema = z.object({
     company: z.string({ required_error: 'Company name is required' }),
     requirements: z.array(z.string()),
     responsibilities: z.array(z.string()),
-    status: z.string({ required_error: 'Job status is required' }),
     hr_email: z.string().email({ required_error: 'HR email is required' }),
     hr_name: z.string({ required_error: 'HR name is required' }),
     company_logo: z.string({ required_error: 'Company logo is required' }),
@@ -51,7 +66,6 @@ const updateJobZodSchema = z.object({
     company: z.string({ required_error: 'Company name is required' }),
     requirements: z.array(z.string()),
     responsibilities: z.array(z.string()),
-    status: z.string({ required_error: 'Job status is required' }),
     hr_email: z.string().email({ required_error: 'HR email is required' }),
     hr_name: z.string({ required_error: 'HR name is required' }),
     company_logo: z.string({ required_error: 'Company logo is required' }),
@@ -59,6 +73,7 @@ const updateJobZodSchema = z.object({
 });
 
 export const JobValidation = {
+  getJobsZodSchema,
   createJobZodSchema,
   updateJobZodSchema,
 };

@@ -6,48 +6,50 @@ import { JobService } from './job.services.js';
  * NOTE: Unified API Usage Examples
  
  * Pagination Only
- * GET /jobs?page=2&limit=5
- *
- * Search Only
- * GET /jobs?q=developer
- *
- * Filter Only
- * GET /jobs?jobType=Remote&minSalary=5000
- *
- * Combine All
- * GET /jobs?q=developer&jobType=Remote&minSalary=50000&page=1&limit=10
+ * GET /jobs?page=1&limit=10
  
+ * Sorting Only
+ * GET /jobs?sortBy=title&sortOrder=asc
+ 
+ * Searching Only
+ * GET /jobs?searchQuery=developer
+ 
+ * Filtering Only
+ * GET /jobs?location=remote
+ 
+ * Combined All
+ * GET /api/v1/jobs?page=1&limit=10&sortBy=createdAt&sortOrder=asc&searchQuery=developer&location=remote
  */
 
-// @desc    Get jobs with pagination, searching, and filtering
+// @desc    Get jobs with pagination, sorting, searching, and filtering
 // @route   GET /jobs
 const getJobs = async (req, res, next) => {
   try {
-    // Pagination
-    const page = parseInt(req.query.page) || 1;
-    const limit = parseInt(req.query.limit) || 8;
-    const skip = (page - 1) * limit;
+    const {
+      page = 1,
+      limit = 10,
+      sortBy = 'createdAt',
+      sortOrder = 'asc',
+      searchQuery = '',
+      ...filters
+    } = req.query;
 
-    // Searching
-    const searchQuery = req.query.q || ''; // NOTE: Empty string means matches all documents.
+    const options = {
+      page: parseInt(page),
+      limit: parseInt(limit),
+      sortBy,
+      sortOrder,
+      searchQuery,
+      filters,
+    };
 
-    // Filtering
-    const jobType = req.query.jobType || null;
-    const minSalary = req.query.minSalary
-      ? parseInt(req.query.minSalary)
-      : null;
-    const maxSalary = req.query.maxSalary
-      ? parseInt(req.query.maxSalary)
-      : null;
-
-    const filter = { limit, skip, searchQuery, jobType, minSalary, maxSalary };
-    const { jobs, total } = await JobService.getJobs(filter);
+    const { jobs, total } = await JobService.getJobs(options);
 
     sendResponse(res, {
       statusCode: httpStatus.OK,
       success: true,
       message: 'Jobs fetched successfully',
-      meta: { page, limit, total },
+      meta: { page: parseInt(page), limit: parseInt(limit), total },
       data: jobs,
     });
   } catch (error) {

@@ -6,8 +6,12 @@ import { JobValidation } from './job.validation.js';
 
 const router = express.Router();
 
-// Get jobs with pagination, searching, and filtering
-router.get('/', JobController.getJobs);
+// Get jobs with pagination, sorting, searching, and filtering
+router.get(
+  '/',
+  validateRequest(JobValidation.getJobsZodSchema),
+  JobController.getJobs
+);
 
 // Get recruiter posted jobs
 router.get('/recruiter-jobs', auth, JobController.getRecruiterJobs);
