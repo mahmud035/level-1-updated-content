@@ -1,5 +1,6 @@
 import { ObjectId } from 'mongodb';
 import { jobs } from '../../../server.js';
+import { buildQueryFromFilters } from './job.utils.js';
 
 /** 
  * NOTE: If searchQuery and filtering options are provided, the query object will look like this:
@@ -10,6 +11,8 @@ import { jobs } from '../../../server.js';
       ],
       jobType: "Remote",
       category: "Engineering",
+      'salaryRange.min': { '$gte': 0 },
+      'salaryRange.max': { '$lte': 100000 }
     }
  */
 
@@ -31,12 +34,8 @@ const getJobs = async (options) => {
     ];
   }
 
-  // 4. Add filters dynamically
-  if (Object.keys(filters).length) {
-    Object.entries(filters).map(([key, value]) => {
-      if (value) query[key] = value;
-    });
-  }
+  // 4. Add filters dynamically using the utility function
+  Object.assign(query, buildQueryFromFilters(filters));
 
   const result = await jobs
     .find(query)

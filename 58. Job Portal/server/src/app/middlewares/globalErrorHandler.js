@@ -1,6 +1,8 @@
+import { MongoServerError } from 'mongodb';
 import { ZodError } from 'zod';
 import config from '../../config/index.js';
 import handleJwtError from '../../errors/handleJwtError.js';
+import handleMongoDBError from '../../errors/handleMongoDBError.js';
 import handleZodError from '../../errors/handleZodError.js';
 
 const globalErrorHandler = (error, req, res, next) => {
@@ -19,6 +21,11 @@ const globalErrorHandler = (error, req, res, next) => {
     error.name === 'JsonWebTokenError'
   ) {
     const simplifiedError = handleJwtError(error);
+
+    statusCode = simplifiedError.statusCode;
+    message = simplifiedError.message;
+  } else if (error instanceof MongoServerError) {
+    const simplifiedError = handleMongoDBError(error);
 
     statusCode = simplifiedError.statusCode;
     message = simplifiedError.message;
