@@ -10,7 +10,7 @@ import { createRoot } from 'react-dom/client';
 import toast, { Toaster } from 'react-hot-toast';
 import { RouterProvider } from 'react-router';
 import AuthProvider from './contexts/AuthContext.tsx';
-import SearchAndFilterProvider from './contexts/SearchAndFilterContext.tsx';
+import SearchAndFilterProvider from './contexts/SearchContext.tsx';
 import './index.css';
 import router from './routes/Router.tsx';
 

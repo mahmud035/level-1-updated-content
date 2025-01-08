@@ -1,4 +1,4 @@
-import useSearchAndFilter from '../../hooks/useSearchAndFilter';
+import useSearchAndFilter from '../../hooks/search/useSearch';
 
 export default function NoDataFound({ message }: { message: string }) {
   const { searchQuery } = useSearchAndFilter();

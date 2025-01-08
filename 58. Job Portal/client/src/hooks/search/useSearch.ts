@@ -1,5 +1,5 @@
 import { useContext } from 'react';
-import { SearchContext } from '../contexts/SearchAndFilterContext';
+import { SearchContext } from '../../contexts/SearchContext';
 
 export default function useSearch() {
   const searchInfo = useContext(SearchContext);

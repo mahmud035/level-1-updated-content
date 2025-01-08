@@ -16,8 +16,6 @@ export const getJobs = async (options: IGetJobsQueryOptions) => {
     ...filters
   } = options;
 
-  console.log({ filters });
-
   const { data } = await axiosInstance.get(
     `/jobs?page=${page}&limit=${limit}&sortBy=${sortBy}&sortOrder=${sortOrder}&searchQuery=${searchQuery}&salaryRange.min=${filters?.minSalary}&salaryRange.max=${filters?.maxSalary}`
   );

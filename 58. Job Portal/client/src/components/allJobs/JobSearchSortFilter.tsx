@@ -1,6 +1,6 @@
 import React from 'react';
 import { MdSearch } from 'react-icons/md';
-import useSearchAndFilter from '../../hooks/useSearchAndFilter';
+import useSearchAndFilter from '../../hooks/search/useSearch';
 import { MAX_SALARY, MIN_SALARY } from '../../utils/job';
 
 interface IJobSearchSortFilterProps {

@@ -5,7 +5,8 @@ import JobPagination from '../../components/allJobs/JobPagination';
 import JobSearchSortFilter from '../../components/allJobs/JobSearchSortFilter';
 import Loading from '../../components/shared/Loading';
 import NoDataFound from '../../components/shared/NoDataFound';
-import useSearch from '../../hooks/useSearchAndFilter';
+import useDebounce from '../../hooks/search/useDebounce';
+import useSearch from '../../hooks/search/useSearch';
 import { MAX_SALARY, MIN_SALARY } from '../../utils/job';
 
 export default function AllJobPage() {
@@ -14,12 +15,19 @@ export default function AllJobPage() {
   const { searchQuery } = useSearch();
   const [minSalary, setMinSalary] = useState<number>(MIN_SALARY);
   const [maxSalary, setMaxSalary] = useState<number>(MAX_SALARY);
+
+  // Debounce searchQuery, minSalary and maxSalary
+  const debouncedSearchQuery = useDebounce(searchQuery, 500); // 500ms debounce
+  const debouncedMinSalary = useDebounce(minSalary, 500);
+  const debouncedMaxSalary = useDebounce(maxSalary, 500);
+
+  // Fetch Data with debounced values
   const getJobsQuery = useGetJobsQuery({
     page,
     sortBy,
-    searchQuery,
-    minSalary,
-    maxSalary,
+    searchQuery: debouncedSearchQuery,
+    minSalary: debouncedMinSalary,
+    maxSalary: debouncedMaxSalary,
   });
   const { isPending, data, isPlaceholderData, isFetching } = getJobsQuery;
   const totalPages = Math.ceil(data?.meta?.total / data?.meta?.limit) || 1; // Better approach
