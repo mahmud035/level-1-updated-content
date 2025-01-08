@@ -26,6 +26,8 @@ export default function JobCard({ job }: IJobCardProps) {
     company_logo,
     company,
     location,
+    category,
+    jobType,
     requirements,
     salaryRange: { min, max } = {},
   } = job || {};
@@ -58,6 +60,8 @@ export default function JobCard({ job }: IJobCardProps) {
             </p>
           ))}
         </div>
+        <p className="flex items-center">Category: {category}</p>
+        <p className="flex items-center">Job Type: {jobType}</p>
         <p className="flex items-center">
           Salary: &nbsp;
           <FaDollarSign />

@@ -23,6 +23,16 @@ export interface IJob {
   applicationCount?: number;
 }
 
+export interface IGetJobsQueryOptions {
+  page?: number;
+  limit?: number;
+  sortBy?: string;
+  sortOrder?: string;
+  searchQuery?: string;
+  minSalary?: number;
+  maxSalary?: number;
+}
+
 export interface IAddJob {
   title: string;
   location: string;

@@ -4,7 +4,13 @@ import {
   useQuery,
   useQueryClient,
 } from '@tanstack/react-query';
-import { IAddJob, IDeleteJob, IJob, IUpdateJob } from '../../types/job';
+import {
+  IAddJob,
+  IDeleteJob,
+  IGetJobsQueryOptions,
+  IJob,
+  IUpdateJob,
+} from '../../types/job';
 import {
   createJob,
   deleteJob,
@@ -15,10 +21,10 @@ import {
 } from './job.api';
 
 //* Queries Hook
-export const useGetJobsQuery = (page = 1, searchQuery = '') => {
+export const useGetJobsQuery = (options?: IGetJobsQueryOptions) => {
   return useQuery({
-    queryKey: ['jobs', { page, searchQuery }],
-    queryFn: () => getJobs(page, searchQuery),
+    queryKey: ['jobs', options],
+    queryFn: () => getJobs(options ?? {}),
     placeholderData: keepPreviousData,
   });
 };
@@ -35,7 +41,7 @@ export const useGetJobQuery = (jobId: string) => {
       )?.data?.find((d: IJob) => d._id === jobId),
 
     initialDataUpdatedAt: () =>
-      queryClient.getQueryState(['todos'])?.dataUpdatedAt,
+      queryClient.getQueryState(['jobs'])?.dataUpdatedAt,
   });
 };
 

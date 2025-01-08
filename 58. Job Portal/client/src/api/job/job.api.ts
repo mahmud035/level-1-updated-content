@@ -1,9 +1,25 @@
 import axiosInstance from '../../config/axios.config';
-import { IAddJob, IDeleteJob, IUpdateJob } from '../../types/job';
+import {
+  IAddJob,
+  IDeleteJob,
+  IGetJobsQueryOptions,
+  IUpdateJob,
+} from '../../types/job';
 
-export const getJobs = async (page = 1, searchQuery = '') => {
+export const getJobs = async (options: IGetJobsQueryOptions) => {
+  const {
+    page = 1,
+    limit = 10,
+    sortBy = 'createdAt',
+    sortOrder = 'asc',
+    searchQuery = '',
+    ...filters
+  } = options;
+
+  console.log({ filters });
+
   const { data } = await axiosInstance.get(
-    `/jobs?page=${page}&q=${searchQuery}`
+    `/jobs?page=${page}&limit=${limit}&sortBy=${sortBy}&sortOrder=${sortOrder}&searchQuery=${searchQuery}&salaryRange.min=${filters?.minSalary}&salaryRange.max=${filters?.maxSalary}`
   );
   return data;
 };

@@ -7,5 +7,5 @@ export default function JobDetailsPage() {
   const getJobQuery = useGetJobQuery(id!);
   const { data } = getJobQuery;
 
-  return <JobDetailsCard job={data.data} />;
+  return <JobDetailsCard job={data?.data} />;
 }
