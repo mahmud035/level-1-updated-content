@@ -33,6 +33,16 @@ const globalErrorHandler = (error, req, res, next) => {
 
     statusCode = simplifiedError.statusCode;
     message = simplifiedError.message;
+  } else if (error instanceof Error) {
+    message = error?.message;
+    errorMessages = error?.message
+      ? [
+          {
+            path: '',
+            message: error?.message,
+          },
+        ]
+      : [];
   }
 
   return res.status(statusCode).json({

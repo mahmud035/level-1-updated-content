@@ -1,3 +1,4 @@
+import { ObjectId } from 'mongodb';
 import { jobs } from '../../../server.js';
 import { buildQueryFromFilters } from './job.utils.js';
 
@@ -8,10 +9,7 @@ import { buildQueryFromFilters } from './job.utils.js';
         { title: { $regex: "engineer", $options: "i" } },
         { category: { $regex: "categoryName", $options: "i" } }
       ],
-      jobType: "Remote",
-      category: "Engineering",
-      'salaryRange.min': { '$gte': 0 },
-      'salaryRange.max': { '$lte': 100000 }
+      category: "Engineering"
     }
  */
 
@@ -28,8 +26,8 @@ const getJobs = async (options) => {
   // 3. Add searchQuery for partial and case-insensitive matching
   if (searchQuery) {
     query.$or = [
-      { title: { $regex: searchQuery, $options: 'i' } },
-      { category: { $regex: searchQuery, $options: 'i' } },
+      { title: { $regex: searchQuery, $options: 'i' } }, // Search by title
+      { category: { $regex: searchQuery, $options: 'i' } }, // Search by category
     ];
   }
 
@@ -47,4 +45,41 @@ const getJobs = async (options) => {
   return { jobs: result, total };
 };
 
-export const JobService = { getJobs };
+const getJob = async (jobId) => {
+  const query = { _id: new ObjectId(jobId) };
+  const job = await jobs.findOne(query);
+  return job;
+};
+
+const createJob = async (data) => {
+  const timeStamps = new Date();
+  const jobDataWithTimeStamps = {
+    ...data,
+    createdAt: timeStamps,
+    updatedAt: timeStamps,
+  };
+  const result = await jobs.insertOne(jobDataWithTimeStamps);
+  return result;
+};
+
+const updateJob = async (jobId, data, jobOwnerEmail) => {
+  const timeStamps = new Date();
+  const filter = { _id: new ObjectId(jobId), email: jobOwnerEmail };
+  const updatedJob = { $set: { ...data, updatedAt: timeStamps } };
+  const result = await jobs.updateOne(filter, updatedJob);
+  return result;
+};
+
+const deleteJob = async (jobId, jobOwnerEmail) => {
+  const query = { _id: new ObjectId(jobId), email: jobOwnerEmail };
+  const result = await jobs.deleteOne(query);
+  return result;
+};
+
+export const JobService = {
+  getJobs,
+  getJob,
+  createJob,
+  updateJob,
+  deleteJob,
+};

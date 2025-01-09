@@ -22,8 +22,9 @@ app.use(morgan('dev'));
 await dbConnect();
 
 //* MongoDB Collections
-export const jobs = getDatabase().collection('SoloSphereJobs');
-export const jobBids = getDatabase().collection('jobBids');
+export const jobs = getDatabase().collection('SoloSphere-Jobs');
+export const jobBids = getDatabase().collection('SoloSphere-JobBids');
+export const users = getDatabase().collection('SoloSphere-users');
 
 //* Application Routes
 app.use('/api/v1', ApplicationRoutes);

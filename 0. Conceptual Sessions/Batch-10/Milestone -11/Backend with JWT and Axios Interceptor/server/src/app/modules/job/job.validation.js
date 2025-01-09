@@ -1,4 +1,11 @@
+import { ObjectId } from 'mongodb';
 import z from 'zod';
+
+// Custom validator to check if the value is a valid MongoDB ObjectId
+const isValidObjectId = (id) => ObjectId.isValid(id);
+
+// Function to validate ISO date format
+const isValidISODate = (date) => !isNaN(new Date(date).getTime());
 
 const getJobsZodSchema = z.object({
   query: z.object({
@@ -16,4 +23,99 @@ const getJobsZodSchema = z.object({
   }),
 });
 
-export const JobValidation = { getJobsZodSchema };
+const getJobZodSchema = z.object({
+  params: z.object({
+    jobId: z
+      .string({ required_error: 'Job ID is required' })
+      .refine(isValidObjectId, 'Invalid job ID format'), // Validate MongoDB ObjectId format
+  }),
+});
+
+const createJobZodValidation = z.object({
+  body: z
+    .object({
+      email: z
+        .string({ required_error: 'Email is required' })
+        .email('Invalid email format'),
+      title: z
+        .string({ required_error: 'Job title is required' })
+        .min(3, 'Job title must be at least 3 characters'),
+      deadline: z
+        .string({ required_error: 'Deadline is required' })
+        .refine(isValidISODate, 'Invalid date format for deadline'),
+      description: z
+        .string({ required_error: 'Description is required' })
+        .min(10, 'Description must be at least 10 characters'),
+      category: z.enum(['Technology', 'Design', 'Marketing', 'Writing']), // 👈 Need to modify it later
+      minimumPrice: z
+        .number({ required_error: 'Minimum price is required' })
+        .min(1, 'Minimum price must be at least 1'),
+      maximumPrice: z.number({ required_error: 'Maximum price is required' }),
+    })
+    .refine((data) => data.maximumPrice >= data.minimumPrice, {
+      path: ['maximumPrice'],
+      message: 'Maximum price must be greater than or equal to minimum price',
+    }),
+});
+
+const updateJobZodValidation = z.object({
+  params: z.object({
+    jobId: z
+      .string({ required_error: 'Job ID is required' })
+      .refine(isValidObjectId, 'Invalid job ID format'), // Validate MongoDB ObjectId format
+  }),
+
+  body: z
+    .object({
+      email: z
+        .string({ required_error: 'Email is required' })
+        .email('Invalid email format'),
+      title: z
+        .string({ required_error: 'Job title is required' })
+        .min(3, 'Job title must be at least 3 characters'),
+      deadline: z
+        .string({ required_error: 'Deadline is required' })
+        .refine(isValidISODate, 'Invalid date format for deadline'),
+      description: z
+        .string({ required_error: 'Description is required' })
+        .min(10, 'Description must be at least 10 characters'),
+      category: z.enum(['Technology', 'Design', 'Marketing', 'Writing']), // 👈 Need to modify it later
+      minimumPrice: z
+        .number({ required_error: 'Minimum price is required' })
+        .min(1, 'Minimum price must be at least 1'),
+      maximumPrice: z.number({ required_error: 'Maximum price is required' }),
+      createdAt: z.string().optional(),
+      updatedAt: z.string().optional(),
+    })
+    .refine((data) => data.maximumPrice >= data.minimumPrice, {
+      path: ['maximumPrice'],
+      message: 'Maximum price must be greater than or equal to minimum price',
+    }),
+
+  query: z.object({
+    ownerEmail: z
+      .string({ required_error: 'Job owner email is required' })
+      .email('Invalid email format'),
+  }),
+});
+
+const deleteJobZodSchema = z.object({
+  params: z.object({
+    jobId: z
+      .string({ required_error: 'Job ID is required' })
+      .refine(isValidObjectId, 'Invalid job ID format'), // Validate MongoDB ObjectId format
+  }),
+  query: z.object({
+    ownerEmail: z
+      .string({ required_error: 'Job owner email is required' })
+      .email('Invalid email format'),
+  }),
+});
+
+export const JobValidation = {
+  getJobsZodSchema,
+  getJobZodSchema,
+  createJobZodValidation,
+  updateJobZodValidation,
+  deleteJobZodSchema,
+};
