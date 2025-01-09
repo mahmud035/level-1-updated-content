@@ -33,4 +33,7 @@ router.post(
   JobBidController.saveJobBid
 );
 
+// Update bid status
+router.patch('/bid/:jobId', auth, JobBidController.updateBidStatus);
+
 export const JobBidRoutes = router;

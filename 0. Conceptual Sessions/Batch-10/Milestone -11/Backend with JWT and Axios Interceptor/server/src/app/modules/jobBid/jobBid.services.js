@@ -23,7 +23,6 @@ const getJobBidsByUser = async (userEmail) => {
 const getJobBidsByJobOwner = async (jobId, ownerEmail) => {
   const query = { jobId: jobId, jobOwnerEmail: ownerEmail };
   const result = await jobBids.find(query).toArray();
-  console.log(jobBids.find(query));
   return result;
 };
 
@@ -61,8 +60,23 @@ const saveJobBid = async (bidData) => {
   return result;
 };
 
+/**
+ * @desc    Update the status of a specific job bid
+ * @param   {string} jobId - The ID of the job whose bid status is being updated
+ * @param   {Object} status - The status data to be updated
+ * @returns {Object} The result of the update operation
+ */
+
+const updateBidStatus = async (jobId, status) => {
+  const query = { _id: new ObjectId(jobId) };
+  const updateDoc = { $set: status };
+  const result = await jobBids.updateOne(query, updateDoc);
+  return result;
+};
+
 export const JobBidService = {
   getJobBidsByUser,
   getJobBidsByJobOwner,
   saveJobBid,
+  updateBidStatus,
 };

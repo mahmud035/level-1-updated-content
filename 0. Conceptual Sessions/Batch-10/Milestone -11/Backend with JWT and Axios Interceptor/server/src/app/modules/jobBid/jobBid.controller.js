@@ -85,8 +85,36 @@ const saveJobBid = async (req, res, next) => {
   }
 };
 
+/**
+ * @desc    Update bid status
+ * @route   PATCH /job-bids/bid/:jobId
+ * @param   {Object} req - The request object containing the bid data
+ * @param   {Object} res - The response object to send back the result
+ * @param   {Function} next - The next middleware function for error handling
+ * @returns {Object} JSON response confirming the bid status update
+ */
+
+const updateBidStatus = async (req, res, next) => {
+  try {
+    const { jobId } = req.params;
+    const { ...status } = req.body;
+
+    const result = await JobBidService.updateBidStatus(jobId, status);
+
+    sendResponse(res, {
+      statusCode: httpStatus.OK,
+      success: true,
+      message: 'Bid status successfully updated',
+      data: result,
+    });
+  } catch (error) {
+    next(error);
+  }
+};
+
 export const JobBidController = {
   getJobBidsByUser,
   getJobBidsByJobOwner,
   saveJobBid,
+  updateBidStatus,
 };
