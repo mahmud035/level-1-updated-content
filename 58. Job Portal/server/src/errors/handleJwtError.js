@@ -5,7 +5,7 @@ import httpStatus from 'http-status';
  *
  * @param {object} error - The token error object.
  * @param {string} type - Token type - value would be:  access | refresh.
- * @returns - An object of formatted error messages with statusCode and message.
+ * @returns {object} - An object of formatted error messages with statusCode and message.
  */
 
 const handleJwtError = (error, type) => {

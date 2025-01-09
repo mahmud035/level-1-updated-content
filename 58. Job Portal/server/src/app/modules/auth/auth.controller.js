@@ -70,7 +70,7 @@ const refreshAccessToken = async (req, res, next) => {
 // @route   POST /auth/logout
 const logoutUser = async (req, res, next) => {
   try {
-    //* Delete accessToken & refreshToken from cookie
+    //* Delete accessToken & refreshToken from res.cookie()
     res.clearCookie('accessToken', { ...cookieOptions, maxAge: 0 });
     res.clearCookie('refreshToken', { ...cookieOptions, maxAge: 0 });
 

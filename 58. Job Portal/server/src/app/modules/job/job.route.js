@@ -25,20 +25,20 @@ router.get('/recruiter-jobs', auth, JobController.getRecruiterJobs);
 // Get single job
 router.get('/:id', JobController.getJob);
 
-// Create new job
+// Create a new job
 router.post(
   '/',
-  validateRequest(JobValidation.createJobZodSchema),
-  auth,
-  JobController.createJob
+  auth, // Verify token and authenticate the user first
+  validateRequest(JobValidation.createJobZodSchema), // Validate the request payload
+  JobController.createJob // Proceed to the controller logic
 );
 
 // Update a job
 router.patch(
   '/:id',
-  validateRequest(JobValidation.updateJobZodSchema),
-  auth,
-  JobController.updateJob
+  auth, // Verify token and authenticate the user first
+  validateRequest(JobValidation.updateJobZodSchema), // Validate the request payload
+  JobController.updateJob // Proceed to the controller logic
 );
 
 // Delete a job

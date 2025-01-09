@@ -4,7 +4,7 @@ import httpStatus from 'http-status';
  * Handles Zod validation errors
  *
  * @param {object} error - The ZodError object.
- * @returns {object} An object of formatted error messages with statusCode, message and errorMessage.
+ * @returns {object} An object of formatted error messages with statusCode, message and errorMessages.
  */
 
 const handleZodError = (error) => {

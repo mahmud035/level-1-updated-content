@@ -179,7 +179,7 @@ const getJob = async (req, res, next) => {
   }
 };
 
-// @desc    Create new job
+// @desc    Create a new job
 // @route   POST /jobs
 const createJob = async (req, res, next) => {
   try {
