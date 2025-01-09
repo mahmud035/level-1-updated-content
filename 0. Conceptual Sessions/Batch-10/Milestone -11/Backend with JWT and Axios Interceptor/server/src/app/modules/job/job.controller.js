@@ -4,25 +4,32 @@ import { JobService } from './job.services.js';
 
 /**
  * NOTE: Unified API Usage Examples
- 
+ *
  * Pagination Only
  * GET /jobs?page=1&limit=10
- 
+ *
  * Sorting Only
  * GET /jobs?sortBy=createdAt&sortOrder=desc
- 
+ *
  * Searching Only
  * GET /jobs?searchQuery=
- 
+ *
  * Filtering Only
  * GET /jobs?title=job
- 
+ *
  * Combined All
  * GET /api/v1/jobs?page=1&limit=10&sortBy=createdAt&sortOrder=desc&searchQuery=developer&title=job
  */
 
-// @desc    Get jobs with pagination, sorting, searching, and filtering
-// @route   GET /jobs
+/**
+ * @desc    Get all jobs with pagination, sorting, searching, and filtering
+ * @route   GET /jobs
+ * @param   {Object} req - The request object containing query parameters like page, limit, sortBy, etc.
+ * @param   {Object} res - The response object to send back the result
+ * @param   {Function} next - The next middleware function for error handling
+ * @returns {Object} JSON response with a list of jobs, pagination meta data, and status
+ */
+
 const getJobs = async (req, res, next) => {
   try {
     const {
@@ -48,7 +55,7 @@ const getJobs = async (req, res, next) => {
     sendResponse(res, {
       statusCode: httpStatus.OK,
       success: true,
-      message: 'Jobs fetched successfully',
+      message: 'Jobs retrieved successfully.',
       meta: { page: parseInt(page), limit: parseInt(limit), total },
       data: jobs,
     });
@@ -57,8 +64,40 @@ const getJobs = async (req, res, next) => {
   }
 };
 
-// @desc    Get a single job
-// @route   GET /jobs/:jobId
+/**
+ * @desc    Get all jobs posted by a specific user
+ * @route   GET /jobs/user?userEmail=
+ * @param   {Object} req - The request object containing userEmail query parameter
+ * @param   {Object} res - The response object to send back the result
+ * @param   {Function} next - The next middleware function for error handling
+ * @returns {Object} JSON response with a list of jobs posted by the user
+ */
+
+const getJobsByUser = async (req, res, next) => {
+  try {
+    const { userEmail } = req.query;
+    const userJobs = await JobService.getJobsByUser(userEmail);
+
+    sendResponse(res, {
+      statusCode: httpStatus.OK,
+      success: true,
+      message: 'Jobs posted by the user retrieved successfully.',
+      data: userJobs,
+    });
+  } catch (error) {
+    next(error);
+  }
+};
+
+/**
+ * @desc    Get a specific job by its ID
+ * @route   GET /jobs/:jobId
+ * @param   {Object} req - The request object containing the jobId parameter
+ * @param   {Object} res - The response object to send back the result
+ * @param   {Function} next - The next middleware function for error handling
+ * @returns {Object} JSON response with the job data or an error message if not found
+ */
+
 const getJob = async (req, res, next) => {
   try {
     const { jobId } = req.params;
@@ -68,13 +107,13 @@ const getJob = async (req, res, next) => {
       return sendResponse(res, {
         statusCode: httpStatus.NOT_FOUND,
         success: false,
-        message: 'Job not found',
+        message: 'Job not found.',
       });
 
     sendResponse(res, {
       statusCode: httpStatus.OK,
       success: true,
-      message: 'Job fetched successfully',
+      message: 'Job retrieved successfully.',
       data: job,
     });
   } catch (error) {
@@ -82,8 +121,15 @@ const getJob = async (req, res, next) => {
   }
 };
 
-// @desc    Create a new job
-// @route   POST /jobs
+/**
+ * @desc    Create a new job posting
+ * @route   POST /jobs
+ * @param   {Object} req - The request object containing the job data in the body
+ * @param   {Object} res - The response object to send back the result
+ * @param   {Function} next - The next middleware function for error handling
+ * @returns {Object} JSON response with a success or failure message
+ */
+
 const createJob = async (req, res, next) => {
   try {
     const { ...data } = req.body;
@@ -93,21 +139,28 @@ const createJob = async (req, res, next) => {
       return sendResponse(res, {
         statusCode: httpStatus.BAD_REQUEST,
         success: false,
-        message: 'Something went wrong!',
+        message: 'Failed to create the job posting.',
       });
 
     sendResponse(res, {
       statusCode: httpStatus.CREATED,
       success: true,
-      message: 'Jobs created successfully',
+      message: 'Job posted successfully.',
     });
   } catch (error) {
     next(error);
   }
 };
 
-// @desc    Update a job
-// @route   PATCH /jobs/:jobId?ownerEmail=
+/**
+ * @desc    Update an existing job by its ID
+ * @route   PATCH /jobs/:jobId?ownerEmail=
+ * @param   {Object} req - The request object containing the jobId parameter and the updated data in the body
+ * @param   {Object} res - The response object to send back the result
+ * @param   {Function} next - The next middleware function for error handling
+ * @returns {Object} JSON response with the result of the update operation
+ */
+
 const updateJob = async (req, res, next) => {
   try {
     const { jobId } = req.params;
@@ -118,7 +171,7 @@ const updateJob = async (req, res, next) => {
     if (jobOwnerEmail !== authenticatedEmail)
       return sendResponse(res, {
         statusCode: httpStatus.FORBIDDEN,
-        message: 'Forbidden access: You are not the job owner',
+        message: 'Forbidden: You are not authorized to modify this job.',
       });
 
     const result = await JobService.updateJob(jobId, data, jobOwnerEmail);
@@ -127,21 +180,28 @@ const updateJob = async (req, res, next) => {
       return sendResponse(res, {
         statusCode: httpStatus.BAD_REQUEST,
         success: false,
-        message: 'Job not found or no changes made',
+        message: 'Job not found or no changes made.',
       });
 
     sendResponse(res, {
       statusCode: httpStatus.OK,
       success: true,
-      message: 'Job updated successfully',
+      message: 'Job updated successfully.',
     });
   } catch (error) {
     next(error);
   }
 };
 
-// @desc    Delete a job
-// @route   DELETE /jobs/:jobId?ownerEmail=
+/**
+ * @desc    Delete a job by its ID
+ * @route   DELETE /jobs/:jobId?ownerEmail=
+ * @param   {Object} req - The request object containing the jobId parameter and ownerEmail query parameter
+ * @param   {Object} res - The response object to send back the result
+ * @param   {Function} next - The next middleware function for error handling
+ * @returns {Object} JSON response with the result of the delete operation
+ */
+
 const deleteJob = async (req, res, next) => {
   try {
     const { jobId } = req.params;
@@ -151,7 +211,7 @@ const deleteJob = async (req, res, next) => {
     if (jobOwnerEmail !== authenticatedEmail)
       return sendResponse(res, {
         statusCode: httpStatus.FORBIDDEN,
-        message: 'Forbidden access: You are not the job owner',
+        message: 'Forbidden: You are not authorized to delete this job.',
       });
 
     const result = await JobService.deleteJob(jobId, jobOwnerEmail);
@@ -160,13 +220,13 @@ const deleteJob = async (req, res, next) => {
       return sendResponse(res, {
         statusCode: httpStatus.BAD_REQUEST,
         success: false,
-        message: 'Job not found',
+        message: 'Job not found.',
       });
 
     sendResponse(res, {
       statusCode: httpStatus.OK,
       success: true,
-      message: 'Job deleted successfully',
+      message: 'Job deleted successfully.',
     });
   } catch (error) {
     next(error);
@@ -175,6 +235,7 @@ const deleteJob = async (req, res, next) => {
 
 export const JobController = {
   getJobs,
+  getJobsByUser,
   getJob,
   createJob,
   updateJob,

@@ -2,10 +2,10 @@ import { ObjectId } from 'mongodb';
 import z from 'zod';
 
 // Custom validator to check if the value is a valid MongoDB ObjectId
-const isValidObjectId = (id) => ObjectId.isValid(id);
+export const isValidObjectId = (id) => ObjectId.isValid(id);
 
 // Function to validate ISO date format
-const isValidISODate = (date) => !isNaN(new Date(date).getTime());
+export const isValidISODate = (date) => !isNaN(new Date(date).getTime());
 
 const getJobsZodSchema = z.object({
   query: z.object({
@@ -31,6 +31,14 @@ const getJobZodSchema = z.object({
   }),
 });
 
+const getJobsByUserZodSchema = z.object({
+  query: z.object({
+    userEmail: z
+      .string({ required_error: 'User email is required' })
+      .email('Invalid email format'),
+  }),
+});
+
 const createJobZodValidation = z.object({
   body: z
     .object({
@@ -51,6 +59,7 @@ const createJobZodValidation = z.object({
         .number({ required_error: 'Minimum price is required' })
         .min(1, 'Minimum price must be at least 1'),
       maximumPrice: z.number({ required_error: 'Maximum price is required' }),
+      bitCount: z.number().min(0, 'Minimum bit count value is 0').optional(),
     })
     .refine((data) => data.maximumPrice >= data.minimumPrice, {
       path: ['maximumPrice'],
@@ -84,6 +93,7 @@ const updateJobZodValidation = z.object({
         .number({ required_error: 'Minimum price is required' })
         .min(1, 'Minimum price must be at least 1'),
       maximumPrice: z.number({ required_error: 'Maximum price is required' }),
+      bitCount: z.number().min(0, 'Minimum bit count value is 0').optional(),
       createdAt: z.string().optional(),
       updatedAt: z.string().optional(),
     })
@@ -115,6 +125,7 @@ const deleteJobZodSchema = z.object({
 export const JobValidation = {
   getJobsZodSchema,
   getJobZodSchema,
+  getJobsByUserZodSchema,
   createJobZodValidation,
   updateJobZodValidation,
   deleteJobZodSchema,

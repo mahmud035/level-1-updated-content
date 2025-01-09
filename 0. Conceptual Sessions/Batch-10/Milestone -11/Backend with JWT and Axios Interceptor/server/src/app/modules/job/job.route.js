@@ -4,44 +4,55 @@ import validateRequest from '../../middlewares/validateRequest.js';
 import { JobController } from './job.controller.js';
 import { JobValidation } from './job.validation.js';
 
+// IMPORTANT: Request Flow: auth => validateRequest() => controller
+// 👉 Ensure that the user is authenticated first, validate the request payload, and then proceed to the controller logic.
+
 const router = express.Router();
 
-// Get jobs with pagination, sorting, searching, and filtering
+// Get all jobs with pagination, sorting, searching, and filtering
 router.get(
   '/',
   validateRequest(JobValidation.getJobsZodSchema),
   JobController.getJobs
 );
 
-// Get a single job
+// Get all jobs posted by a specific user
+router.get(
+  '/user',
+  auth,
+  validateRequest(JobValidation.getJobsByUserZodSchema),
+  JobController.getJobsByUser
+);
+
+// Get a single job by its ID
 router.get(
   '/:jobId',
   validateRequest(JobValidation.getJobZodSchema),
   JobController.getJob
 );
 
-// Create a new job
+// Create a new job posting
 router.post(
   '/',
-  auth, // Verify token and authenticate the user first
-  validateRequest(JobValidation.createJobZodValidation), // Validate the request payload
-  JobController.createJob // Proceed to the controller logic
+  auth,
+  validateRequest(JobValidation.createJobZodValidation),
+  JobController.createJob
 );
 
-// Update a job
+// Update an existing job by its ID
 router.patch(
   '/:jobId',
-  auth, // Verify token and authenticate the user first
-  validateRequest(JobValidation.updateJobZodValidation), // Validate the request payload
-  JobController.updateJob // Proceed to the controller logic
+  auth,
+  validateRequest(JobValidation.updateJobZodValidation),
+  JobController.updateJob
 );
 
-// Delete a job
+// Delete a job by its ID
 router.delete(
   '/:jobId',
-  auth, // Verify token and authenticate the user first
-  validateRequest(JobValidation.deleteJobZodSchema), // Validate the request payload
-  JobController.deleteJob // Proceed to the controller logic
+  auth,
+  validateRequest(JobValidation.deleteJobZodSchema),
+  JobController.deleteJob
 );
 
 export const JobRoutes = router;
