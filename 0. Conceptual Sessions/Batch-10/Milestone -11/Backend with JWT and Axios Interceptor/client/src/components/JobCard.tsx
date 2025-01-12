@@ -1,3 +1,4 @@
+import { format } from 'date-fns';
 import { Link } from 'react-router';
 import { IJob } from '../types/job';
 
@@ -24,7 +25,8 @@ const JobCard = ({ job }: IJobCardProps) => {
     >
       <div className="flex items-center justify-between">
         <span className="text-xs font-light text-gray-800 ">
-          Deadline: {new Date(deadline).toLocaleDateString()}
+          {/* Deadline: {new Date(deadline).toLocaleDateString()} */}
+          Deadline: {format(new Date(deadline), 'MM/dd/yyyy')}
         </span>
         <span className="px-3 py-1 text-[8px] text-blue-800 uppercase bg-blue-200 font-extrabold rounded-full ">
           {category}

@@ -1,3 +1,4 @@
+import { format } from 'date-fns';
 import { useState } from 'react';
 import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
@@ -31,7 +32,8 @@ const JobDetails = () => {
       <div className="flex-1  px-4 py-7 bg-white rounded-md shadow-md md:min-h-[350px]">
         <div className="flex items-center justify-between">
           <span className="text-sm font-light text-gray-800 ">
-            Deadline: {new Date(deadline).toLocaleDateString()}
+            {/* Deadline: {new Date(deadline).toLocaleDateString()} */}
+            Deadline: {format(new Date(deadline), 'MM/dd/yyyy')}
           </span>
           <span className="px-4 py-1 text-xs text-blue-800 uppercase bg-blue-200 rounded-full ">
             {category}

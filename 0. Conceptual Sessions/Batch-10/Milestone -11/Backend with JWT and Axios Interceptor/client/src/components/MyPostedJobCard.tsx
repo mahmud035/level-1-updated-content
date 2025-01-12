@@ -1,8 +1,9 @@
+import { format } from 'date-fns';
 import toast from 'react-hot-toast';
 import { Link } from 'react-router';
 import { useDeleteJobMutation } from '../api/job/job.hooks';
 import useAuth from '../hooks/useAuth';
-import { IJob } from '../types/job';
+import { IDeleteJob, IJob } from '../types/job';
 
 interface IMyPostedJobCardProps {
   job: IJob;
@@ -21,8 +22,12 @@ export default function MyPostedJobCard({ job }: IMyPostedJobCardProps) {
     deadline,
   } = job || {};
 
+  // Delete Job
   const handleDeleteJob = (jobId: string) => {
-    const deleteJobInfo = { jobId, jobOwnerEmail: user?.email ?? '' };
+    const deleteJobInfo: IDeleteJob = {
+      jobId,
+      jobOwnerEmail: user?.email ?? '',
+    };
 
     deleteJobMutation.mutate(deleteJobInfo, {
       onSuccess: () => {
@@ -38,7 +43,8 @@ export default function MyPostedJobCard({ job }: IMyPostedJobCardProps) {
       </td>
 
       <td className="px-4 py-4 text-sm text-gray-500  whitespace-nowrap">
-        {new Date(deadline).toLocaleDateString()}
+        {/* {new Date(deadline).toLocaleDateString()} */}
+        {format(new Date(deadline), 'MM/dd/yyyy')}
       </td>
 
       <td className="px-4 py-4 text-sm text-gray-500  whitespace-nowrap">
@@ -54,7 +60,7 @@ export default function MyPostedJobCard({ job }: IMyPostedJobCardProps) {
         </div>
       </td>
       <td className="px-4 py-4 text-sm text-gray-500  whitespace-nowrap">
-        {description?.slice(0, 15)}...
+        {description?.slice(0, 18)}...
       </td>
       <td className="px-4 py-4 text-sm whitespace-nowrap">
         <div className="flex items-center gap-x-6">

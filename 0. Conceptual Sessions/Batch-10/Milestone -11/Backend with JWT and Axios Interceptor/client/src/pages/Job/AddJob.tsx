@@ -25,16 +25,13 @@ const AddJob = () => {
   ) => {
     const { name, value } = e.target;
 
-    if (name.includes('Price')) {
-      setFormData((prev) => ({
-        ...prev,
-        [name]: Number(value),
-      }));
-    } else {
-      setFormData((prev) => ({ ...prev, [name]: value }));
-    }
+    setFormData((prev) => ({
+      ...prev,
+      [name]: name.includes('Price') ? Number(value) : value,
+    }));
   };
 
+  // Add Job
   const handleAddJob = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
@@ -52,7 +49,7 @@ const AddJob = () => {
 
   return (
     <div className="flex justify-center items-center min-h-[calc(100vh-306px)] my-12">
-      <section className=" p-2 md:p-6 mx-auto bg-white rounded-md shadow-md ">
+      <section className="p-2 mx-auto bg-white rounded-md shadow-md md:p-6">
         <h2 className="text-lg font-semibold text-gray-700 capitalize ">
           Post a Job
         </h2>
@@ -69,7 +66,7 @@ const AddJob = () => {
                 value={formData.title}
                 onChange={handleChange}
                 id="job_title"
-                className="block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-200 rounded-md  focus:border-blue-400 focus:ring-blue-300 focus:ring-opacity-40  focus:outline-none focus:ring"
+                className="block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-200 rounded-md focus:border-blue-400 focus:ring-blue-300 focus:ring-opacity-40 focus:outline-none focus:ring"
                 required
               />
             </div>
@@ -84,7 +81,7 @@ const AddJob = () => {
                 disabled
                 defaultValue={user?.email ?? ''}
                 id="emailAddress"
-                className="block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-200 rounded-md  focus:border-blue-400 focus:ring-blue-300 focus:ring-opacity-40  focus:outline-none focus:ring disabled:cursor-not-allowed"
+                className="block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-200 rounded-md focus:border-blue-400 focus:ring-blue-300 focus:ring-opacity-40 focus:outline-none focus:ring disabled:cursor-not-allowed"
                 required
               />
             </div>
@@ -97,7 +94,7 @@ const AddJob = () => {
                 // value={startDate!.toLocaleDateString()?.slice(0, 10)}
                 selected={startDate}
                 onChange={(date) => setStartDate(date)}
-                className="border p-2 rounded-md"
+                className="p-2 border rounded-md"
                 required
               />
             </div>
@@ -111,7 +108,7 @@ const AddJob = () => {
                 value={formData.category}
                 onChange={handleChange}
                 id="category"
-                className="border p-2 rounded-md"
+                className="p-2 border rounded-md"
                 required
               >
                 <option value="Web Development">Web Development</option>
@@ -128,7 +125,7 @@ const AddJob = () => {
                 name="minimumPrice"
                 onChange={handleChange}
                 id="min_price"
-                className="block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-200 rounded-md  focus:border-blue-400 focus:ring-blue-300 focus:ring-opacity-40  focus:outline-none focus:ring"
+                className="block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-200 rounded-md focus:border-blue-400 focus:ring-blue-300 focus:ring-opacity-40 focus:outline-none focus:ring"
                 required
                 min={1}
               />
@@ -143,7 +140,7 @@ const AddJob = () => {
                 name="maximumPrice"
                 onChange={handleChange}
                 id="max_price"
-                className="block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-200 rounded-md  focus:border-blue-400 focus:ring-blue-300 focus:ring-opacity-40  focus:outline-none focus:ring"
+                className="block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-200 rounded-md focus:border-blue-400 focus:ring-blue-300 focus:ring-opacity-40 focus:outline-none focus:ring"
                 required
                 min={1}
               />
@@ -158,7 +155,7 @@ const AddJob = () => {
               value={formData.description}
               onChange={handleChange}
               id="description"
-              className="block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-200 rounded-md  focus:border-blue-400 focus:ring-blue-300 focus:ring-opacity-40  focus:outline-none focus:ring"
+              className="block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-200 rounded-md focus:border-blue-400 focus:ring-blue-300 focus:ring-opacity-40 focus:outline-none focus:ring"
               required
             ></textarea>
           </div>

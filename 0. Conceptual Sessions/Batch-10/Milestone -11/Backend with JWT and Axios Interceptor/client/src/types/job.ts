@@ -32,10 +32,23 @@ export interface ICreateJob {
   bidCount: number;
 }
 
+interface IJobUpdate {
+  email: string;
+  title: string;
+  deadline: string;
+  description: string;
+  category: string;
+  minimumPrice: number;
+  maximumPrice: number;
+  bidCount: number;
+  createdAt: string;
+  updatedAt: string;
+}
+
 export interface IUpdateJob {
   jobId: string;
   jobOwnerEmail: string;
-  jobData: IJob;
+  jobData: IJobUpdate;
 }
 
 export interface IDeleteJob {
