@@ -27,6 +27,35 @@ export default function MyApplicationsPage() {
     });
   };
 
+  // NOTE: Interesting (Confirm before Deleting)
+  const confirmDelete = (jobId: string) => {
+    toast((t) => (
+      <div className="flex items-center gap-2">
+        <p>
+          Are you <strong className="font-bold">sure?</strong>
+        </p>
+
+        <div className="flex gap-2">
+          <button
+            className="px-3 py-1 text-white bg-red-400 rounded-md"
+            onClick={() => {
+              toast.dismiss(t.id); // dismiss toast
+              handleDeleteJobApplication(jobId); // Call delete job application function
+            }}
+          >
+            Delete
+          </button>
+          <button
+            className="px-3 py-1 text-white bg-green-400 rounded-md"
+            onClick={() => toast.dismiss(t.id)}
+          >
+            Cancel
+          </button>
+        </div>
+      </div>
+    ));
+  };
+
   return (
     <div className="overflow-x-auto">
       {data?.data?.length > 0 ? (
@@ -64,7 +93,7 @@ export default function MyApplicationsPage() {
                 <td>{application.title}</td>
                 <th>
                   <button
-                    onClick={() => handleDeleteJobApplication(application._id)}
+                    onClick={() => confirmDelete(application._id)}
                     className="text-white btn btn-error btn-xs"
                   >
                     Delete

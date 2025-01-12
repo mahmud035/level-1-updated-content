@@ -32,6 +32,35 @@ export default function MyPostedJobCard({ job }: IMyPostedJobCardProps) {
     });
   };
 
+  // NOTE: Interesting (Confirm before Deleting)
+  const confirmDelete = (jobId: string) => {
+    toast((t) => (
+      <div className="flex items-center gap-2">
+        <p>
+          Are you <strong className="font-bold">sure?</strong>
+        </p>
+
+        <div className="flex gap-2">
+          <button
+            className="px-3 py-1 text-white bg-red-400 rounded-md"
+            onClick={() => {
+              toast.dismiss(t.id); // dismiss toast
+              handleDeleteJob(jobId); // Call the delete job function
+            }}
+          >
+            Delete
+          </button>
+          <button
+            className="px-3 py-1 text-white bg-green-400 rounded-md"
+            onClick={() => toast.dismiss(t.id)}
+          >
+            Cancel
+          </button>
+        </div>
+      </div>
+    ));
+  };
+
   return (
     <div className="shadow-xl card card-compact bg-base-100">
       <div className="flex gap-3 p-4">
@@ -79,7 +108,7 @@ export default function MyPostedJobCard({ job }: IMyPostedJobCardProps) {
           </button>
 
           <button
-            onClick={() => handleDeleteJob(_id)}
+            onClick={() => confirmDelete(_id)}
             className="px-4 py-2 font-medium text-white rounded bg-violet-500 hover:bg-violet-700"
           >
             Delete

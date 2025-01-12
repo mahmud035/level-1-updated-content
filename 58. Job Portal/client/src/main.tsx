@@ -10,7 +10,7 @@ import { createRoot } from 'react-dom/client';
 import toast, { Toaster } from 'react-hot-toast';
 import { RouterProvider } from 'react-router';
 import AuthProvider from './contexts/AuthContext.tsx';
-import SearchAndFilterProvider from './contexts/SearchContext.tsx';
+import SearchProvider from './contexts/SearchContext.tsx';
 import './index.css';
 import router from './routes/Router.tsx';
 
@@ -33,13 +33,13 @@ const queryClient = new QueryClient({
 createRoot(document.getElementById('root')!).render(
   <StrictMode>
     <QueryClientProvider client={queryClient}>
-      <SearchAndFilterProvider>
+      <SearchProvider>
         <AuthProvider>
           <RouterProvider router={router} />
           <Toaster position="top-right" />
           <ReactQueryDevtools initialIsOpen={false} />
         </AuthProvider>
-      </SearchAndFilterProvider>
+      </SearchProvider>
     </QueryClientProvider>
   </StrictMode>
 );

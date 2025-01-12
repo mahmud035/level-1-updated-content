@@ -20,34 +20,36 @@ export default function LoginPage() {
     setFormData((prev) => ({ ...prev, [name]: value }));
   };
 
-  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    loginUser(formData.email, formData.password)
+
+    await loginUser(formData.email, formData.password)
       .then((userCredential) => {
+        //* Generate accessToken & refreshToken
+        const user = { email: userCredential.user?.email || '' };
+        generateTokensMutation.mutate(user);
+
+        toast.success('Signin Successful');
+        navigate(from, { replace: true });
+      })
+      .catch((error) => {
+        toast.error(error.message);
+      });
+  };
+
+  const handleGoogleLogin = async () => {
+    await loginWithGoogle()
+      .then((userCredential) => {
+        toast.success('Signin Successful');
+
         //* Generate accessToken & refreshToken
         const user = { email: userCredential.user?.email || '' };
         generateTokensMutation.mutate(user);
 
         navigate(from, { replace: true });
       })
-      .catch(() => {
-        toast.error('Failed to login');
-      });
-  };
-
-  const handleGoogleLogin = () => {
-    loginWithGoogle()
-      .then((userCredential) => {
-        toast.success('Logged in successfully');
-
-        //* Generate accessToken & refreshToken
-        const user = { email: userCredential.user?.email || '' };
-        generateTokensMutation.mutate(user);
-
-        navigate('/');
-      })
-      .catch(() => {
-        toast.error('Failed to login');
+      .catch((error) => {
+        toast.error(error.message);
       });
   };
 

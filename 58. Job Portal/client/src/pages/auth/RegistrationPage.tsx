@@ -18,9 +18,10 @@ export default function RegistrationPage() {
     setFormData((prev) => ({ ...prev, [name]: value }));
   };
 
-  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    createUser(formData.email, formData.password)
+
+    await createUser(formData.email, formData.password)
       .then((userCredential) => {
         toast.success('User created successfully');
 
@@ -35,10 +36,10 @@ export default function RegistrationPage() {
       });
   };
 
-  const handleGoogleLogin = () => {
-    loginWithGoogle()
+  const handleGoogleLogin = async () => {
+    await loginWithGoogle()
       .then((userCredential) => {
-        toast.success('Logged in successfully');
+        toast.success('Signin Successful');
 
         //* Generate accessToken & refreshToken
         const user = { email: userCredential.user?.email || '' };
@@ -46,8 +47,8 @@ export default function RegistrationPage() {
 
         navigate('/');
       })
-      .catch(() => {
-        toast.error('Failed to login');
+      .catch((error) => {
+        toast.error(error.message);
       });
   };
 
