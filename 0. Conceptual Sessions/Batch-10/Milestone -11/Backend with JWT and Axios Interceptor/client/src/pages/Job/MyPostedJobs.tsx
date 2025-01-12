@@ -1,6 +1,6 @@
 import { useGetJobsByUserQuery } from '../../api/job/job.hooks';
-import LoadingSpinner from '../../components/LoadingSpinner';
-import MyPostedJobCard from '../../components/MyPostedJobCard';
+import MyPostedJobCard from '../../components/Job/MyPostedJobCard';
+import LoadingSpinner from '../../components/shared/LoadingSpinner';
 import useAuth from '../../hooks/useAuth';
 import { IJob } from '../../types/job';
 

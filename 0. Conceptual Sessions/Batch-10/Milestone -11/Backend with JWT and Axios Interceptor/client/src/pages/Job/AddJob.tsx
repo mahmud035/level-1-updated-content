@@ -8,6 +8,7 @@ import useAuth from '../../hooks/useAuth';
 import useJobOwner from '../../hooks/useJobOwner';
 import { ICreateJob } from '../../types/job';
 import { getDefaultAddJobFormData } from '../../utils';
+import { validateJobForm } from '../../utils/validateJobForm';
 
 const AddJob = () => {
   const { user } = useAuth();
@@ -35,19 +36,24 @@ const AddJob = () => {
   const handleAddJob = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
+    // Validate Inputs
+    const validation = validateJobForm(formData, startDate);
+    if (!validation.isValid) return toast.error(validation.errorMessage!);
+
+    // Create Job Data
     const data: ICreateJob = {
       jobOwnerInfo,
       ...formData,
       deadline: startDate!.toISOString(),
     };
+
+    // Submit Job Data
     createJobMutation.mutate(data, {
       onSuccess: () => {
         toast.success('Job added successfully');
         navigate('/my-posted-jobs');
       },
     });
-
-    console.log('formData =>', data);
   };
 
   return (

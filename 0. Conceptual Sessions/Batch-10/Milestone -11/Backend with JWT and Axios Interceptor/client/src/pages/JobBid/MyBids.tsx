@@ -1,6 +1,6 @@
 import { useGetJobBidsByUserQuery } from '../../api/jobBid/jobBid.hooks';
-import LoadingSpinner from '../../components/LoadingSpinner';
-import MyJobBidsCard from '../../components/MyJobBidsCard';
+import MyJobBidsCard from '../../components/JobBid/MyJobBidsCard';
+import LoadingSpinner from '../../components/shared/LoadingSpinner';
 import useAuth from '../../hooks/useAuth';
 import { IJobBid } from '../../types/jobBid';
 

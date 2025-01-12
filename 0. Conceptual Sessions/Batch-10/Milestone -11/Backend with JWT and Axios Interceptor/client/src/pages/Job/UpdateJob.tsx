@@ -4,11 +4,12 @@ import 'react-datepicker/dist/react-datepicker.css';
 import toast from 'react-hot-toast';
 import { useNavigate, useParams } from 'react-router';
 import { useGetJobQuery, useUpdateJobMutation } from '../../api/job/job.hooks';
-import LoadingSpinner from '../../components/LoadingSpinner';
+import LoadingSpinner from '../../components/shared/LoadingSpinner';
 import useAuth from '../../hooks/useAuth';
 import useJobOwner from '../../hooks/useJobOwner';
 import { IUpdateJob } from '../../types/job';
 import { getDefaultUpdateJobFormData } from '../../utils';
+import { validateJobForm } from '../../utils/validateJobForm';
 
 const UpdateJob = () => {
   const { user } = useAuth();
@@ -21,7 +22,7 @@ const UpdateJob = () => {
   const [formData, setFormData] = useState(
     getDefaultUpdateJobFormData(data?.data ?? {})
   );
-  const [startDate, setStartDate] = useState<Date | null>(null);
+  const [startDate, setStartDate] = useState<Date | null>(data?.data?.deadline);
 
   // Synchronize form data and deadline date with the fetched job data.
   // This ensures the form is pre-filled with the job's details when the data is available.
@@ -52,18 +53,23 @@ const UpdateJob = () => {
   const handleUpdateJob = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
-    if (!startDate) return toast.error('Please select a valid deadline date');
+    // Validate Inputs
+    const validation = validateJobForm(formData, startDate);
+    if (!validation.isValid) return toast.error(validation.errorMessage!);
 
     const { _id, ...restFormData } = formData;
 
+    // Create Updated Job Data
     const data: IUpdateJob = {
       jobId: _id,
       jobData: {
         jobOwnerInfo,
         ...restFormData,
-        deadline: startDate.toISOString(),
+        deadline: startDate!.toISOString(),
       },
     };
+
+    // Submit Updated Job Data
     updateJobMutation.mutate(data, {
       onSuccess: () => {
         toast.success('Job updated successfully');

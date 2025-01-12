@@ -1,22 +1,22 @@
 import { Link } from 'react-router';
-import logo from '../assets/images/logo.png';
-import useAuth from '../hooks/useAuth';
-import useLogout from '../hooks/useLogout';
+import logo from '../../assets/images/logo.png';
+import useAuth from '../../hooks/useAuth';
+import useLogout from '../../hooks/useLogout';
 
 const Navbar = () => {
   const { user } = useAuth();
   const logoutUser = useLogout();
 
   return (
-    <div className="navbar bg-base-100 shadow-sm container px-4 mx-auto">
+    <div className="container px-4 mx-auto shadow-sm navbar bg-base-100">
       <div className="flex-1">
-        <Link to="/" className="flex gap-2 items-center">
+        <Link to="/" className="flex items-center gap-2">
           <img className="w-auto h-7" src={logo} alt="" />
           <span className="font-bold">SoloSphere</span>
         </Link>
       </div>
       <div className="flex-none">
-        <ul className="menu menu-horizontal px-1">
+        <ul className="px-1 menu menu-horizontal">
           <li>
             <Link to="/">Home</Link>
           </li>
@@ -32,7 +32,7 @@ const Navbar = () => {
         </ul>
 
         {user && (
-          <div className="dropdown dropdown-end z-50">
+          <div className="z-50 dropdown dropdown-end">
             <div
               tabIndex={0}
               role="button"
@@ -70,7 +70,7 @@ const Navbar = () => {
               <li className="mt-2">
                 <button
                   onClick={logoutUser}
-                  className="bg-gray-200 block text-center"
+                  className="block text-center bg-gray-200"
                 >
                   Logout
                 </button>

@@ -1,10 +1,10 @@
 import React, { useState } from 'react';
 import { MdSearch } from 'react-icons/md';
 import { useGetJobsQuery } from '../../api/job/job.hooks';
-import JobCard from '../../components/JobCard';
-import JobPagination from '../../components/JobPagination';
-import LoadingSpinner from '../../components/LoadingSpinner';
-import NoDataFound from '../../components/NoDataFound';
+import JobCard from '../../components/Job/JobCard';
+import JobPagination from '../../components/Job/JobPagination';
+import LoadingSpinner from '../../components/shared/LoadingSpinner';
+import NoDataFound from '../../components/shared/NoDataFound';
 import useDebounce from '../../hooks/search/useDebounce';
 import useSearch from '../../hooks/search/useSearch';
 import { IJob } from '../../types/job';

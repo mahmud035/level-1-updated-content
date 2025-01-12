@@ -1,7 +1,7 @@
 import { format } from 'date-fns';
 import { Link } from 'react-router';
-import useSearch from '../hooks/search/useSearch';
-import { IJob } from '../types/job';
+import useSearch from '../../hooks/search/useSearch';
+import { IJob } from '../../types/job';
 
 interface IJobCardProps {
   job: IJob;
@@ -31,7 +31,13 @@ const JobCard = ({ job }: IJobCardProps) => {
           {/* Deadline: {new Date(deadline).toLocaleDateString()} */}
           Deadline: {format(new Date(deadline), 'MM/dd/yyyy')}
         </span>
-        <span className="px-3 py-1 text-[9px] text-blue-800 uppercase bg-blue-200 font-extrabold rounded-full ">
+        <span
+          className={`px-3 py-1 text-[8px] uppercase text-xs bg-blue-200/60 ${
+            category === 'Web Development' && 'text-blue-500'
+          } ${category === 'Graphics Design' && 'text-green-500'} ${
+            category === 'Digital Marketing' && 'text-red-500'
+          } rounded-full `}
+        >
           {category}
         </span>
       </div>

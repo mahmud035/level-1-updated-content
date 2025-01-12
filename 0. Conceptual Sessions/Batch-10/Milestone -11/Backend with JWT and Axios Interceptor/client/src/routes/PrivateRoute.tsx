@@ -1,6 +1,6 @@
 import React from 'react';
 import { Navigate, useLocation } from 'react-router';
-import LoadingSpinner from '../components/LoadingSpinner';
+import LoadingSpinner from '../components/shared/LoadingSpinner';
 import useAuth from '../hooks/useAuth';
 
 interface IPrivateRouteProps {

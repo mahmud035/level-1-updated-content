@@ -1,5 +1,5 @@
 import { format } from 'date-fns';
-import { IJobBid } from '../types/jobBid';
+import { IJobBid } from '../../types/jobBid';
 
 interface IBidRequestCardProps {
   jobBid: IJobBid;

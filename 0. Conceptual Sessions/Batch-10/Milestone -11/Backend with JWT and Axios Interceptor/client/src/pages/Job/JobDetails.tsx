@@ -1,4 +1,4 @@
-import { format } from 'date-fns';
+import { format, isPast } from 'date-fns';
 import React, { useState } from 'react';
 import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
@@ -9,10 +9,11 @@ import {
   useGetJobBidsByUserQuery,
   useSaveJobBidMutation,
 } from '../../api/jobBid/jobBid.hooks';
-import LoadingSpinner from '../../components/LoadingSpinner';
+import LoadingSpinner from '../../components/shared/LoadingSpinner';
 import useAuth from '../../hooks/useAuth';
 import { IJob } from '../../types/job';
 import { IJobBid, ISaveJobBid } from '../../types/jobBid';
+import validateJobBidForm from '../../utils/validateJobBidForm';
 
 const JobDetails = () => {
   const { user } = useAuth();
@@ -42,6 +43,7 @@ const JobDetails = () => {
   const alreadyPlacedABid = getJobBidsByUserQuery?.data?.data?.find(
     (jobBid: IJobBid) => jobBid.jobId === _id
   );
+  const isJobDeadlinePassed = isPast(new Date(deadline));
 
   // Get Form Data
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -57,17 +59,27 @@ const JobDetails = () => {
   const handlePlaceJobBid = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
-    if (!startDate) return toast.error('Please select a valid deadline date');
+    // Validate Inputs
+    const validation = validateJobBidForm(
+      formData,
+      startDate,
+      deadline,
+      minimumPrice
+    );
+    if (!validation.isValid) return toast.error(validation.errorMessage!);
 
+    // Create Bid Data
     const data: ISaveJobBid = {
       jobId: _id,
       jobTitle: title,
       jobCategory: category,
       ...formData,
-      bidDeadline: startDate.toISOString(),
+      bidDeadline: startDate!.toISOString(),
       bidderEmail: user?.email ?? '',
       jobOwnerEmail: jobOwnerInfo?.email,
     };
+
+    // Submit the bid
     saveJobBidMutation.mutate(data, {
       onSuccess: () => {
         toast.success(`Successfully placed a bid for '${title}'.`);
@@ -81,11 +93,23 @@ const JobDetails = () => {
       {/* Job Details */}
       <div className="flex-1  px-4 py-7 bg-white rounded-md shadow-md md:min-h-[350px]">
         <div className="flex items-center justify-between">
-          <span className="text-sm font-light text-gray-800 ">
+          <span className={`text-sm font-light text-gray-800`}>
             {/* Deadline: {new Date(deadline).toLocaleDateString()} */}
             Deadline: {format(new Date(deadline), 'MM/dd/yyyy')}
+            {isJobDeadlinePassed && (
+              <span className="ml-2 text-white indicator-item badge badge-error">
+                Deadline Passed
+              </span>
+            )}
           </span>
-          <span className="px-4 py-1 text-xs text-blue-800 uppercase bg-blue-200 rounded-full ">
+
+          <span
+            className={`px-3 py-1 text-[8px] uppercase text-xs bg-blue-200/60 ${
+              category === 'Web Development' && 'text-blue-500'
+            } ${category === 'Graphics Design' && 'text-green-500'} ${
+              category === 'Digital Marketing' && 'text-red-500'
+            } rounded-full `}
+          >
             {category}
           </span>
         </div>
@@ -102,7 +126,7 @@ const JobDetails = () => {
           <div className="flex items-center gap-5">
             <div>
               <p className="mt-2 text-sm text-gray-600">
-                Name: {jobOwnerInfo?.email}
+                Name: {jobOwnerInfo?.name}
               </p>
               <p className="mt-2 text-sm text-gray-600 ">
                 Email: {jobOwnerInfo?.email}
@@ -133,7 +157,6 @@ const JobDetails = () => {
               <input
                 type="number"
                 name="bidAmount"
-                // value={formData.bidAmount}
                 onChange={handleChange}
                 id="price"
                 required
@@ -184,7 +207,9 @@ const JobDetails = () => {
           <div className="flex justify-end mt-6">
             <button
               type="submit"
-              disabled={isJobPostedByUser || alreadyPlacedABid}
+              disabled={
+                isJobPostedByUser || alreadyPlacedABid || isJobDeadlinePassed
+              }
               className="px-8 py-2.5 leading-5 text-white transition-colors duration-300 transform bg-gray-700 rounded-md hover:bg-gray-600 focus:outline-none focus:bg-gray-600 disabled:cursor-not-allowed disabled:bg-gray-400"
             >
               {!isJobPostedByUser

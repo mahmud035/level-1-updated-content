@@ -1,6 +1,6 @@
 import { useGetAllJobBidsForOwnerQuery } from '../../api/jobBid/jobBid.hooks';
-import BidRequestCard from '../../components/BidRequestCard';
-import LoadingSpinner from '../../components/LoadingSpinner';
+import BidRequestCard from '../../components/JobBid/BidRequestCard';
+import LoadingSpinner from '../../components/shared/LoadingSpinner';
 import useAuth from '../../hooks/useAuth';
 import { IJobBid } from '../../types/jobBid';
 

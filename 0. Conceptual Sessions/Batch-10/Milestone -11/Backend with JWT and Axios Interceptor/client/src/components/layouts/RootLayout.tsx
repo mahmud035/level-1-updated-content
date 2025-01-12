@@ -1,6 +1,6 @@
 import { Outlet, ScrollRestoration } from 'react-router';
-import Footer from '../Footer';
-import Navbar from '../Navbar';
+import Footer from '../shared/Footer';
+import Navbar from '../shared/Navbar';
 
 export default function RootLayout() {
   return (

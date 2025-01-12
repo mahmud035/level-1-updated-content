@@ -1,9 +1,9 @@
 import { format } from 'date-fns';
 import toast from 'react-hot-toast';
 import { Link } from 'react-router';
-import { useDeleteJobMutation } from '../api/job/job.hooks';
-import useAuth from '../hooks/useAuth';
-import { IDeleteJob, IJob } from '../types/job';
+import { useDeleteJobMutation } from '../../api/job/job.hooks';
+import useAuth from '../../hooks/useAuth';
+import { IDeleteJob, IJob } from '../../types/job';
 
 interface IMyPostedJobCardProps {
   job: IJob;
@@ -30,43 +30,74 @@ export default function MyPostedJobCard({ job }: IMyPostedJobCardProps) {
     };
 
     deleteJobMutation.mutate(deleteJobInfo, {
-      onSuccess: () => {
-        toast.success('Job deleted successfully');
-      },
+      onSuccess: () => toast.success('Job deleted successfully'),
     });
+  };
+
+  // NOTE: Interesting (Confirm before Deleting)
+  const confirmDelete = (jobId: string) => {
+    toast((t) => (
+      <div className="flex items-center gap-2">
+        <p>
+          Are you <strong className="font-bold">sure?</strong>
+        </p>
+
+        <div className="flex gap-2">
+          <button
+            className="px-3 py-1 text-white bg-red-400 rounded-md"
+            onClick={() => {
+              toast.dismiss(t.id); // dismiss toast
+              handleDeleteJob(jobId); // Call the delete job function
+            }}
+          >
+            Delete
+          </button>
+          <button
+            className="px-3 py-1 text-white bg-green-400 rounded-md"
+            onClick={() => toast.dismiss(t.id)}
+          >
+            Cancel
+          </button>
+        </div>
+      </div>
+    ));
   };
 
   return (
     <tr>
-      <td className="px-4 py-4 text-sm text-gray-500  whitespace-nowrap">
+      <td className="px-4 py-4 text-sm text-gray-500 whitespace-nowrap">
         {title}
       </td>
 
-      <td className="px-4 py-4 text-sm text-gray-500  whitespace-nowrap">
+      <td className="px-4 py-4 text-sm text-gray-500 whitespace-nowrap">
         {/* {new Date(deadline).toLocaleDateString()} */}
         {format(new Date(deadline), 'MM/dd/yyyy')}
       </td>
 
-      <td className="px-4 py-4 text-sm text-gray-500  whitespace-nowrap">
+      <td className="px-4 py-4 text-sm text-gray-500 whitespace-nowrap">
         ${minimumPrice} - ${maximumPrice}
       </td>
       <td className="px-4 py-4 text-sm whitespace-nowrap">
         <div className="flex items-center gap-x-2">
           <p
-            className={`px-3 py-1  text-blue-500 bg-blue-100/60 text-xs  rounded-full`}
+            className={`px-3 py-1 bg-blue-100/60 text-xs ${
+              category === 'Web Development' && 'text-blue-500 '
+            } ${category === 'Graphics Design' && 'text-green-500'} ${
+              category === 'Digital Marketing' && 'text-red-500'
+            } rounded-full`}
           >
             {category}
           </p>
         </div>
       </td>
-      <td className="px-4 py-4 text-sm text-gray-500  whitespace-nowrap">
+      <td className="px-4 py-4 text-sm text-gray-500 whitespace-nowrap">
         {description?.slice(0, 18)}...
       </td>
       <td className="px-4 py-4 text-sm whitespace-nowrap">
         <div className="flex items-center gap-x-6">
           <button
-            onClick={() => handleDeleteJob(_id)}
-            className="text-gray-500 transition-colors duration-200   hover:text-red-500 focus:outline-none"
+            onClick={() => confirmDelete(_id)}
+            className="text-gray-500 transition-colors duration-200 hover:text-red-500 focus:outline-none"
           >
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -86,7 +117,7 @@ export default function MyPostedJobCard({ job }: IMyPostedJobCardProps) {
 
           <Link
             to={`/update/${_id}`}
-            className="text-gray-500 transition-colors duration-200   hover:text-yellow-500 focus:outline-none"
+            className="text-gray-500 transition-colors duration-200 hover:text-yellow-500 focus:outline-none"
           >
             <svg
               xmlns="http://www.w3.org/2000/svg"

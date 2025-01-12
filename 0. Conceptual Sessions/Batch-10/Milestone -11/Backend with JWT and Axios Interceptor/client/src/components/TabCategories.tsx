@@ -3,8 +3,8 @@ import { Tab, TabList, TabPanel, Tabs } from 'react-tabs';
 import 'react-tabs/style/react-tabs.css';
 import { useGetJobsQuery } from '../api/job/job.hooks';
 import { IJob } from '../types/job';
-import JobCard from './JobCard';
-import LoadingSpinner from './LoadingSpinner';
+import JobCard from './Job/JobCard';
+import LoadingSpinner from './shared/LoadingSpinner';
 
 const TabCategories = () => {
   const [category, setCategory] = useState('Web Development');

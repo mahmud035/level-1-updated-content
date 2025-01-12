@@ -1,4 +1,4 @@
-import useSearch from '../hooks/search/useSearch';
+import useSearch from '../../hooks/search/useSearch';
 
 export default function NoDataFound({ message }: { message: string }) {
   const { searchQuery } = useSearch();
