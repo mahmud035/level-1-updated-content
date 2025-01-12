@@ -9,6 +9,14 @@ export const getJobBidsByUser = async (userEmail: string) => {
   return data;
 };
 
+// Get all bid requests for a job owner
+export const getAllJobBidsForOwner = async (ownerEmail: string) => {
+  const { data } = await axiosInstance.get(
+    `/job-bids/for-owner?ownerEmail=${ownerEmail}`
+  );
+  return data;
+};
+
 // Get all bids for a specific job posted by the job owner
 export const getJobBidsByJobOwner = async (
   jobId: string,

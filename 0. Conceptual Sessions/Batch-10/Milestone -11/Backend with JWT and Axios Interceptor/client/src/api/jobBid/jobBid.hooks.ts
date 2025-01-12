@@ -1,6 +1,7 @@
 import { useMutation, useQuery } from '@tanstack/react-query';
 import { ISaveJobBid, IUpdateBidStatus } from '../../types/jobBid';
 import {
+  getAllJobBidsForOwner,
   getJobBidsByJobOwner,
   getJobBidsByUser,
   saveJobBid,
@@ -14,6 +15,15 @@ export const useGetJobBidsByUserQuery = (userEmail: string) => {
     queryKey: ['job-bids', 'user', userEmail],
     queryFn: () => getJobBidsByUser(userEmail),
     enabled: !!userEmail,
+  });
+};
+
+// Get all bid requests for a job owner
+export const useGetAllJobBidsForOwnerQuery = (ownerEmail: string) => {
+  return useQuery({
+    queryKey: ['job-bids', 'for-owner', ownerEmail],
+    queryFn: () => getAllJobBidsForOwner(ownerEmail),
+    enabled: !!ownerEmail,
   });
 };
 
