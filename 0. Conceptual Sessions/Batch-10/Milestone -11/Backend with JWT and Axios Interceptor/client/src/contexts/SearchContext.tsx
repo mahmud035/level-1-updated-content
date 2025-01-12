@@ -9,10 +9,7 @@ interface ISearchContext {
   setSearchQuery: React.Dispatch<React.SetStateAction<string>>;
 }
 
-const SearchContext = createContext<ISearchContext>({
-  searchQuery: '',
-  setSearchQuery: () => {},
-});
+const SearchContext = createContext<ISearchContext | null>(null);
 
 export default function SearchProvider({ children }: ISearchProviderProps) {
   const [searchQuery, setSearchQuery] = useState<string>('');

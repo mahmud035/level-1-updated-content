@@ -44,10 +44,10 @@ export const createJob = async (jobData: ICreateJob) => {
 
 // Update an existing job by its ID
 export const updateJob = async (updateJobInfo: IUpdateJob) => {
-  const { jobId, jobOwnerEmail, jobData } = updateJobInfo;
+  const { jobId, jobData } = updateJobInfo;
 
   const { data } = await axiosInstance.patch(
-    `/jobs/${jobId}?ownerEmail=${jobOwnerEmail}`,
+    `/jobs/${jobId}?ownerEmail=${jobData?.jobOwnerInfo?.email}`,
     jobData
   );
   return data;

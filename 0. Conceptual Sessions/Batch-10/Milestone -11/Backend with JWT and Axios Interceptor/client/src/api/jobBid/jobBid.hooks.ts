@@ -1,5 +1,5 @@
 import { useMutation, useQuery } from '@tanstack/react-query';
-import { IJobBid, IUpdateBidStatus } from '../../types/jobBid';
+import { ISaveJobBid, IUpdateBidStatus } from '../../types/jobBid';
 import {
   getJobBidsByJobOwner,
   getJobBidsByUser,
@@ -33,7 +33,7 @@ export const useGetJobBidsByJobOwnerQuery = (
 // Save a new bid for a job
 export const useSaveJobBidMutation = () => {
   return useMutation({
-    mutationFn: (jobBidData: IJobBid) => saveJobBid(jobBidData),
+    mutationFn: (jobBidData: ISaveJobBid) => saveJobBid(jobBidData),
   });
 };
 

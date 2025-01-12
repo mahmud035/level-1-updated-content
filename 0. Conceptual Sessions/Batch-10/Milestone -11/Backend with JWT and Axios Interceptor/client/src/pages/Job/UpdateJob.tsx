@@ -6,20 +6,22 @@ import { useNavigate, useParams } from 'react-router';
 import { useGetJobQuery, useUpdateJobMutation } from '../../api/job/job.hooks';
 import LoadingSpinner from '../../components/LoadingSpinner';
 import useAuth from '../../hooks/useAuth';
+import useJobOwner from '../../hooks/useJobOwner';
 import { IUpdateJob } from '../../types/job';
 import { getDefaultUpdateJobFormData } from '../../utils';
 
 const UpdateJob = () => {
   const { user } = useAuth();
+  const jobOwnerInfo = useJobOwner();
   const { id: jobId } = useParams();
   const getJobQuery = useGetJobQuery(jobId!);
   const { isPending, data } = getJobQuery;
+  const updateJobMutation = useUpdateJobMutation();
+  const navigate = useNavigate();
   const [formData, setFormData] = useState(
     getDefaultUpdateJobFormData(data?.data ?? {})
   );
   const [startDate, setStartDate] = useState<Date | null>(null);
-  const updateJobMutation = useUpdateJobMutation();
-  const navigate = useNavigate();
 
   // Synchronize form data and deadline date with the fetched job data.
   // This ensures the form is pre-filled with the job's details when the data is available.
@@ -56,8 +58,8 @@ const UpdateJob = () => {
 
     const data: IUpdateJob = {
       jobId: _id,
-      jobOwnerEmail: formData.email,
       jobData: {
+        jobOwnerInfo,
         ...restFormData,
         deadline: startDate.toISOString(),
       },

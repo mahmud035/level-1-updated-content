@@ -1,5 +1,5 @@
 import axiosInstance from '../../config/axios.config';
-import { IJobBid, IUpdateBidStatus } from '../../types/jobBid';
+import { ISaveJobBid, IUpdateBidStatus } from '../../types/jobBid';
 
 // Get all job bids placed by a specific user
 export const getJobBidsByUser = async (userEmail: string) => {
@@ -21,7 +21,7 @@ export const getJobBidsByJobOwner = async (
 };
 
 // Save a new bid for a job
-export const saveJobBid = async (jobBidData: IJobBid) => {
+export const saveJobBid = async (jobBidData: ISaveJobBid) => {
   const { data } = await axiosInstance.post(`/job-bids`, jobBidData);
   return data;
 };

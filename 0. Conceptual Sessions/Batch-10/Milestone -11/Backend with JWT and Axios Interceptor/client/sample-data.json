@@ -1,7 +1,11 @@
 [
   {
     "title": "SEO Strategy for Marketing Website",
-    "email": "test@gmail.com",
+    "jobOwnerInfo": {
+      "name": "Test",
+      "email": "test@gmail.com",
+      "photoURL": "https://i.ibb.co.com/cyN6Zw2/1671645868049.jpg"
+    },
     "description": "Develop an effective SEO strategy to improve visibility and ranking of a digital marketing website on search engines.",
     "category": "Digital Marketing",
     "minimumPrice": 637,
@@ -13,7 +17,11 @@
   },
   {
     "title": "Logo and Banner Design",
-    "email": "test@gmail.com",
+    "jobOwnerInfo": {
+      "name": "Test",
+      "email": "test@gmail.com",
+      "photoURL": "https://i.ibb.co.com/cyN6Zw2/1671645868049.jpg"
+    },
     "description": "Create an attractive logo and banners to enhance branding for a new e-commerce platform's marketing campaign.",
     "category": "Graphics Design",
     "minimumPrice": 1,
@@ -25,7 +33,11 @@
   },
   {
     "title": "Corporate Branding Material",
-    "email": "test@gmail.com",
+    "jobOwnerInfo": {
+      "name": "Test",
+      "email": "test@gmail.com",
+      "photoURL": "https://i.ibb.co.com/cyN6Zw2/1671645868049.jpg"
+    },
     "description": "Design corporate branding materials such as business cards and brochures to represent a professional image for our company.",
     "category": "Graphics Design",
     "minimumPrice": 2822,
@@ -37,7 +49,11 @@
   },
   {
     "title": "UI/UX Design for Mobile App",
-    "email": "test@gmail.com",
+    "jobOwnerInfo": {
+      "name": "Test",
+      "email": "test@gmail.com",
+      "photoURL": "https://i.ibb.co.com/cyN6Zw2/1671645868049.jpg"
+    },
     "description": "Create an engaging and intuitive UI/UX design for a mobile application targeted at small business owners.",
     "category": "Graphics Design",
     "minimumPrice": 390,
@@ -49,7 +65,11 @@
   },
   {
     "title": "Custom Graphics for Social Media",
-    "email": "test@gmail.com",
+    "jobOwnerInfo": {
+      "name": "Test",
+      "email": "test@gmail.com",
+      "photoURL": "https://i.ibb.co.com/cyN6Zw2/1671645868049.jpg"
+    },
     "description": "Design unique and eye-catching graphics for our social media platforms to boost user engagement and brand awareness.",
     "category": "Graphics Design",
     "minimumPrice": 262,
@@ -61,7 +81,11 @@
   },
   {
     "title": "Logo Redesign for Startup",
-    "email": "test@gmail.com",
+    "jobOwnerInfo": {
+      "name": "Test",
+      "email": "test@gmail.com",
+      "photoURL": "https://i.ibb.co.com/cyN6Zw2/1671645868049.jpg"
+    },
     "description": "Redesign the existing logo to better align with our startup's modern and dynamic brand identity.",
     "category": "Graphics Design",
     "minimumPrice": 367,
@@ -73,7 +97,11 @@
   },
   {
     "title": "Website Banner Graphics",
-    "email": "test@gmail.com",
+    "jobOwnerInfo": {
+      "name": "Test",
+      "email": "test@gmail.com",
+      "photoURL": "https://i.ibb.co.com/cyN6Zw2/1671645868049.jpg"
+    },
     "description": "Design high-quality banners for an e-commerce website's upcoming sales events and promotions.",
     "category": "Graphics Design",
     "minimumPrice": 66,
@@ -85,7 +113,11 @@
   },
   {
     "title": "Social Media Post Templates",
-    "email": "test@gmail.com",
+    "jobOwnerInfo": {
+      "name": "Test",
+      "email": "test@gmail.com",
+      "photoURL": "https://i.ibb.co.com/cyN6Zw2/1671645868049.jpg"
+    },
     "description": "Create reusable and visually appealing templates for social media posts tailored to a beauty brand.",
     "category": "Graphics Design",
     "minimumPrice": 457,
@@ -97,7 +129,11 @@
   },
   {
     "title": "SEO Optimization for Blog",
-    "email": "test@gmail.com",
+    "jobOwnerInfo": {
+      "name": "Test",
+      "email": "test@gmail.com",
+      "photoURL": "https://i.ibb.co.com/cyN6Zw2/1671645868049.jpg"
+    },
     "description": "Implement effective SEO practices to increase organic traffic and improve search rankings for a personal finance blog.",
     "category": "Digital Marketing",
     "minimumPrice": 745,
@@ -109,7 +145,11 @@
   },
   {
     "title": "Custom Web Development Project",
-    "email": "test@gmail.com",
+    "jobOwnerInfo": {
+      "name": "Test",
+      "email": "test@gmail.com",
+      "photoURL": "https://i.ibb.co.com/cyN6Zw2/1671645868049.jpg"
+    },
     "description": "Develop a responsive and feature-rich web application for managing customer feedback in real-time.",
     "category": "Web Development",
     "minimumPrice": 201,
@@ -121,7 +161,11 @@
   },
   {
     "title": "E-commerce Platform Enhancements",
-    "email": "test@gmail.com",
+    "jobOwnerInfo": {
+      "name": "Test",
+      "email": "test@gmail.com",
+      "photoURL": "https://i.ibb.co.com/cyN6Zw2/1671645868049.jpg"
+    },
     "description": "Enhance the existing e-commerce platform with new features, improving user experience and functionality.",
     "category": "Web Development",
     "minimumPrice": 810,
@@ -133,7 +177,11 @@
   },
   {
     "title": "Travel Blog Content Writer",
-    "email": "test@gmail.com",
+    "jobOwnerInfo": {
+      "name": "Test",
+      "email": "test@gmail.com",
+      "photoURL": "https://i.ibb.co.com/cyN6Zw2/1671645868049.jpg"
+    },
     "description": "Write engaging, SEO-friendly articles for a travel website, focusing on hidden gems and local experiences.",
     "category": "Digital Marketing",
     "minimumPrice": 100,
@@ -145,7 +193,11 @@
   },
   {
     "title": "Social Media Campaign Manager",
-    "email": "test@gmail.com",
+    "jobOwnerInfo": {
+      "name": "Test",
+      "email": "test@gmail.com",
+      "photoURL": "https://i.ibb.co.com/cyN6Zw2/1671645868049.jpg"
+    },
     "description": "Develop and manage social media campaigns to increase brand awareness and drive traffic to the website.",
     "category": "Digital Marketing",
     "minimumPrice": 300,
@@ -157,19 +209,27 @@
   },
   {
     "title": "Brand Logo Design",
-    "email": "test@gmail.com",
+    "jobOwnerInfo": {
+      "name": "Test",
+      "email": "test@gmail.com",
+      "photoURL": "https://i.ibb.co.com/cyN6Zw2/1671645868049.jpg"
+    },
     "description": "Design a unique and creative logo that reflects the brand's identity and mission for a startup business.",
     "category": "Graphics Design",
     "minimumPrice": 200,
     "maximumPrice": 800,
-    "bidCount": 1,
+    "bidCount": 0,
     "deadline": "2025-03-10",
     "createdAt": "2025-01-09T02:48:29.120Z",
     "updatedAt": "2025-01-09T02:48:29.120Z"
   },
   {
     "title": "E-commerce Web Development",
-    "email": "test@gmail.com",
+    "jobOwnerInfo": {
+      "name": "Test",
+      "email": "test@gmail.com",
+      "photoURL": "https://i.ibb.co.com/cyN6Zw2/1671645868049.jpg"
+    },
     "description": "Build a fully responsive and modern e-commerce platform to support multiple product categories and payment integrations.",
     "category": "Web Development",
     "minimumPrice": 5000,
@@ -181,7 +241,11 @@
   },
   {
     "title": "Website Redesign for E-commerce Platform",
-    "email": "mahmud@gmail.com",
+    "jobOwnerInfo": {
+      "name": "Mahmud",
+      "email": "mahmud@gmail.com",
+      "photoURL": "https://i.ibb.co.com/SfcJkZk/profile-picture.png"
+    },
     "description": "Redesign an existing e-commerce website to improve user experience and increase sales conversion rates.",
     "category": "Web Development",
     "minimumPrice": 3000,
@@ -193,7 +257,11 @@
   },
   {
     "title": "Mobile Web Development for Fitness Tracking",
-    "email": "mahmud@gmail.com",
+    "jobOwnerInfo": {
+      "name": "Mahmud",
+      "email": "mahmud@gmail.com",
+      "photoURL": "https://i.ibb.co.com/SfcJkZk/profile-picture.png"
+    },
     "description": "Develop a mobile application for tracking fitness activities, including workout logs and progress reports.",
     "category": "Web Development",
     "minimumPrice": 5000,
@@ -205,7 +273,11 @@
   },
   {
     "title": "SEO Audit and Optimization for Tech Blog",
-    "email": "mahmud@gmail.com",
+    "jobOwnerInfo": {
+      "name": "Mahmud",
+      "email": "mahmud@gmail.com",
+      "photoURL": "https://i.ibb.co.com/SfcJkZk/profile-picture.png"
+    },
     "description": "Perform an SEO audit and implement strategies to optimize a tech blog for search engines.",
     "category": "Digital Marketing",
     "minimumPrice": 400,
@@ -217,7 +289,11 @@
   },
   {
     "title": "Social Media Content Creation for Fashion Brand",
-    "email": "mahmud@gmail.com",
+    "jobOwnerInfo": {
+      "name": "Mahmud",
+      "email": "mahmud@gmail.com",
+      "photoURL": "https://i.ibb.co.com/SfcJkZk/profile-picture.png"
+    },
     "description": "Create visually appealing social media content to enhance the brand presence of a fashion company.",
     "category": "Graphics Design",
     "minimumPrice": 150,
@@ -229,7 +305,11 @@
   },
   {
     "title": "Logo Design for New Start-up",
-    "email": "mahmud@gmail.com",
+    "jobOwnerInfo": {
+      "name": "Mahmud",
+      "email": "mahmud@gmail.com",
+      "photoURL": "https://i.ibb.co.com/SfcJkZk/profile-picture.png"
+    },
     "description": "Design a modern and creative logo for a new start-up in the tech industry.",
     "category": "Graphics Design",
     "minimumPrice": 200,
@@ -241,7 +321,11 @@
   },
   {
     "title": "E-commerce Store Setup and Design",
-    "email": "mahmud@gmail.com",
+    "jobOwnerInfo": {
+      "name": "Mahmud",
+      "email": "mahmud@gmail.com",
+      "photoURL": "https://i.ibb.co.com/SfcJkZk/profile-picture.png"
+    },
     "description": "Set up an e-commerce store with a clean and user-friendly design for an online retail business.",
     "category": "Web Development",
     "minimumPrice": 1500,
@@ -253,7 +337,11 @@
   },
   {
     "title": "UI/UX Design for Healthcare App",
-    "email": "mahmud@gmail.com",
+    "jobOwnerInfo": {
+      "name": "Mahmud",
+      "email": "mahmud@gmail.com",
+      "photoURL": "https://i.ibb.co.com/SfcJkZk/profile-picture.png"
+    },
     "description": "Create intuitive UI/UX designs for a healthcare mobile application, ensuring a smooth user experience.",
     "category": "Graphics Design",
     "minimumPrice": 800,
@@ -265,7 +353,11 @@
   },
   {
     "title": "Content Strategy for B2B Software Website",
-    "email": "mahmud@gmail.com",
+    "jobOwnerInfo": {
+      "name": "Mahmud",
+      "email": "mahmud@gmail.com",
+      "photoURL": "https://i.ibb.co.com/SfcJkZk/profile-picture.png"
+    },
     "description": "Develop a content strategy to improve the engagement and conversion rates of a B2B software company website.",
     "category": "Digital Marketing",
     "minimumPrice": 500,
@@ -277,7 +369,11 @@
   },
   {
     "title": "Custom WordPress Development for Blog",
-    "email": "mahmud@gmail.com",
+    "jobOwnerInfo": {
+      "name": "Mahmud",
+      "email": "mahmud@gmail.com",
+      "photoURL": "https://i.ibb.co.com/SfcJkZk/profile-picture.png"
+    },
     "description": "Develop a custom WordPress theme for a personal blog, ensuring it is responsive and easy to manage.",
     "category": "Web Development",
     "minimumPrice": 300,
@@ -289,7 +385,11 @@
   },
   {
     "title": "Brand Identity Design",
-    "email": "mahmud@gmail.com",
+    "jobOwnerInfo": {
+      "name": "Mahmud",
+      "email": "mahmud@gmail.com",
+      "photoURL": "https://i.ibb.co.com/SfcJkZk/profile-picture.png"
+    },
     "description": "Create a comprehensive brand identity package, including logo, color palette, and fonts for a new company.",
     "category": "Graphics Design",
     "minimumPrice": 600,
@@ -301,7 +401,11 @@
   },
   {
     "title": "Video Ad Production for Marketing Campaign",
-    "email": "mahmud@gmail.com",
+    "jobOwnerInfo": {
+      "name": "Mahmud",
+      "email": "mahmud@gmail.com",
+      "photoURL": "https://i.ibb.co.com/SfcJkZk/profile-picture.png"
+    },
     "description": "Produce a high-quality video advertisement for a new product launch to be used across social media and websites.",
     "category": "Graphics Design",
     "minimumPrice": 800,
@@ -313,7 +417,11 @@
   },
   {
     "title": "SEO-Optimized Blog Posts for Startup",
-    "email": "mahmud@gmail.com",
+    "jobOwnerInfo": {
+      "name": "Mahmud",
+      "email": "mahmud@gmail.com",
+      "photoURL": "https://i.ibb.co.com/SfcJkZk/profile-picture.png"
+    },
     "description": "Write SEO-optimized blog posts for a startup's website to improve visibility and attract organic traffic.",
     "category": "Digital Marketing",
     "minimumPrice": 100,
@@ -325,7 +433,11 @@
   },
   {
     "title": "E-commerce Website SEO Optimization",
-    "email": "mahmud@gmail.com",
+    "jobOwnerInfo": {
+      "name": "Mahmud",
+      "email": "mahmud@gmail.com",
+      "photoURL": "https://i.ibb.co.com/SfcJkZk/profile-picture.png"
+    },
     "description": "Perform SEO optimization on an e-commerce website to improve search rankings and drive more traffic.",
     "category": "Digital Marketing",
     "minimumPrice": 600,
@@ -337,7 +449,11 @@
   },
   {
     "title": "Web Development for Online Grocery Store",
-    "email": "mahmud@gmail.com",
+    "jobOwnerInfo": {
+      "name": "Mahmud",
+      "email": "mahmud@gmail.com",
+      "photoURL": "https://i.ibb.co.com/SfcJkZk/profile-picture.png"
+    },
     "description": "Develop a mobile app for an online grocery store, allowing customers to browse and order groceries seamlessly.",
     "category": "Web Development",
     "minimumPrice": 3000,
@@ -349,7 +465,11 @@
   },
   {
     "title": "Social Media Campaign for Fitness Brand",
-    "email": "mahmud@gmail.com",
+    "jobOwnerInfo": {
+      "name": "Mahmud",
+      "email": "mahmud@gmail.com",
+      "photoURL": "https://i.ibb.co.com/SfcJkZk/profile-picture.png"
+    },
     "description": "Manage and execute a social media marketing campaign for a fitness brand, including posts, ads, and influencer outreach.",
     "category": "Digital Marketing",
     "minimumPrice": 500,
@@ -361,7 +481,11 @@
   },
   {
     "title": "Web Development for Restaurant Business",
-    "email": "mahmud@gmail.com",
+    "jobOwnerInfo": {
+      "name": "Mahmud",
+      "email": "mahmud@gmail.com",
+      "photoURL": "https://i.ibb.co.com/SfcJkZk/profile-picture.png"
+    },
     "description": "Develop a user-friendly website for a restaurant, including an online menu, reservation system, and contact form.",
     "category": "Web Development",
     "minimumPrice": 1200,
@@ -373,7 +497,11 @@
   },
   {
     "title": "Email Marketing Campaign for E-commerce Business",
-    "email": "mahmud@gmail.com",
+    "jobOwnerInfo": {
+      "name": "Mahmud",
+      "email": "mahmud@gmail.com",
+      "photoURL": "https://i.ibb.co.com/SfcJkZk/profile-picture.png"
+    },
     "description": "Create and manage an email marketing campaign for an e-commerce business to drive sales and customer engagement.",
     "category": "Digital Marketing",
     "minimumPrice": 200,

@@ -18,19 +18,17 @@ export const defaultJobApplyFormData = {
   resumeURL: '',
 };
 
-export const getDefaultAddJobFormData = (jobOwnerEmail: string) => ({
+export const getDefaultAddJobFormData = {
   title: '',
-  email: jobOwnerEmail,
   description: '',
   category: 'Web Development',
   minimumPrice: 1,
   maximumPrice: 1,
   bidCount: 0,
-});
+};
 
 export const getDefaultUpdateJobFormData = (data: IJob) => ({
   _id: data?._id ?? '',
-  email: data?.email ?? '',
   title: data?.title ?? '',
   description: data?.description ?? '',
   category: data?.category ?? '',

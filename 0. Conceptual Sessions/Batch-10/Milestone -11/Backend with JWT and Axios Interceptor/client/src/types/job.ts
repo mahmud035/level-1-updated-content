@@ -7,22 +7,28 @@ export interface IGetJobsQueryOptions {
   category?: string;
 }
 
+interface IJobOwnerInfo {
+  name: string;
+  email: string;
+  photoURL: string;
+}
+
 export interface IJob {
   _id: string;
-  email: string;
+  jobOwnerInfo: IJobOwnerInfo;
   title: string;
-  deadline: string;
   description: string;
   category: string;
   minimumPrice: number;
   maximumPrice: number;
   bidCount: number;
+  deadline: string;
   createdAt: string;
   updatedAt: string;
 }
 
 export interface ICreateJob {
-  email: string;
+  jobOwnerInfo: IJobOwnerInfo;
   title: string;
   deadline: string;
   description: string;
@@ -32,8 +38,8 @@ export interface ICreateJob {
   bidCount: number;
 }
 
-interface IJobUpdate {
-  email: string;
+interface IJobData {
+  jobOwnerInfo: IJobOwnerInfo;
   title: string;
   deadline: string;
   description: string;
@@ -47,8 +53,7 @@ interface IJobUpdate {
 
 export interface IUpdateJob {
   jobId: string;
-  jobOwnerEmail: string;
-  jobData: IJobUpdate;
+  jobData: IJobData;
 }
 
 export interface IDeleteJob {

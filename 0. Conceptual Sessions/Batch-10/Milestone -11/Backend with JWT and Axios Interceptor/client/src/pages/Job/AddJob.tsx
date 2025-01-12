@@ -5,15 +5,15 @@ import toast from 'react-hot-toast';
 import { useNavigate } from 'react-router';
 import { useCreateJobMutation } from '../../api/job/job.hooks';
 import useAuth from '../../hooks/useAuth';
+import useJobOwner from '../../hooks/useJobOwner';
 import { ICreateJob } from '../../types/job';
 import { getDefaultAddJobFormData } from '../../utils';
 
 const AddJob = () => {
   const { user } = useAuth();
+  const jobOwnerInfo = useJobOwner();
   const [startDate, setStartDate] = useState<Date | null>(new Date());
-  const [formData, setFormData] = useState(
-    getDefaultAddJobFormData(user?.email ?? '')
-  );
+  const [formData, setFormData] = useState(getDefaultAddJobFormData);
   const createJobMutation = useCreateJobMutation();
   const navigate = useNavigate();
 
@@ -36,6 +36,7 @@ const AddJob = () => {
     e.preventDefault();
 
     const data: ICreateJob = {
+      jobOwnerInfo,
       ...formData,
       deadline: startDate!.toISOString(),
     };
@@ -45,6 +46,8 @@ const AddJob = () => {
         navigate('/my-posted-jobs');
       },
     });
+
+    console.log('formData =>', data);
   };
 
   return (
