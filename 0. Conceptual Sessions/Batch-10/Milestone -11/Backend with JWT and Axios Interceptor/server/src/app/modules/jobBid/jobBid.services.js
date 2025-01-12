@@ -9,7 +9,21 @@ import { jobBids, jobs } from '../../../server.js';
 
 const getJobBidsByUser = async (userEmail) => {
   const query = { bidderEmail: userEmail };
-  const result = await jobBids.find(query).toArray();
+  const sort = { createdAt: 'desc' };
+  const result = await jobBids.find(query).sort(sort).toArray();
+  return result;
+};
+
+/**
+ * @desc    Fetch all job bids placed for jobs owned by a specific owner
+ * @param   {string} ownerEmail - The email of the job owner for whom to fetch bids
+ * @returns {Promise<Array>} A promise that resolves to a list of all bids placed by the specified job owner
+ */
+
+const getAllJobBidsForOwner = async (ownerEmail) => {
+  const query = { jobOwnerEmail: ownerEmail };
+  const sort = { createdAt: 'desc' };
+  const result = await jobBids.find(query).sort(sort).toArray();
   return result;
 };
 
@@ -22,7 +36,8 @@ const getJobBidsByUser = async (userEmail) => {
 
 const getJobBidsByJobOwner = async (jobId, ownerEmail) => {
   const query = { jobId: jobId, jobOwnerEmail: ownerEmail };
-  const result = await jobBids.find(query).toArray();
+  const sort = { createdAt: 'desc' };
+  const result = await jobBids.find(query).sort(sort).toArray();
   return result;
 };
 
@@ -76,6 +91,7 @@ const updateBidStatus = async (jobId, status) => {
 
 export const JobBidService = {
   getJobBidsByUser,
+  getAllJobBidsForOwner,
   getJobBidsByJobOwner,
   saveJobBid,
   updateBidStatus,

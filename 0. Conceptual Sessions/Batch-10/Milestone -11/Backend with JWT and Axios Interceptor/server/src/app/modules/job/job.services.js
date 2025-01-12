@@ -9,7 +9,7 @@ import { buildQueryFromFilters } from './job.utils.js';
         { title: { $regex: "engineer", $options: "i" } },
         { category: { $regex: "categoryName", $options: "i" } }
       ],
-      category: "Engineering"
+      category: "Web Development"
     }
  */
 
@@ -61,8 +61,9 @@ const getJobs = async (options) => {
  */
 
 const getJobsByUser = async (userEmail) => {
-  const query = { email: userEmail };
-  const result = await jobs.find(query).toArray();
+  const query = { 'jobOwnerInfo.email': userEmail };
+  const sort = { createdAt: 'desc' };
+  const result = await jobs.find(query).sort(sort).toArray();
   return result;
 };
 
@@ -105,7 +106,10 @@ const createJob = async (data) => {
 
 const updateJob = async (jobId, data, jobOwnerEmail) => {
   const timeStamps = new Date();
-  const filter = { _id: new ObjectId(jobId), email: jobOwnerEmail };
+  const filter = {
+    _id: new ObjectId(jobId),
+    'jobOwnerInfo.email': jobOwnerEmail,
+  };
   const updatedJob = { $set: { ...data, updatedAt: timeStamps } };
   const result = await jobs.updateOne(filter, updatedJob);
   return result;
@@ -119,7 +123,10 @@ const updateJob = async (jobId, data, jobOwnerEmail) => {
  */
 
 const deleteJob = async (jobId, jobOwnerEmail) => {
-  const query = { _id: new ObjectId(jobId), email: jobOwnerEmail };
+  const query = {
+    _id: new ObjectId(jobId),
+    'jobOwnerInfo.email': jobOwnerEmail,
+  };
   const result = await jobs.deleteOne(query);
   return result;
 };

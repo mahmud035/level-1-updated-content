@@ -17,6 +17,14 @@ router.get(
   JobBidController.getJobBidsByUser
 );
 
+// Get all bid requests for a job owner
+router.get(
+  '/for-owner',
+  auth,
+  validateRequest(JobBidValidation.getAllJobBidsForOwner),
+  JobBidController.getAllJobBidsForOwner
+);
+
 // Get all bids for a specific job posted by the job owner
 router.get(
   '/:jobId/for-owner',

@@ -42,9 +42,17 @@ const getJobsByUserZodSchema = z.object({
 const createJobZodValidation = z.object({
   body: z
     .object({
-      email: z
-        .string({ required_error: 'Email is required' })
-        .email('Invalid email format'),
+      jobOwnerInfo: z.object({
+        name: z
+          .string({ required_error: 'Job owner name is required' })
+          .min(3, 'Job owner name must be at least 3 characters'),
+        email: z
+          .string({ required_error: 'Job owner email is required' })
+          .email('Invalid email format'),
+        photoURL: z.string({
+          required_error: 'Job owner photoURL is required',
+        }),
+      }),
       title: z
         .string({ required_error: 'Job title is required' })
         .min(3, 'Job title must be at least 3 characters'),
@@ -54,7 +62,11 @@ const createJobZodValidation = z.object({
       description: z
         .string({ required_error: 'Description is required' })
         .min(10, 'Description must be at least 10 characters'),
-      category: z.enum(['Technology', 'Design', 'Marketing', 'Writing']), // 👈 Need to modify it later
+      category: z.enum([
+        'Web Development',
+        'Graphics Design',
+        'Digital Marketing',
+      ]), // 👈 Need to modify it later
       minimumPrice: z
         .number({ required_error: 'Minimum price is required' })
         .min(1, 'Minimum price must be at least 1'),
@@ -74,11 +86,25 @@ const updateJobZodValidation = z.object({
       .refine(isValidObjectId, 'Invalid job ID format'), // Validate MongoDB ObjectId format
   }),
 
+  query: z.object({
+    ownerEmail: z
+      .string({ required_error: 'Job owner email is required' })
+      .email('Invalid email format'),
+  }),
+
   body: z
     .object({
-      email: z
-        .string({ required_error: 'Email is required' })
-        .email('Invalid email format'),
+      jobOwnerInfo: z.object({
+        name: z
+          .string({ required_error: 'Job owner name is required' })
+          .min(3, 'Job owner name must be at least 3 characters'),
+        email: z
+          .string({ required_error: 'Job owner email is required' })
+          .email('Invalid email format'),
+        photoURL: z.string({
+          required_error: 'Job owner photoURL is required',
+        }),
+      }),
       title: z
         .string({ required_error: 'Job title is required' })
         .min(3, 'Job title must be at least 3 characters'),
@@ -88,7 +114,11 @@ const updateJobZodValidation = z.object({
       description: z
         .string({ required_error: 'Description is required' })
         .min(10, 'Description must be at least 10 characters'),
-      category: z.enum(['Technology', 'Design', 'Marketing', 'Writing']), // 👈 Need to modify it later
+      category: z.enum([
+        'Web Development',
+        'Graphics Design',
+        'Digital Marketing',
+      ]), // 👈 Need to modify it later
       minimumPrice: z
         .number({ required_error: 'Minimum price is required' })
         .min(1, 'Minimum price must be at least 1'),
@@ -101,12 +131,6 @@ const updateJobZodValidation = z.object({
       path: ['maximumPrice'],
       message: 'Maximum price must be greater than or equal to minimum price',
     }),
-
-  query: z.object({
-    ownerEmail: z
-      .string({ required_error: 'Job owner email is required' })
-      .email('Invalid email format'),
-  }),
 });
 
 const deleteJobZodSchema = z.object({

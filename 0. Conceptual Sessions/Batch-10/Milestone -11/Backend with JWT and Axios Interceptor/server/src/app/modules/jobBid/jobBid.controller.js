@@ -28,6 +28,31 @@ const getJobBidsByUser = async (req, res, next) => {
 };
 
 /**
+ * @desc    Get all bid requests for a job owner
+ * @route   GET /job-bids/for-owner?ownerEmail=
+ * @param   {Object} req - The request object containing the ownerEmail query parameter
+ * @param   {Object} res - The response object to send back the result
+ * @param   {Function} next - The next middleware function for error handling
+ * @returns {Object} JSON response with all job bids placed for the job owner
+ */
+
+const getAllJobBidsForOwner = async (req, res, next) => {
+  try {
+    const { ownerEmail } = req.query;
+    const allJobBids = await JobBidService.getAllJobBidsForOwner(ownerEmail);
+
+    sendResponse(res, {
+      statusCode: httpStatus.OK,
+      success: true,
+      message: 'Successfully retrieved all bids for the job owner.',
+      data: allJobBids,
+    });
+  } catch (error) {
+    next(error);
+  }
+};
+
+/**
  * @desc    Get all bids for a specific job posted by the job owner
  * @route   GET /job-bids/:jobId/for-owner?ownerEmail=
  * @param   {Object} req - The request object containing the jobId parameter and ownerEmail query parameter
@@ -114,6 +139,7 @@ const updateBidStatus = async (req, res, next) => {
 
 export const JobBidController = {
   getJobBidsByUser,
+  getAllJobBidsForOwner,
   getJobBidsByJobOwner,
   saveJobBid,
   updateBidStatus,

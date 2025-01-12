@@ -78,9 +78,8 @@ const refreshAccessToken = async (req, res, next) => {
       await AuthService.refreshAccessToken(verifiedUser);
 
     //* Step 4: Set NEW accessToken and refreshToken into res.cookie()
-    // Format: res.cookie(name, value, cookieOptions)
-    res.cookie('newAccessToken', newAccessToken, cookieOptions);
-    res.cookie('newRefreshToken', newRefreshToken, cookieOptions);
+    res.cookie('accessToken', newAccessToken, cookieOptions);
+    res.cookie('refreshToken', newRefreshToken, cookieOptions);
 
     sendResponse(res, {
       statusCode: httpStatus.OK,
