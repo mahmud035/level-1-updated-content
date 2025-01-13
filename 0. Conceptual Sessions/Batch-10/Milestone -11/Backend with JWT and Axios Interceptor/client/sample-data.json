@@ -11,6 +11,7 @@
     "minimumPrice": 637,
     "maximumPrice": 6081,
     "bidCount": 0,
+    "acceptingBidRequest": true,
     "deadline": "2025-01-24T11:15:09.000Z",
     "createdAt": "2025-01-11T11:16:17.936Z",
     "updatedAt": "2025-01-11T11:16:17.936Z"
@@ -27,6 +28,7 @@
     "minimumPrice": 1,
     "maximumPrice": 3,
     "bidCount": 0,
+    "acceptingBidRequest": true,
     "deadline": "2025-01-13T11:09:53.000Z",
     "createdAt": "2025-01-11T11:13:27.571Z",
     "updatedAt": "2025-01-11T11:13:27.571Z"
@@ -43,6 +45,7 @@
     "minimumPrice": 2822,
     "maximumPrice": 3043,
     "bidCount": 0,
+    "acceptingBidRequest": true,
     "deadline": "2025-01-24T11:05:26.000Z",
     "createdAt": "2025-01-11T11:09:45.268Z",
     "updatedAt": "2025-01-11T11:09:45.268Z"
@@ -59,6 +62,7 @@
     "minimumPrice": 390,
     "maximumPrice": 911,
     "bidCount": 0,
+    "acceptingBidRequest": true,
     "deadline": "2025-02-01T11:04:23.000Z",
     "createdAt": "2025-01-11T11:04:29.093Z",
     "updatedAt": "2025-01-11T11:04:29.093Z"
@@ -75,6 +79,7 @@
     "minimumPrice": 262,
     "maximumPrice": 570,
     "bidCount": 0,
+    "acceptingBidRequest": true,
     "deadline": "2025-01-29T11:02:42.000Z",
     "createdAt": "2025-01-11T11:02:46.584Z",
     "updatedAt": "2025-01-11T11:02:46.584Z"
@@ -91,6 +96,7 @@
     "minimumPrice": 367,
     "maximumPrice": 623,
     "bidCount": 0,
+    "acceptingBidRequest": true,
     "deadline": "2025-01-25T11:02:32.000Z",
     "createdAt": "2025-01-11T11:02:39.006Z",
     "updatedAt": "2025-01-11T11:02:39.006Z"
@@ -107,6 +113,7 @@
     "minimumPrice": 66,
     "maximumPrice": 866,
     "bidCount": 0,
+    "acceptingBidRequest": true,
     "deadline": "2025-01-23T10:05:35.000Z",
     "createdAt": "2025-01-11T10:39:26.933Z",
     "updatedAt": "2025-01-11T10:39:26.933Z"
@@ -123,6 +130,7 @@
     "minimumPrice": 457,
     "maximumPrice": 584,
     "bidCount": 0,
+    "acceptingBidRequest": true,
     "deadline": "2025-01-25T10:05:10.000Z",
     "createdAt": "2025-01-11T10:05:19.699Z",
     "updatedAt": "2025-01-11T10:05:19.699Z"
@@ -139,6 +147,7 @@
     "minimumPrice": 745,
     "maximumPrice": 817,
     "bidCount": 0,
+    "acceptingBidRequest": true,
     "deadline": "2025-01-17T09:52:44.000Z",
     "createdAt": "2025-01-11T10:04:47.017Z",
     "updatedAt": "2025-01-11T10:04:47.017Z"
@@ -155,6 +164,7 @@
     "minimumPrice": 201,
     "maximumPrice": 1439,
     "bidCount": 0,
+    "acceptingBidRequest": true,
     "deadline": "2025-02-02T10:40:53.791Z",
     "createdAt": "2025-01-11T01:15:45.466Z",
     "updatedAt": "2025-01-11T01:15:45.466Z"
@@ -171,6 +181,7 @@
     "minimumPrice": 810,
     "maximumPrice": 1592,
     "bidCount": 0,
+    "acceptingBidRequest": true,
     "deadline": "2025-02-10T10:11:27.501Z",
     "createdAt": "2025-01-11T01:15:42.323Z",
     "updatedAt": "2025-01-11T01:15:42.323Z"
@@ -187,6 +198,7 @@
     "minimumPrice": 100,
     "maximumPrice": 300,
     "bidCount": 0,
+    "acceptingBidRequest": true,
     "deadline": "2025-01-31",
     "createdAt": "2025-01-09T02:48:48.924Z",
     "updatedAt": "2025-01-09T02:48:48.924Z"
@@ -203,6 +215,7 @@
     "minimumPrice": 300,
     "maximumPrice": 700,
     "bidCount": 0,
+    "acceptingBidRequest": true,
     "deadline": "2025-02-05",
     "createdAt": "2025-01-09T02:48:37.773Z",
     "updatedAt": "2025-01-09T02:48:37.773Z"
@@ -219,6 +232,7 @@
     "minimumPrice": 200,
     "maximumPrice": 800,
     "bidCount": 0,
+    "acceptingBidRequest": true,
     "deadline": "2025-03-10",
     "createdAt": "2025-01-09T02:48:29.120Z",
     "updatedAt": "2025-01-09T02:48:29.120Z"
@@ -235,6 +249,7 @@
     "minimumPrice": 5000,
     "maximumPrice": 15000,
     "bidCount": 0,
+    "acceptingBidRequest": true,
     "deadline": "2025-02-20",
     "createdAt": "2025-01-09T02:48:19.531Z",
     "updatedAt": "2025-01-09T02:48:19.531Z"
@@ -251,6 +266,7 @@
     "minimumPrice": 3000,
     "maximumPrice": 10000,
     "bidCount": 0,
+    "acceptingBidRequest": true,
     "deadline": "2025-03-01",
     "createdAt": "2025-01-11T12:00:00.000Z",
     "updatedAt": "2025-01-11T12:00:00.000Z"
@@ -267,6 +283,7 @@
     "minimumPrice": 5000,
     "maximumPrice": 15000,
     "bidCount": 0,
+    "acceptingBidRequest": true,
     "deadline": "2025-02-28",
     "createdAt": "2025-01-11T12:10:00.000Z",
     "updatedAt": "2025-01-11T12:10:00.000Z"
@@ -283,6 +300,7 @@
     "minimumPrice": 400,
     "maximumPrice": 800,
     "bidCount": 0,
+    "acceptingBidRequest": true,
     "deadline": "2025-01-30",
     "createdAt": "2025-01-11T12:20:00.000Z",
     "updatedAt": "2025-01-11T12:20:00.000Z"
@@ -299,6 +317,7 @@
     "minimumPrice": 150,
     "maximumPrice": 400,
     "bidCount": 0,
+    "acceptingBidRequest": true,
     "deadline": "2025-01-25",
     "createdAt": "2025-01-11T12:30:00.000Z",
     "updatedAt": "2025-01-11T12:30:00.000Z"
@@ -315,6 +334,7 @@
     "minimumPrice": 200,
     "maximumPrice": 600,
     "bidCount": 0,
+    "acceptingBidRequest": true,
     "deadline": "2025-02-10",
     "createdAt": "2025-01-11T12:40:00.000Z",
     "updatedAt": "2025-01-11T12:40:00.000Z"
@@ -331,6 +351,7 @@
     "minimumPrice": 1500,
     "maximumPrice": 5000,
     "bidCount": 0,
+    "acceptingBidRequest": true,
     "deadline": "2025-02-15",
     "createdAt": "2025-01-11T12:50:00.000Z",
     "updatedAt": "2025-01-11T12:50:00.000Z"
@@ -347,6 +368,7 @@
     "minimumPrice": 800,
     "maximumPrice": 2000,
     "bidCount": 0,
+    "acceptingBidRequest": true,
     "deadline": "2025-02-20",
     "createdAt": "2025-01-11T13:00:00.000Z",
     "updatedAt": "2025-01-11T13:00:00.000Z"
@@ -363,6 +385,7 @@
     "minimumPrice": 500,
     "maximumPrice": 1000,
     "bidCount": 0,
+    "acceptingBidRequest": true,
     "deadline": "2025-02-05",
     "createdAt": "2025-01-11T13:10:00.000Z",
     "updatedAt": "2025-01-11T13:10:00.000Z"
@@ -379,6 +402,7 @@
     "minimumPrice": 300,
     "maximumPrice": 1200,
     "bidCount": 0,
+    "acceptingBidRequest": true,
     "deadline": "2025-01-28",
     "createdAt": "2025-01-11T13:20:00.000Z",
     "updatedAt": "2025-01-11T13:20:00.000Z"
@@ -395,6 +419,7 @@
     "minimumPrice": 600,
     "maximumPrice": 2000,
     "bidCount": 0,
+    "acceptingBidRequest": true,
     "deadline": "2025-03-01",
     "createdAt": "2025-01-11T13:30:00.000Z",
     "updatedAt": "2025-01-11T13:30:00.000Z"
@@ -411,6 +436,7 @@
     "minimumPrice": 800,
     "maximumPrice": 3000,
     "bidCount": 0,
+    "acceptingBidRequest": true,
     "deadline": "2025-02-10",
     "createdAt": "2025-01-11T13:40:00.000Z",
     "updatedAt": "2025-01-11T13:40:00.000Z"
@@ -427,6 +453,7 @@
     "minimumPrice": 100,
     "maximumPrice": 400,
     "bidCount": 0,
+    "acceptingBidRequest": true,
     "deadline": "2025-02-25",
     "createdAt": "2025-01-11T13:50:00.000Z",
     "updatedAt": "2025-01-11T13:50:00.000Z"
@@ -443,6 +470,7 @@
     "minimumPrice": 600,
     "maximumPrice": 1500,
     "bidCount": 0,
+    "acceptingBidRequest": true,
     "deadline": "2025-02-20",
     "createdAt": "2025-01-11T14:00:00.000Z",
     "updatedAt": "2025-01-11T14:00:00.000Z"
@@ -459,6 +487,7 @@
     "minimumPrice": 3000,
     "maximumPrice": 8000,
     "bidCount": 0,
+    "acceptingBidRequest": true,
     "deadline": "2025-03-05",
     "createdAt": "2025-01-11T14:10:00.000Z",
     "updatedAt": "2025-01-11T14:10:00.000Z"
@@ -475,6 +504,7 @@
     "minimumPrice": 500,
     "maximumPrice": 1500,
     "bidCount": 0,
+    "acceptingBidRequest": true,
     "deadline": "2025-02-18",
     "createdAt": "2025-01-11T14:20:00.000Z",
     "updatedAt": "2025-01-11T14:20:00.000Z"
@@ -491,6 +521,7 @@
     "minimumPrice": 1200,
     "maximumPrice": 4000,
     "bidCount": 0,
+    "acceptingBidRequest": true,
     "deadline": "2025-02-25",
     "createdAt": "2025-01-11T14:30:00.000Z",
     "updatedAt": "2025-01-11T14:30:00.000Z"
@@ -507,6 +538,7 @@
     "minimumPrice": 200,
     "maximumPrice": 800,
     "bidCount": 0,
+    "acceptingBidRequest": true,
     "deadline": "2025-02-22",
     "createdAt": "2025-01-11T14:40:00.000Z",
     "updatedAt": "2025-01-11T14:40:00.000Z"

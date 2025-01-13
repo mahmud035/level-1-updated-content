@@ -37,6 +37,8 @@ const JobDetails = () => {
     minimumPrice,
     maximumPrice,
     deadline,
+    acceptingBidRequest,
+    isCompleted,
   }: IJob = data?.data || {};
 
   const isJobPostedByUser = jobOwnerInfo?.email === user?.email;
@@ -44,6 +46,24 @@ const JobDetails = () => {
     (jobBid: IJobBid) => jobBid.jobId === _id
   );
   const isJobDeadlinePassed = isPast(new Date(deadline));
+
+  // Determine the button label
+  const getButtonLabel = () => {
+    if (isCompleted) return 'Job Completed';
+    if (!acceptingBidRequest) return 'Not Accepting Bid Request';
+    if (isJobPostedByUser) return 'You Posted This Job';
+    if (alreadyPlacedABid) return 'Already Placed A Bid';
+
+    return 'Place Bid';
+  };
+
+  // Check if the button should be disabled
+  const isButtonDisabled =
+    isCompleted ||
+    !acceptingBidRequest ||
+    isJobPostedByUser ||
+    alreadyPlacedABid ||
+    isJobDeadlinePassed;
 
   // Get Form Data
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -102,6 +122,11 @@ const JobDetails = () => {
                 Deadline Passed
               </span>
             )}
+            {isCompleted && (
+              <span className="ml-2 text-white indicator-item badge badge-success">
+                Job Completed
+              </span>
+            )}
           </span>
 
           <span
@@ -155,6 +180,7 @@ const JobDetails = () => {
 
         <form onSubmit={handlePlaceJobBid}>
           <div className="grid grid-cols-1 gap-6 mt-4 sm:grid-cols-2">
+            {/* Bid Amount */}
             <div>
               <label className="text-gray-700 " htmlFor="price">
                 Bid Amount
@@ -163,13 +189,15 @@ const JobDetails = () => {
                 type="number"
                 name="bidAmount"
                 onChange={handleChange}
+                disabled={isCompleted}
                 id="price"
                 required
-                className="block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-200 rounded-md focus:border-blue-400 focus:ring-blue-300 focus:ring-opacity-40 focus:outline-none focus:ring"
+                className="block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-200 rounded-md focus:border-blue-400 focus:ring-blue-300 focus:ring-opacity-40 focus:outline-none focus:ring disabled:cursor-not-allowed"
                 min={1}
               />
             </div>
 
+            {/* Email Address */}
             <div>
               <label className="text-gray-700 " htmlFor="emailAddress">
                 Email Address
@@ -184,6 +212,7 @@ const JobDetails = () => {
               />
             </div>
 
+            {/* Comment */}
             <div>
               <label className="text-gray-700 " htmlFor="comment">
                 Comment
@@ -193,8 +222,9 @@ const JobDetails = () => {
                 name="bidderComment"
                 value={formData.bidderComment}
                 onChange={handleChange}
+                disabled={isCompleted}
                 id="comment"
-                className="block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-200 rounded-md focus:border-blue-400 focus:ring-blue-300 focus:ring-opacity-40 focus:outline-none focus:ring"
+                className="block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-200 rounded-md focus:border-blue-400 focus:ring-blue-300 focus:ring-opacity-40 focus:outline-none focus:ring disabled:cursor-not-allowed"
               />
             </div>
             <div className="flex flex-col gap-2 ">
@@ -202,26 +232,22 @@ const JobDetails = () => {
 
               {/* Date Picker Input Field */}
               <DatePicker
-                className="p-2 border rounded-md"
+                className="p-2 border rounded-md disabled:cursor-not-allowed"
+                disabled={isCompleted}
                 selected={startDate}
                 onChange={(date) => setStartDate(date)}
               />
             </div>
           </div>
 
+          {/* Submit Button */}
           <div className="flex justify-end mt-6">
             <button
               type="submit"
-              disabled={
-                isJobPostedByUser || alreadyPlacedABid || isJobDeadlinePassed
-              }
+              disabled={isButtonDisabled}
               className="px-8 py-2.5 leading-5 text-white transition-colors duration-300 transform bg-gray-700 rounded-md hover:bg-gray-600 focus:outline-none focus:bg-gray-600 disabled:cursor-not-allowed disabled:bg-gray-400"
             >
-              {!isJobPostedByUser
-                ? alreadyPlacedABid
-                  ? 'Already Placed A Bid'
-                  : 'Place Bid'
-                : 'You Posted This Job'}
+              {getButtonLabel()}
             </button>
           </div>
         </form>

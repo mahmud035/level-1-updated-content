@@ -6,14 +6,12 @@ import { useNavigate, useParams } from 'react-router';
 import { useGetJobQuery, useUpdateJobMutation } from '../../api/job/job.hooks';
 import LoadingSpinner from '../../components/shared/LoadingSpinner';
 import useAuth from '../../hooks/useAuth';
-import useJobOwner from '../../hooks/useJobOwner';
 import { IUpdateJob } from '../../types/job';
 import { getDefaultUpdateJobFormData } from '../../utils';
 import { validateJobForm } from '../../utils/validateJobForm';
 
 const UpdateJob = () => {
   const { user } = useAuth();
-  const jobOwnerInfo = useJobOwner();
   const { id: jobId } = useParams();
   const getJobQuery = useGetJobQuery(jobId!);
   const { isPending, data } = getJobQuery;
@@ -62,8 +60,8 @@ const UpdateJob = () => {
     // Create Updated Job Data
     const data: IUpdateJob = {
       jobId: _id,
+      jobOwnerEmail: user?.email ?? '',
       jobData: {
-        jobOwnerInfo,
         ...restFormData,
         deadline: startDate!.toISOString(),
       },

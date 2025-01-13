@@ -4,6 +4,7 @@ import { IJobBid } from '../../types/jobBid';
 interface IBidRequestCardProps {
   jobBid: IJobBid;
   handleStatusChange: (
+    jobBidId: string,
     jobId: string,
     updatedStatus: 'In Progress' | 'Rejected' | 'Completed'
   ) => void;
@@ -15,6 +16,7 @@ export default function BidRequestCard({
 }: IBidRequestCardProps) {
   const {
     _id,
+    jobId,
     jobTitle,
     jobCategory,
     bidAmount,
@@ -74,8 +76,9 @@ export default function BidRequestCard({
         <div className="flex items-center gap-x-6">
           {/* Accept Button */}
           <button
-            onClick={() => handleStatusChange(_id, 'In Progress')}
+            onClick={() => handleStatusChange(_id, jobId, 'In Progress')}
             disabled={status === 'In Progress' || status === 'Completed'}
+            title="Accept Bid Request"
             className="text-gray-500 transition-colors duration-200 disabled:cursor-not-allowed hover:text-red-500 focus:outline-none"
           >
             <svg
@@ -96,8 +99,9 @@ export default function BidRequestCard({
 
           {/* Reject Button */}
           <button
-            onClick={() => handleStatusChange(_id, 'Rejected')}
+            onClick={() => handleStatusChange(_id, jobId, 'Rejected')}
             disabled={status === 'Rejected' || status === 'Completed'}
+            title="Reject Bid Request"
             className="text-gray-500 transition-colors duration-200 disabled:cursor-not-allowed hover:text-yellow-500 focus:outline-none"
           >
             <svg

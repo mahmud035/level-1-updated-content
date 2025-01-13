@@ -10,14 +10,11 @@ export interface ISaveJobBid {
   status: 'Pending';
 }
 
-interface IStatus {
-  status: 'In Progress' | 'Rejected' | 'Completed';
-}
-
 // TODO: Need To modify this
 export interface IUpdateBidStatus {
-  jobId: string;
-  status: IStatus;
+  jobBidId: string; // The unique identifier of the job bid that needs to be updated
+  jobId: string; // The unique identifier of the job associated with the bid
+  status: 'In Progress' | 'Rejected' | 'Completed';
 }
 
 export interface IJobBid {

@@ -23,6 +23,8 @@ export interface IJob {
   maximumPrice: number;
   bidCount: number;
   deadline: string;
+  acceptingBidRequest: boolean;
+  isCompleted: boolean;
   createdAt: string;
   updatedAt: string;
 }
@@ -36,23 +38,20 @@ export interface ICreateJob {
   minimumPrice: number;
   maximumPrice: number;
   bidCount: number;
+  isCompleted: boolean;
 }
 
 interface IJobData {
-  jobOwnerInfo: IJobOwnerInfo;
   title: string;
   deadline: string;
   description: string;
-  category: string;
   minimumPrice: number;
   maximumPrice: number;
-  bidCount: number;
-  createdAt: string;
-  updatedAt: string;
 }
 
 export interface IUpdateJob {
   jobId: string;
+  jobOwnerEmail: string;
   jobData: IJobData;
 }
 

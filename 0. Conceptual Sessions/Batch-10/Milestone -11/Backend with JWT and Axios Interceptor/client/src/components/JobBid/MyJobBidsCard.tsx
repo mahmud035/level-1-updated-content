@@ -4,6 +4,7 @@ import { IJobBid } from '../../types/jobBid';
 interface IMyJobBidsCardProps {
   jobBid: IJobBid;
   handleStatusChange: (
+    jobBidId: string,
     jobId: string,
     updatedStatus: 'In Progress' | 'Rejected' | 'Completed'
   ) => void;
@@ -13,7 +14,7 @@ export default function MyJobBidsCard({
   jobBid,
   handleStatusChange,
 }: IMyJobBidsCardProps) {
-  const { _id, jobTitle, jobCategory, bidAmount, bidDeadline, status } =
+  const { _id, jobId, jobTitle, jobCategory, bidAmount, bidDeadline, status } =
     jobBid || {};
 
   return (
@@ -63,7 +64,7 @@ export default function MyJobBidsCard({
       <td className="px-4 py-4 text-sm whitespace-nowrap">
         {/* Mark as complete button */}
         <button
-          onClick={() => handleStatusChange(_id, 'Completed')}
+          onClick={() => handleStatusChange(_id, jobId, 'Completed')}
           disabled={
             status === 'Pending' ||
             status === 'Completed' ||

@@ -38,8 +38,11 @@ export const saveJobBid = async (jobBidData: ISaveJobBid) => {
 export const updateBidStatus = async (
   updateBidStatusInfo: IUpdateBidStatus
 ) => {
-  const { jobId, status } = updateBidStatusInfo;
+  const { jobBidId, jobId, status } = updateBidStatusInfo;
 
-  const { data } = await axiosInstance.patch(`/job-bids/bid/${jobId}`, status);
+  const { data } = await axiosInstance.patch(`/job-bids/bid/${jobBidId}`, {
+    jobId,
+    status,
+  });
   return data;
 };

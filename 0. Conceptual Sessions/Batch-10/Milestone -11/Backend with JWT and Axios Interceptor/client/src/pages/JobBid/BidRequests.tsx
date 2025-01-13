@@ -20,11 +20,18 @@ const BidRequests = () => {
 
   //* Update Bid Status (Job owner can set 'In Progress' | 'Rejected')
   const handleStatusChange = (
+    jobBidId: string,
     jobId: string,
     updatedStatus: 'In Progress' | 'Rejected' | 'Completed'
   ) => {
-    const data: IUpdateBidStatus = { jobId, status: { status: updatedStatus } };
+    // Create Update Bid Status Data
+    const data: IUpdateBidStatus = {
+      jobBidId,
+      jobId,
+      status: updatedStatus,
+    };
 
+    // Submit Update Bid Status Data
     updateBidStatusMutation.mutate(data, {
       onSuccess: () => toast.success('Bid status successfully updated'),
     });

@@ -12,12 +12,6 @@ export const defaultLoginFormData = {
   password: '',
 };
 
-export const defaultJobApplyFormData = {
-  linkedInURL: '',
-  githubURL: '',
-  resumeURL: '',
-};
-
 export const getDefaultAddJobFormData = {
   title: '',
   description: '',
@@ -25,6 +19,7 @@ export const getDefaultAddJobFormData = {
   minimumPrice: 1,
   maximumPrice: 1,
   bidCount: 0,
+  isCompleted: false,
 };
 
 export const getDefaultUpdateJobFormData = (data: IJob) => ({
@@ -34,7 +29,4 @@ export const getDefaultUpdateJobFormData = (data: IJob) => ({
   category: data?.category ?? '',
   minimumPrice: data?.minimumPrice ?? 1,
   maximumPrice: data?.maximumPrice ?? 1,
-  bidCount: data?.bidCount ?? 0,
-  createdAt: data?.createdAt ?? '',
-  updatedAt: data?.updatedAt ?? '',
 });
