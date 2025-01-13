@@ -1,4 +1,4 @@
-import { isBefore, isSameDay, startOfDay } from 'date-fns';
+import { compareAsc, startOfDay } from 'date-fns';
 import { ISaveJobBid } from '../types/jobBid';
 
 interface IValidationResult {
@@ -19,14 +19,13 @@ const validateJobBidForm = (
   formData: Partial<ISaveJobBid>,
   startDate: Date | null,
   deadline: string,
-  minimumPrice: number
+  maximumPrice: number
 ): IValidationResult => {
   // Validate Bid Amount
-  if (formData.bidAmount === undefined || formData.bidAmount < minimumPrice) {
+  if (formData.bidAmount === undefined || formData.bidAmount > maximumPrice) {
     return {
       isValid: false,
-      errorMessage:
-        'Bid amount must be greater than or equal to the minimum price.',
+      errorMessage: 'Bid amount cannot exceed the maximum allowable price.',
     };
   }
 
@@ -39,29 +38,31 @@ const validateJobBidForm = (
   }
 
   /**
-   * NOTE: These checks together enforce:
-   *
-   * 1. The deadline cannot be today or earlier.
-   * 2. The deadline must be within the valid range for the job.
+   * NOTE: The `compareAsc` function compares two dates and returns:
+   
+   * `-1` if the first date is earlier than the second.
+   * `0` if the two dates are the same.
+   * `1` if the first date is later than the second.
+   
+   * The `startOfDay` function returns the start of a day for the given date.
+   * It ensures that only the date is considered during comparisons, ignoring the time (e.g., 10:30 AM vs. 00:00 AM).
+   * If the current time is 2025-01-13T15:45:00, startOfDay(new Date()) results in `2025-01-13T00:00:00`.
    */
 
   const today = startOfDay(new Date());
   const selectedDate = startOfDay(new Date(startDate));
-  const isBidDeadlineToday = isSameDay(selectedDate, today);
-  const isBidDeadlineBeforeToday = isBefore(selectedDate, today);
-  const isBidDeadlineBeforeJobDeadline = isBefore(
-    selectedDate,
-    new Date(deadline)
-  );
+  const jobDeadline = startOfDay(new Date(deadline));
 
-  if (isBidDeadlineToday || isBidDeadlineBeforeToday) {
+  // Check if selected date is today or in the past
+  if (compareAsc(selectedDate, today) <= 0) {
     return {
       isValid: false,
       errorMessage: 'The bid deadline must be at least one day in the future.',
     };
   }
 
-  if (!isBidDeadlineBeforeJobDeadline) {
+  // Check if selected date is before the job deadline
+  if (compareAsc(selectedDate, jobDeadline) >= 0) {
     return {
       isValid: false,
       errorMessage: 'The bid deadline must be before the job deadline.',

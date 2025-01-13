@@ -47,8 +47,8 @@ export const useSaveJobBidMutation = () => {
   });
 };
 
-// TODO: Update bid status
-export const useUpdateBidStatus = () => {
+// Update the status of a specific job bid
+export const useUpdateBidStatusMutation = () => {
   return useMutation({
     mutationFn: (updateBidStatusInfo: IUpdateBidStatus) =>
       updateBidStatus(updateBidStatusInfo),

@@ -7,12 +7,17 @@ export interface ISaveJobBid {
   bidDeadline: string;
   bidderEmail: string;
   jobOwnerEmail: string;
+  status: 'Pending';
+}
+
+interface IStatus {
+  status: 'In Progress' | 'Rejected' | 'Completed';
 }
 
 // TODO: Need To modify this
 export interface IUpdateBidStatus {
   jobId: string;
-  status: object;
+  status: IStatus;
 }
 
 export interface IJobBid {
@@ -24,6 +29,7 @@ export interface IJobBid {
   bidDeadline: string;
   bidderEmail: string;
   jobOwnerEmail: string;
+  status: string;
   createdAt: string;
   updatedAt: string;
 }

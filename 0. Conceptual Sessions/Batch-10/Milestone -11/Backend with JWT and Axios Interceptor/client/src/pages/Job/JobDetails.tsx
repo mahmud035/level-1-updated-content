@@ -64,7 +64,7 @@ const JobDetails = () => {
       formData,
       startDate,
       deadline,
-      minimumPrice
+      maximumPrice
     );
     if (!validation.isValid) return toast.error(validation.errorMessage!);
 
@@ -77,6 +77,7 @@ const JobDetails = () => {
       bidDeadline: startDate!.toISOString(),
       bidderEmail: user?.email ?? '',
       jobOwnerEmail: jobOwnerInfo?.email,
+      status: 'Pending',
     };
 
     // Submit the bid
@@ -133,7 +134,11 @@ const JobDetails = () => {
               </p>
             </div>
             <div className="object-cover overflow-hidden rounded-full w-14 h-14">
-              <img src={jobOwnerInfo?.photoURL ?? ''} alt="" />
+              <img
+                src={jobOwnerInfo?.photoURL ?? ''}
+                alt=""
+                referrerPolicy="no-referrer"
+              />
             </div>
           </div>
           <p className="mt-6 text-lg font-bold text-gray-600 ">

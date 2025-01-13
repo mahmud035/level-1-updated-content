@@ -1,15 +1,32 @@
-import { useGetJobBidsByUserQuery } from '../../api/jobBid/jobBid.hooks';
+import toast from 'react-hot-toast';
+import {
+  useGetJobBidsByUserQuery,
+  useUpdateBidStatusMutation,
+} from '../../api/jobBid/jobBid.hooks';
 import MyJobBidsCard from '../../components/JobBid/MyJobBidsCard';
 import LoadingSpinner from '../../components/shared/LoadingSpinner';
 import useAuth from '../../hooks/useAuth';
-import { IJobBid } from '../../types/jobBid';
+import { IJobBid, IUpdateBidStatus } from '../../types/jobBid';
 
 const MyBids = () => {
   const { user } = useAuth();
+  const updateBidStatusMutation = useUpdateBidStatusMutation();
   const getJobBidsByUserQuery = useGetJobBidsByUserQuery(user?.email ?? '');
   const { isPending, data } = getJobBidsByUserQuery;
 
   if (isPending) return <LoadingSpinner />;
+
+  //* Update Bid Status (Job bidder can set 'Completed')
+  const handleStatusChange = (
+    jobId: string,
+    updatedStatus: 'In Progress' | 'Rejected' | 'Completed'
+  ) => {
+    const data: IUpdateBidStatus = { jobId, status: { status: updatedStatus } };
+
+    updateBidStatusMutation.mutate(data, {
+      onSuccess: () => toast.success('Bid status successfully updated'),
+    });
+  };
 
   return (
     <section className="container px-4 mx-auto my-12">
@@ -75,7 +92,11 @@ const MyBids = () => {
                   </thead>
                   <tbody className="bg-white divide-y divide-gray-200 ">
                     {data?.data?.map((jobBid: IJobBid) => (
-                      <MyJobBidsCard key={jobBid._id} jobBid={jobBid} />
+                      <MyJobBidsCard
+                        key={jobBid._id}
+                        jobBid={jobBid}
+                        handleStatusChange={handleStatusChange}
+                      />
                     ))}
                   </tbody>
                 </table>

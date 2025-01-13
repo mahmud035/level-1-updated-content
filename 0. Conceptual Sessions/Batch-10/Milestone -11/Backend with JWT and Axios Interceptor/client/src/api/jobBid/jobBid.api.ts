@@ -34,7 +34,7 @@ export const saveJobBid = async (jobBidData: ISaveJobBid) => {
   return data;
 };
 
-// Update bid status
+// Update the status of a specific job bid
 export const updateBidStatus = async (
   updateBidStatusInfo: IUpdateBidStatus
 ) => {
