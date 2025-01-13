@@ -62,12 +62,15 @@ const saveJobBidZodSchema = z.object({
 
 const updateBidStatusZodSchema = z.object({
   params: z.object({
-    jobId: z
-      .string({ required_error: 'Job ID is required' })
-      .refine(isValidObjectId, 'Invalid job ID format'), // Validate MongoDB ObjectId format
+    jobBidId: z
+      .string({ required_error: 'Job bid ID is required' })
+      .refine(isValidObjectId, 'Invalid job bid ID format'), // Validate MongoDB ObjectId format
   }),
   body: z.object({
-    status: z.enum(['In Progress', 'Rejected', 'Completed']),
+    jobId: z
+      .string({ required_error: 'Job ID is required' })
+      .refine(isValidObjectId, 'Invalid Job ID format'), // Validate MongoDB ObjectId format,
+    // status: z.enum(['In Progress', 'Rejected', 'Completed']),
   }),
 });
 

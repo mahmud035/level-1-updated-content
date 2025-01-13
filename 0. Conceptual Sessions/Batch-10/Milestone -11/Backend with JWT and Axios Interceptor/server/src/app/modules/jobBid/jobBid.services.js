@@ -76,17 +76,68 @@ const saveJobBid = async (bidData) => {
 };
 
 /**
- * @desc    Update the status of a specific job bid
- * @param   {string} jobId - The ID of the job whose bid status is being updated
- * @param   {Object} status - The status data to be updated
+ * @desc     Updates the status of a specific job bid and performs related updates in the database.
+ * @param   {string} jobBidId - The unique identifier of the job bid that needs to be updated
+ * @param   {string} jobId - The unique identifier of the job associated with the bid
+ * @param   {Object} status - The status object containing the new status
  * @returns {Object} The result of the update operation
+ * @throws  {Error} If the status is not supported
  */
 
-const updateBidStatus = async (jobId, status) => {
-  const query = { _id: new ObjectId(jobId) };
-  const updateDoc = { $set: status };
-  const result = await jobBids.updateOne(query, updateDoc);
-  return result;
+const updateBidStatus = async (jobBidId, jobId, status) => {
+  console.log(`Updating bid status to: ${status.status}`);
+
+  // NOTE: If the status is `In Progress`, we:
+  // 1. Mark the selected bid as `In Progress`.
+  // 2. Mark all other bids for the same job as `Rejected`.
+  // 3. Update the job to stop accepting bid requests.
+  if (status?.status === 'In Progress') {
+    const selectedBidQuery = { _id: new ObjectId(jobBidId), jobId: jobId };
+    const otherBidsQuery = { _id: { $ne: new ObjectId(jobBidId) }, jobId };
+    const jobQuery = { _id: new ObjectId(jobId) };
+
+    const updateSelectedBid = { $set: status };
+    const updateOtherBids = { $set: { status: `Rejected` } };
+    const updateJob = { $set: { acceptingBidRequest: false } };
+
+    const result = await jobBids.updateOne(selectedBidQuery, updateSelectedBid);
+    await jobBids.updateMany(otherBidsQuery, updateOtherBids);
+    await jobs.updateOne(jobQuery, updateJob);
+
+    return result;
+  }
+
+  // NOTE: If the status is `Rejected`, we:
+  // 1. Mark the specific bid as `Rejected`.
+  // 2. Re-enable bid requests for the job.
+  if (status?.status === 'Rejected') {
+    const bidQuery = { _id: new ObjectId(jobBidId), jobId: jobId };
+    const jobQuery = { _id: new ObjectId(jobId) };
+
+    const updateBid = { $set: status };
+    const updateJob = { $set: { acceptingBidRequest: true } };
+
+    const result = await jobBids.updateOne(bidQuery, updateBid);
+    await jobs.updateOne(jobQuery, updateJob);
+
+    return result;
+  }
+
+  // NOTE: If the status is `Completed`, we:
+  // 1. Mark the specific bid as `Completed`.
+  // 2. Mark the job as completed.
+  if (status?.status === 'Completed') {
+    const bidQuery = { _id: new ObjectId(jobBidId), jobId: jobId };
+    const jobQuery = { _id: new ObjectId(jobId) };
+
+    const updateBid = { $set: status };
+    const updateJob = { $set: { isCompleted: true } };
+
+    const result = await jobBids.updateOne(bidQuery, updateBid);
+    await jobs.updateOne(jobQuery, updateJob);
+
+    return result;
+  }
 };
 
 export const JobBidService = {

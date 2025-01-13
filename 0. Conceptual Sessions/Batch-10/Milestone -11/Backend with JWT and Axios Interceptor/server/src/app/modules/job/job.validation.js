@@ -71,7 +71,8 @@ const createJobZodValidation = z.object({
         .number({ required_error: 'Minimum price is required' })
         .min(1, 'Minimum price must be at least 1'),
       maximumPrice: z.number({ required_error: 'Maximum price is required' }),
-      bitCount: z.number().min(0, 'Minimum bit count value is 0').optional(),
+      bitCount: z.number().min(0, 'Minimum bit count value is 0').default(0),
+      isCompleted: z.boolean().default(false),
     })
     .refine((data) => data.maximumPrice >= data.minimumPrice, {
       path: ['maximumPrice'],
@@ -94,17 +95,6 @@ const updateJobZodValidation = z.object({
 
   body: z
     .object({
-      jobOwnerInfo: z.object({
-        name: z
-          .string({ required_error: 'Job owner name is required' })
-          .min(3, 'Job owner name must be at least 3 characters'),
-        email: z
-          .string({ required_error: 'Job owner email is required' })
-          .email('Invalid email format'),
-        photoURL: z.string({
-          required_error: 'Job owner photoURL is required',
-        }),
-      }),
       title: z
         .string({ required_error: 'Job title is required' })
         .min(3, 'Job title must be at least 3 characters'),
@@ -114,18 +104,10 @@ const updateJobZodValidation = z.object({
       description: z
         .string({ required_error: 'Description is required' })
         .min(10, 'Description must be at least 10 characters'),
-      category: z.enum([
-        'Web Development',
-        'Graphics Design',
-        'Digital Marketing',
-      ]), // 👈 Need to modify it later
       minimumPrice: z
         .number({ required_error: 'Minimum price is required' })
         .min(1, 'Minimum price must be at least 1'),
       maximumPrice: z.number({ required_error: 'Maximum price is required' }),
-      bitCount: z.number().min(0, 'Minimum bit count value is 0').optional(),
-      createdAt: z.string().optional(),
-      updatedAt: z.string().optional(),
     })
     .refine((data) => data.maximumPrice >= data.minimumPrice, {
       path: ['maximumPrice'],

@@ -112,7 +112,7 @@ const saveJobBid = async (req, res, next) => {
 
 /**
  * @desc    Update the status of a specific job bid
- * @route   PATCH /job-bids/bid/:jobId
+ * @route   PATCH /job-bids/bid/:jobBidId
  * @param   {Object} req - The request object containing the bid data
  * @param   {Object} res - The response object to send back the result
  * @param   {Function} next - The next middleware function for error handling
@@ -121,10 +121,10 @@ const saveJobBid = async (req, res, next) => {
 
 const updateBidStatus = async (req, res, next) => {
   try {
-    const { jobId } = req.params;
-    const { ...status } = req.body;
+    const { jobBidId } = req.params;
+    const { jobId, ...status } = req.body;
 
-    const result = await JobBidService.updateBidStatus(jobId, status);
+    const result = await JobBidService.updateBidStatus(jobBidId, jobId, status);
 
     sendResponse(res, {
       statusCode: httpStatus.OK,

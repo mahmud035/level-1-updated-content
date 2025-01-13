@@ -43,7 +43,7 @@ router.post(
 
 // Update the status of a specific job bid
 router.patch(
-  '/bid/:jobId',
+  '/bid/:jobBidId',
   auth,
   validateRequest(JobBidValidation.updateBidStatusZodSchema),
   JobBidController.updateBidStatus
