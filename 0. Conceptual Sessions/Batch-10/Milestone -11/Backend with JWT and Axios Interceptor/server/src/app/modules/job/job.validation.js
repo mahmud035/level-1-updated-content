@@ -55,7 +55,7 @@ const createJobZodValidation = z.object({
       }),
       title: z
         .string({ required_error: 'Job title is required' })
-        .min(3, 'Job title must be at least 3 characters'),
+        .min(10, 'Job title must be at least 10 characters'),
       deadline: z
         .string({ required_error: 'Deadline is required' })
         .refine(isValidISODate, 'Invalid date format for deadline'),

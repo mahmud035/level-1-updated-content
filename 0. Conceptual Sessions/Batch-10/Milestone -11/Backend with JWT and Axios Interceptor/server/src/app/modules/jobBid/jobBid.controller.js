@@ -111,7 +111,7 @@ const saveJobBid = async (req, res, next) => {
 };
 
 /**
- * @desc    Update bid status
+ * @desc    Update the status of a specific job bid
  * @route   PATCH /job-bids/bid/:jobId
  * @param   {Object} req - The request object containing the bid data
  * @param   {Object} res - The response object to send back the result
@@ -130,7 +130,6 @@ const updateBidStatus = async (req, res, next) => {
       statusCode: httpStatus.OK,
       success: true,
       message: 'Bid status successfully updated',
-      data: result,
     });
   } catch (error) {
     next(error);

@@ -56,6 +56,18 @@ const saveJobBidZodSchema = z.object({
     jobOwnerEmail: z
       .string({ required_error: 'Job owner email is required' })
       .email('Invalid email format'),
+    status: z.enum(['Pending']),
+  }),
+});
+
+const updateBidStatusZodSchema = z.object({
+  params: z.object({
+    jobId: z
+      .string({ required_error: 'Job ID is required' })
+      .refine(isValidObjectId, 'Invalid job ID format'), // Validate MongoDB ObjectId format
+  }),
+  body: z.object({
+    status: z.enum(['In Progress', 'Rejected', 'Completed']),
   }),
 });
 
@@ -64,4 +76,5 @@ export const JobBidValidation = {
   getAllJobBidsForOwner,
   getJobBidsByJobOwnerZodSchema,
   saveJobBidZodSchema,
+  updateBidStatusZodSchema,
 };

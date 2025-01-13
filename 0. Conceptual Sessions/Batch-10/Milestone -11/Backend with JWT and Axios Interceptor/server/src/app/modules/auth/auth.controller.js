@@ -47,7 +47,7 @@ const loginUser = async (req, res, next) => {
       statusCode: httpStatus.OK,
       success: true,
       message: 'User logged in successfully',
-      data: { accessToken, refreshToken }, // 👈 For production, comment out this line
+      // data: { accessToken, refreshToken }, // 👈 For production, comment out this line
     });
   } catch (error) {
     next(error);
