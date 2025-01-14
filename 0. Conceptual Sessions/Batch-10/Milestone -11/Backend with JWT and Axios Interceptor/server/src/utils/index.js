@@ -2,7 +2,8 @@ export const corsOptions = {
   origin: [
     'http://localhost:5173', // Local Development
     'http://localhost:5174', // Local Development
-    'http://frontend.com', // Production frontend
+    'https://solosphere-b1795.web.app', // Production frontend
+    'https://solosphere-b1795.firebaseapp.com', // Production frontend
   ],
   credentials: true, // Allow cookies to be sent
 };
