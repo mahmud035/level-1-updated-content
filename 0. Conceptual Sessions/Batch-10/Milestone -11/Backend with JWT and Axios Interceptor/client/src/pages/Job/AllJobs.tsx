@@ -105,13 +105,16 @@ const AllJobs = () => {
               }}
               className="px-8 py-2 text-gray-700 placeholder-gray-500 bg-white outline-none focus:placeholder-transparent"
               name="search"
-              placeholder="Enter Job Title"
+              placeholder="Search By Title or Category"
               aria-label="Enter Job Title"
             />
 
-            {/* <button className="px-1 py-3 text-sm font-medium tracking-wider text-gray-100 uppercase transition-colors duration-300 transform bg-gray-700 rounded-md md:px-4 hover:bg-gray-600 focus:bg-gray-600 focus:outline-none">
+            <button
+              type="submit"
+              className="px-1 py-3 text-sm font-medium tracking-wider text-gray-100 uppercase transition-colors duration-300 transform bg-gray-700 rounded-md md:px-4 hover:bg-gray-600 focus:bg-gray-600 focus:outline-none"
+            >
               Search
-            </button> */}
+            </button>
           </div>
         </form>
 

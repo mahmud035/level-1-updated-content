@@ -2,7 +2,6 @@ import Lottie from 'lottie-react';
 import React, { useState } from 'react';
 import toast from 'react-hot-toast';
 import { Link, useNavigate } from 'react-router';
-import { useGenerateTokensMutation } from '../../api/auth/auth.hooks';
 import registerAnimation from '../../assets/images/lottie/register.json';
 import useAuth from '../../hooks/useAuth';
 import { defaultRegistrationFormData } from '../../utils';
@@ -10,7 +9,6 @@ import { defaultRegistrationFormData } from '../../utils';
 export default function RegistrationPage() {
   const [formData, setFormData] = useState(defaultRegistrationFormData);
   const { createUser, loginWithGoogle } = useAuth();
-  const generateTokensMutation = useGenerateTokensMutation();
   const navigate = useNavigate();
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -22,29 +20,19 @@ export default function RegistrationPage() {
     e.preventDefault();
 
     await createUser(formData.email, formData.password)
-      .then((userCredential) => {
-        toast.success('User created successfully');
-
-        //* Generate accessToken & refreshToken
-        const user = { email: userCredential.user?.email || '' };
-        generateTokensMutation.mutate(user);
-
+      .then(() => {
+        toast.success('Signup Successful');
         navigate('/');
       })
-      .catch(() => {
-        toast.error('Failed to create user');
+      .catch((error) => {
+        toast.error(error.message);
       });
   };
 
   const handleGoogleLogin = async () => {
     await loginWithGoogle()
-      .then((userCredential) => {
+      .then(() => {
         toast.success('Signin Successful');
-
-        //* Generate accessToken & refreshToken
-        const user = { email: userCredential.user?.email || '' };
-        generateTokensMutation.mutate(user);
-
         navigate('/');
       })
       .catch((error) => {

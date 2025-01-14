@@ -31,7 +31,8 @@ const MyBids = () => {
 
     // Submit Update Bid Status Data
     updateBidStatusMutation.mutate(data, {
-      onSuccess: () => toast.success('Bid status successfully updated'),
+      onSuccess: () =>
+        toast.success(`Bid status changed to '${updatedStatus}'`),
     });
   };
 

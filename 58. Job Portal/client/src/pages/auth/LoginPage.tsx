@@ -2,7 +2,6 @@ import Lottie from 'lottie-react';
 import { useState } from 'react';
 import toast from 'react-hot-toast';
 import { Link, useLocation, useNavigate } from 'react-router';
-import { useGenerateTokensMutation } from '../../api/auth/auth.hooks';
 import loginAnimation from '../../assets/images/lottie/login.json';
 import useAuth from '../../hooks/useAuth';
 import { defaultLoginFormData } from '../../utils';
@@ -10,7 +9,6 @@ import { defaultLoginFormData } from '../../utils';
 export default function LoginPage() {
   const [formData, setFormData] = useState(defaultLoginFormData);
   const { loginUser, loginWithGoogle } = useAuth();
-  const generateTokensMutation = useGenerateTokensMutation();
   const navigate = useNavigate();
   const location = useLocation();
   const from = location.state || '/';
@@ -24,11 +22,7 @@ export default function LoginPage() {
     e.preventDefault();
 
     await loginUser(formData.email, formData.password)
-      .then((userCredential) => {
-        //* Generate accessToken & refreshToken
-        const user = { email: userCredential.user?.email || '' };
-        generateTokensMutation.mutate(user);
-
+      .then(() => {
         toast.success('Signin Successful');
         navigate(from, { replace: true });
       })
@@ -39,13 +33,8 @@ export default function LoginPage() {
 
   const handleGoogleLogin = async () => {
     await loginWithGoogle()
-      .then((userCredential) => {
+      .then(() => {
         toast.success('Signin Successful');
-
-        //* Generate accessToken & refreshToken
-        const user = { email: userCredential.user?.email || '' };
-        generateTokensMutation.mutate(user);
-
         navigate(from, { replace: true });
       })
       .catch((error) => {

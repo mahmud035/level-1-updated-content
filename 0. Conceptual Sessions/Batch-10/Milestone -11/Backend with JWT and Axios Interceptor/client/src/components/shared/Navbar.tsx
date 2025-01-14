@@ -1,5 +1,6 @@
 import { Link } from 'react-router';
 import logo from '../../assets/images/logo.png';
+import placeholderAvatar from '../../assets/images/placeholderAvatar.jpg';
 import useAuth from '../../hooks/useAuth';
 import useLogout from '../../hooks/useLogout';
 
@@ -45,7 +46,8 @@ const Navbar = () => {
                 <img
                   referrerPolicy="no-referrer"
                   alt="User Profile Photo"
-                  src={user?.photoURL || ''}
+                  src={user?.photoURL || placeholderAvatar} // Fallback to placeholder if photoURL is empty
+                  onError={(e) => (e.currentTarget.src = placeholderAvatar)} // On error, set the src to the placeholder
                 />
               </div>
             </div>

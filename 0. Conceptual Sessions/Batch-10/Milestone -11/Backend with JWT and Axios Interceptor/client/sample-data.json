@@ -542,5 +542,396 @@
     "deadline": "2025-02-22",
     "createdAt": "2025-01-11T14:40:00.000Z",
     "updatedAt": "2025-01-11T14:40:00.000Z"
+  },
+  {
+    "title": "Social Media Marketing Strategy Plan",
+    "jobOwnerInfo": {
+      "name": "Test 2",
+      "email": "test2@gmail.com",
+      "photoURL": "https://i.ibb.co.com/zs6Wrj1/profile-1.jpg"
+    },
+    "description": "Develop a comprehensive strategy to grow social media engagement and reach effectively.",
+    "category": "Digital Marketing",
+    "minimumPrice": 700,
+    "maximumPrice": 5000,
+    "bidCount": 0,
+    "acceptingBidRequest": true,
+    "deadline": "2025-02-20T12:00:00Z",
+    "createdAt": "2025-01-13T14:45:00.000Z",
+    "updatedAt": "2025-01-13T14:45:00.000Z"
+  },
+  {
+    "title": "Logo Design for a Tech Startup",
+    "jobOwnerInfo": {
+      "name": "Test 2",
+      "email": "test2@gmail.com",
+      "photoURL": "https://i.ibb.co.com/zs6Wrj1/profile-1.jpg"
+    },
+    "description": "Create a modern, sleek logo that aligns with our tech-driven business vision.",
+    "category": "Graphics Design",
+    "minimumPrice": 500,
+    "maximumPrice": 2000,
+    "bidCount": 0,
+    "acceptingBidRequest": true,
+    "deadline": "2025-03-01T15:00:00Z",
+    "createdAt": "2025-01-13T14:45:00.000Z",
+    "updatedAt": "2025-01-13T14:45:00.000Z"
+  },
+  {
+    "title": "Responsive E-commerce Website Development",
+    "jobOwnerInfo": {
+      "name": "Test 2",
+      "email": "test2@gmail.com",
+      "photoURL": "https://i.ibb.co.com/zs6Wrj1/profile-1.jpg"
+    },
+    "description": "Build a fully responsive e-commerce website with secure payment integration.",
+    "category": "Web Development",
+    "minimumPrice": 3000,
+    "maximumPrice": 10000,
+    "bidCount": 0,
+    "acceptingBidRequest": true,
+    "deadline": "2025-03-10T18:00:00Z",
+    "createdAt": "2025-01-13T14:45:00.000Z",
+    "updatedAt": "2025-01-13T14:45:00.000Z"
+  },
+  {
+    "title": "SEO Optimization for Blog Website",
+    "jobOwnerInfo": {
+      "name": "Test 2",
+      "email": "test2@gmail.com",
+      "photoURL": "https://i.ibb.co.com/zs6Wrj1/profile-1.jpg"
+    },
+    "description": "Optimize blog content to improve search engine ranking and organic traffic.",
+    "category": "Digital Marketing",
+    "minimumPrice": 800,
+    "maximumPrice": 3000,
+    "bidCount": 0,
+    "acceptingBidRequest": true,
+    "deadline": "2025-02-15T14:00:00Z",
+    "createdAt": "2025-01-13T14:45:00.000Z",
+    "updatedAt": "2025-01-13T14:45:00.000Z"
+  },
+  {
+    "title": "Business Card Design",
+    "jobOwnerInfo": {
+      "name": "Test 2",
+      "email": "test2@gmail.com",
+      "photoURL": "https://i.ibb.co.com/zs6Wrj1/profile-1.jpg"
+    },
+    "description": "Design a professional business card with branding elements.",
+    "category": "Graphics Design",
+    "minimumPrice": 200,
+    "maximumPrice": 800,
+    "bidCount": 0,
+    "acceptingBidRequest": true,
+    "deadline": "2025-01-30T09:00:00Z",
+    "createdAt": "2025-01-13T14:45:00.000Z",
+    "updatedAt": "2025-01-13T14:45:00.000Z"
+  },
+  {
+    "title": "Full-stack Web Application Development",
+    "jobOwnerInfo": {
+      "name": "Test 2",
+      "email": "test2@gmail.com",
+      "photoURL": "https://i.ibb.co.com/zs6Wrj1/profile-1.jpg"
+    },
+    "description": "Develop a robust full-stack web application with authentication and user dashboard.",
+    "category": "Web Development",
+    "minimumPrice": 5000,
+    "maximumPrice": 15000,
+    "bidCount": 0,
+    "acceptingBidRequest": true,
+    "deadline": "2025-03-15T10:00:00Z",
+    "createdAt": "2025-01-13T14:45:00.000Z",
+    "updatedAt": "2025-01-13T14:45:00.000Z"
+  },
+  {
+    "title": "Email Marketing Campaign Setup",
+    "jobOwnerInfo": {
+      "name": "Test 2",
+      "email": "test2@gmail.com",
+      "photoURL": "https://i.ibb.co.com/zs6Wrj1/profile-1.jpg"
+    },
+    "description": "Set up and execute an email marketing campaign targeting new leads.",
+    "category": "Digital Marketing",
+    "minimumPrice": 1200,
+    "maximumPrice": 4500,
+    "bidCount": 0,
+    "acceptingBidRequest": true,
+    "deadline": "2025-02-25T11:00:00Z",
+    "createdAt": "2025-01-13T14:45:00.000Z",
+    "updatedAt": "2025-01-13T14:45:00.000Z"
+  },
+  {
+    "title": "UI/UX Design for Mobile Application",
+    "jobOwnerInfo": {
+      "name": "Test 2",
+      "email": "test2@gmail.com",
+      "photoURL": "https://i.ibb.co.com/zs6Wrj1/profile-1.jpg"
+    },
+    "description": "Design an intuitive and user-friendly interface for a mobile app.",
+    "category": "Graphics Design",
+    "minimumPrice": 4000,
+    "maximumPrice": 10000,
+    "bidCount": 0,
+    "acceptingBidRequest": true,
+    "deadline": "2025-03-20T10:00:00Z",
+    "createdAt": "2025-01-13T14:45:00.000Z",
+    "updatedAt": "2025-01-13T14:45:00.000Z"
+  },
+  {
+    "title": "Content Management System Setup",
+    "jobOwnerInfo": {
+      "name": "Test 2",
+      "email": "test2@gmail.com",
+      "photoURL": "https://i.ibb.co.com/zs6Wrj1/profile-1.jpg"
+    },
+    "description": "Set up and configure a CMS for streamlined content publishing.",
+    "category": "Web Development",
+    "minimumPrice": 2000,
+    "maximumPrice": 7000,
+    "bidCount": 0,
+    "acceptingBidRequest": true,
+    "deadline": "2025-03-05T16:00:00Z",
+    "createdAt": "2025-01-13T14:45:00.000Z",
+    "updatedAt": "2025-01-13T14:45:00.000Z"
+  },
+  {
+    "title": "Social Media Campaign Management",
+    "jobOwnerInfo": {
+      "name": "Mahmud",
+      "email": "mhpcsepavel@gmail.com",
+      "photoURL": "https://lh3.googleusercontent.com/a/ACg8ocIIVNGLEBwYNZjmkesG1DYkiP2TWVRf2HvLI8yfd_uL7M8jiM8=s96-c"
+    },
+    "description": "Manage and execute a comprehensive social media campaign for brand awareness.",
+    "category": "Digital Marketing",
+    "minimumPrice": 800,
+    "maximumPrice": 4000,
+    "bidCount": 0,
+    "acceptingBidRequest": true,
+    "deadline": "2025-04-10T12:00:00Z",
+    "createdAt": "2025-01-13T14:45:00.000Z",
+    "updatedAt": "2025-01-13T14:45:00.000Z"
+  },
+  {
+    "title": "Branding and Logo Design for Startup",
+    "jobOwnerInfo": {
+      "name": "Mahmud",
+      "email": "mhpcsepavel@gmail.com",
+      "photoURL": "https://lh3.googleusercontent.com/a/ACg8ocIIVNGLEBwYNZjmkesG1DYkiP2TWVRf2HvLI8yfd_uL7M8jiM8=s96-c"
+    },
+    "description": "Design a modern and professional logo for a tech startup company.",
+    "category": "Graphics Design",
+    "minimumPrice": 500,
+    "maximumPrice": 2500,
+    "bidCount": 0,
+    "acceptingBidRequest": true,
+    "deadline": "2025-02-28T15:00:00Z",
+    "createdAt": "2025-01-13T14:45:00.000Z",
+    "updatedAt": "2025-01-13T14:45:00.000Z"
+  },
+  {
+    "title": "Mobile App UI/UX Design",
+    "jobOwnerInfo": {
+      "name": "Mahmud",
+      "email": "mhpcsepavel@gmail.com",
+      "photoURL": "https://lh3.googleusercontent.com/a/ACg8ocIIVNGLEBwYNZjmkesG1DYkiP2TWVRf2HvLI8yfd_uL7M8jiM8=s96-c"
+    },
+    "description": "Create a clean, intuitive UI/UX design for an iOS mobile application.",
+    "category": "Graphics Design",
+    "minimumPrice": 1000,
+    "maximumPrice": 4500,
+    "bidCount": 0,
+    "acceptingBidRequest": true,
+    "deadline": "2025-03-15T17:00:00Z",
+    "createdAt": "2025-01-13T14:45:00.000Z",
+    "updatedAt": "2025-01-13T14:45:00.000Z"
+  },
+  {
+    "title": "E-commerce Website Development",
+    "jobOwnerInfo": {
+      "name": "Mahmud",
+      "email": "mhpcsepavel@gmail.com",
+      "photoURL": "https://lh3.googleusercontent.com/a/ACg8ocIIVNGLEBwYNZjmkesG1DYkiP2TWVRf2HvLI8yfd_uL7M8jiM8=s96-c"
+    },
+    "description": "Develop a feature-rich e-commerce platform with payment integration.",
+    "category": "Web Development",
+    "minimumPrice": 4000,
+    "maximumPrice": 12000,
+    "bidCount": 0,
+    "acceptingBidRequest": true,
+    "deadline": "2025-03-20T14:00:00Z",
+    "createdAt": "2025-01-13T14:45:00.000Z",
+    "updatedAt": "2025-01-13T14:45:00.000Z"
+  },
+  {
+    "title": "SEO and Content Marketing Strategy",
+    "jobOwnerInfo": {
+      "name": "Mahmud",
+      "email": "mhpcsepavel@gmail.com",
+      "photoURL": "https://lh3.googleusercontent.com/a/ACg8ocIIVNGLEBwYNZjmkesG1DYkiP2TWVRf2HvLI8yfd_uL7M8jiM8=s96-c"
+    },
+    "description": "Develop and implement a content marketing strategy for SEO optimization.",
+    "category": "Digital Marketing",
+    "minimumPrice": 1000,
+    "maximumPrice": 5000,
+    "bidCount": 0,
+    "acceptingBidRequest": true,
+    "deadline": "2025-04-05T11:00:00Z",
+    "createdAt": "2025-01-13T14:45:00.000Z",
+    "updatedAt": "2025-01-13T14:45:00.000Z"
+  },
+  {
+    "title": "WordPress Website Customization",
+    "jobOwnerInfo": {
+      "name": "Mahmud",
+      "email": "mhpcsepavel@gmail.com",
+      "photoURL": "https://lh3.googleusercontent.com/a/ACg8ocIIVNGLEBwYNZjmkesG1DYkiP2TWVRf2HvLI8yfd_uL7M8jiM8=s96-c"
+    },
+    "description": "Customize a WordPress website template to suit specific business needs.",
+    "category": "Web Development",
+    "minimumPrice": 800,
+    "maximumPrice": 3000,
+    "bidCount": 0,
+    "acceptingBidRequest": true,
+    "deadline": "2025-02-20T10:00:00Z",
+    "createdAt": "2025-01-13T14:45:00.000Z",
+    "updatedAt": "2025-01-13T14:45:00.000Z"
+  },
+  {
+    "title": "Social Media Profile Design and Setup",
+    "jobOwnerInfo": {
+      "name": "Mahmud",
+      "email": "mhpcsepavel@gmail.com",
+      "photoURL": "https://lh3.googleusercontent.com/a/ACg8ocIIVNGLEBwYNZjmkesG1DYkiP2TWVRf2HvLI8yfd_uL7M8jiM8=s96-c"
+    },
+    "description": "Design and set up professional social media profiles across major platforms.",
+    "category": "Graphics Design",
+    "minimumPrice": 500,
+    "maximumPrice": 1500,
+    "bidCount": 0,
+    "acceptingBidRequest": true,
+    "deadline": "2025-02-10T16:00:00Z",
+    "createdAt": "2025-01-13T14:45:00.000Z",
+    "updatedAt": "2025-01-13T14:45:00.000Z"
+  },
+  {
+    "title": "Landing Page Design and Development",
+    "jobOwnerInfo": {
+      "name": "Mahmud",
+      "email": "mhpcsepavel@gmail.com",
+      "photoURL": "https://lh3.googleusercontent.com/a/ACg8ocIIVNGLEBwYNZjmkesG1DYkiP2TWVRf2HvLI8yfd_uL7M8jiM8=s96-c"
+    },
+    "description": "Design and develop a high-converting landing page for marketing campaigns.",
+    "category": "Web Development",
+    "minimumPrice": 1200,
+    "maximumPrice": 4000,
+    "bidCount": 0,
+    "acceptingBidRequest": true,
+    "deadline": "2025-03-01T13:00:00Z",
+    "createdAt": "2025-01-13T14:45:00.000Z",
+    "updatedAt": "2025-01-13T14:45:00.000Z"
+  },
+  {
+    "title": "Email Newsletter Template Design",
+    "jobOwnerInfo": {
+      "name": "Mahmud",
+      "email": "mhpcsepavel@gmail.com",
+      "photoURL": "https://lh3.googleusercontent.com/a/ACg8ocIIVNGLEBwYNZjmkesG1DYkiP2TWVRf2HvLI8yfd_uL7M8jiM8=s96-c"
+    },
+    "description": "Design a visually appealing and responsive email newsletter template.",
+    "category": "Graphics Design",
+    "minimumPrice": 800,
+    "maximumPrice": 2500,
+    "bidCount": 0,
+    "acceptingBidRequest": true,
+    "deadline": "2025-02-18T15:00:00Z",
+    "createdAt": "2025-01-13T14:45:00.000Z",
+    "updatedAt": "2025-01-13T14:45:00.000Z"
+  },
+  {
+    "title": "Google Ads Campaign Management",
+    "jobOwnerInfo": {
+      "name": "Mahmud",
+      "email": "mhpcsepavel@gmail.com",
+      "photoURL": "https://lh3.googleusercontent.com/a/ACg8ocIIVNGLEBwYNZjmkesG1DYkiP2TWVRf2HvLI8yfd_uL7M8jiM8=s96-c"
+    },
+    "description": "Manage a Google Ads campaign to increase conversions and sales.",
+    "category": "Digital Marketing",
+    "minimumPrice": 1500,
+    "maximumPrice": 6000,
+    "bidCount": 0,
+    "acceptingBidRequest": true,
+    "deadline": "2025-04-02T14:00:00Z",
+    "createdAt": "2025-01-13T14:45:00.000Z",
+    "updatedAt": "2025-01-13T14:45:00.000Z"
+  },
+  {
+    "title": "Web App Dashboard Design",
+    "jobOwnerInfo": {
+      "name": "Mahmud",
+      "email": "mhpcsepavel@gmail.com",
+      "photoURL": "https://lh3.googleusercontent.com/a/ACg8ocIIVNGLEBwYNZjmkesG1DYkiP2TWVRf2HvLI8yfd_uL7M8jiM8=s96-c"
+    },
+    "description": "Design a user-friendly dashboard for a web application to improve UX.",
+    "category": "Graphics Design",
+    "minimumPrice": 1500,
+    "maximumPrice": 6000,
+    "bidCount": 0,
+    "acceptingBidRequest": true,
+    "deadline": "2025-03-25T13:00:00Z",
+    "createdAt": "2025-01-13T14:45:00.000Z",
+    "updatedAt": "2025-01-13T14:45:00.000Z"
+  },
+  {
+    "title": "Business Website Redesign",
+    "jobOwnerInfo": {
+      "name": "Mahmud",
+      "email": "mhpcsepavel@gmail.com",
+      "photoURL": "https://lh3.googleusercontent.com/a/ACg8ocIIVNGLEBwYNZjmkesG1DYkiP2TWVRf2HvLI8yfd_uL7M8jiM8=s96-c"
+    },
+    "description": "Redesign an outdated business website to improve performance and user engagement.",
+    "category": "Web Development",
+    "minimumPrice": 3000,
+    "maximumPrice": 8000,
+    "bidCount": 0,
+    "acceptingBidRequest": true,
+    "deadline": "2025-04-10T10:00:00Z",
+    "createdAt": "2025-01-13T14:45:00.000Z",
+    "updatedAt": "2025-01-13T14:45:00.000Z"
+  },
+  {
+    "title": "Custom Chatbot Development",
+    "jobOwnerInfo": {
+      "name": "Mahmud",
+      "email": "mhpcsepavel@gmail.com",
+      "photoURL": "https://lh3.googleusercontent.com/a/ACg8ocIIVNGLEBwYNZjmkesG1DYkiP2TWVRf2HvLI8yfd_uL7M8jiM8=s96-c"
+    },
+    "description": "Develop a custom chatbot with natural language processing for customer support.",
+    "category": "Web Development",
+    "minimumPrice": 2000,
+    "maximumPrice": 8000,
+    "bidCount": 0,
+    "acceptingBidRequest": true,
+    "deadline": "2025-03-18T09:00:00Z",
+    "createdAt": "2025-01-13T14:45:00.000Z",
+    "updatedAt": "2025-01-13T14:45:00.000Z"
+  },
+  {
+    "title": "Website Analytics and Conversion Tracking Setup",
+    "jobOwnerInfo": {
+      "name": "Mahmud",
+      "email": "mhpcsepavel@gmail.com",
+      "photoURL": "https://lh3.googleusercontent.com/a/ACg8ocIIVNGLEBwYNZjmkesG1DYkiP2TWVRf2HvLI8yfd_uL7M8jiM8=s96-c"
+    },
+    "description": "Set up website analytics and conversion tracking tools to monitor website performance.",
+    "category": "Digital Marketing",
+    "minimumPrice": 800,
+    "maximumPrice": 3500,
+    "bidCount": 0,
+    "acceptingBidRequest": true,
+    "deadline": "2025-04-01T12:00:00Z",
+    "createdAt": "2025-01-13T14:45:00.000Z",
+    "updatedAt": "2025-01-13T14:45:00.000Z"
   }
 ]

@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import toast from 'react-hot-toast';
 import { Link, useLocation, useNavigate } from 'react-router';
-import { useGenerateTokensMutation } from '../../api/auth/auth.hooks';
 import bgImg from '../../assets/images/login.jpg';
 import logo from '../../assets/images/logo.png';
 import useAuth from '../../hooks/useAuth';
@@ -10,7 +9,6 @@ import { defaultLoginFormData } from '../../utils';
 const Login = () => {
   const [formData, setFormData] = useState(defaultLoginFormData);
   const { loginUser, loginWithGoogle, setLoading } = useAuth();
-  const generateTokensMutation = useGenerateTokensMutation();
   const navigate = useNavigate();
   const location = useLocation();
   const from = location?.state || '/';
@@ -24,11 +22,7 @@ const Login = () => {
     e.preventDefault();
 
     await loginUser(formData.email, formData.password)
-      .then((userCredential) => {
-        //* Generate accessToken & refreshToken
-        const user = { email: userCredential.user?.email || '' };
-        generateTokensMutation.mutate(user);
-
+      .then(() => {
         toast.success('Signin Successful');
         navigate(from, { replace: true });
       })
@@ -40,14 +34,9 @@ const Login = () => {
 
   const handleGoogleLogin = async () => {
     await loginWithGoogle()
-      .then((userCredential) => {
+      .then(() => {
         setLoading(false);
         toast.success('Signin Successful');
-
-        //* Generate accessToken & refreshToken
-        const user = { email: userCredential.user?.email || '' };
-        generateTokensMutation.mutate(user);
-
         navigate(from, { replace: true });
       })
       .catch((error) => {

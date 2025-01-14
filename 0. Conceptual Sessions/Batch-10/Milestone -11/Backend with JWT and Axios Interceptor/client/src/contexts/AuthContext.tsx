@@ -10,7 +10,9 @@ import {
   UserCredential,
 } from 'firebase/auth';
 import React, { createContext, useEffect, useMemo, useState } from 'react';
+import { useGenerateTokensMutation } from '../api/auth/auth.hooks';
 import auth from '../config/firebase.config';
+import { ILoginData } from '../types/auth';
 
 interface IAuthContext {
   user: User | null;
@@ -36,6 +38,7 @@ const AuthContext = createContext<IAuthContext | null>(null);
 export default function AuthProvider({ children }: IAuthProviderProps) {
   const [user, setUser] = useState<User | null>(null);
   const [loading, setLoading] = useState<boolean>(true);
+  const { mutate } = useGenerateTokensMutation(); // Extract the mutate function
 
   const googleProvider = useMemo(() => new GoogleAuthProvider(), []);
 
@@ -83,12 +86,18 @@ export default function AuthProvider({ children }: IAuthProviderProps) {
   //* Get the Currently Logged-in User
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
-      if (currentUser) setUser(currentUser);
+      if (currentUser?.email) {
+        setUser(currentUser);
+
+        //* Generate accessToken & refreshToken
+        const loginData: ILoginData = { email: currentUser.email };
+        mutate(loginData);
+      }
       setLoading(false);
     });
 
     return () => unsubscribe(); // Proper cleanup
-  }, []);
+  }, [mutate]);
 
   const authInfo = {
     user,

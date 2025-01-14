@@ -2,6 +2,9 @@ import express from 'express';
 import auth from '../../middlewares/auth.js';
 import { JobApplicationController } from './jobApplication.controller.js';
 
+// IMPORTANT: Request Flow: auth => validateRequest() => controller
+// Verify token and authenticate the user first => Then Validate the request payload => And Then Proceed to the controller logic.
+
 const router = express.Router();
 
 // Get specific user's job applications

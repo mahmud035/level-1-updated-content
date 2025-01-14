@@ -18,7 +18,7 @@ import { JobService } from './job.services.js';
  * GET /jobs?title=job
  *
  * Combined All
- * GET /api/v1/jobs?page=1&limit=10&sortBy=createdAt&sortOrder=desc&searchQuery=developer&title=job
+ * GET /api/v1/jobs?page=1&limit=10&sortBy=createdAt&sortOrder=desc&searchQuery=developer&category=
  */
 
 /**

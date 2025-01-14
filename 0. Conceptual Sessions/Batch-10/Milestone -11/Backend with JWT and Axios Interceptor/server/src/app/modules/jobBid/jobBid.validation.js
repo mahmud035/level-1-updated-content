@@ -70,7 +70,7 @@ const updateBidStatusZodSchema = z.object({
     jobId: z
       .string({ required_error: 'Job ID is required' })
       .refine(isValidObjectId, 'Invalid Job ID format'), // Validate MongoDB ObjectId format,
-    // status: z.enum(['In Progress', 'Rejected', 'Completed']),
+    status: z.enum(['In Progress', 'Rejected', 'Completed']),
   }),
 });
 

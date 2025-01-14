@@ -12,7 +12,7 @@ const MyPostedJobs = () => {
   if (isPending) return <LoadingSpinner />;
 
   return (
-    <section className="container px-4 mx-auto pt-12">
+    <section className="container px-4 pt-12 pb-12 mx-auto">
       <div className="flex items-center gap-x-3">
         <h2 className="text-lg font-medium text-gray-800 ">My Posted Jobs</h2>
 
@@ -24,7 +24,7 @@ const MyPostedJobs = () => {
       <div className="flex flex-col mt-6">
         <div className="-mx-4 -my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
           <div className="inline-block min-w-full py-2 align-middle md:px-6 lg:px-8">
-            <div className="overflow-hidden border border-gray-200  md:rounded-lg">
+            <div className="overflow-hidden border border-gray-200 md:rounded-lg">
               {data?.data?.length > 0 ? (
                 <table className="min-w-full divide-y divide-gray-200">
                   <thead className="bg-gray-50">
@@ -79,7 +79,7 @@ const MyPostedJobs = () => {
                   </tbody>
                 </table>
               ) : (
-                <div className="py-10 text-2xl font-medium w-full text-center">
+                <div className="w-full py-10 text-2xl font-medium text-center">
                   You haven't post any job!
                 </div>
               )}

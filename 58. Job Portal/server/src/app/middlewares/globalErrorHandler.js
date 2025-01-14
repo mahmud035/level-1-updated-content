@@ -6,6 +6,10 @@ import handleMongoDBError from '../../errors/handleMongoDBError.js';
 import handleZodError from '../../errors/handleZodError.js';
 
 const globalErrorHandler = (error, req, res, next) => {
+  config.env === 'development'
+    ? console.log(`🚀 globalErrorHandler ~~`, { error })
+    : console.log(`🚀 globalErrorHandler ~~`, error);
+
   let statusCode = 500;
   let message = 'Something went wrong!';
   let errorMessages = [];
@@ -29,6 +33,16 @@ const globalErrorHandler = (error, req, res, next) => {
 
     statusCode = simplifiedError.statusCode;
     message = simplifiedError.message;
+  } else if (error instanceof Error) {
+    message = error?.message;
+    errorMessages = error?.message
+      ? [
+          {
+            path: '',
+            message: error?.message,
+          },
+        ]
+      : [];
   }
 
   return res.status(statusCode).json({

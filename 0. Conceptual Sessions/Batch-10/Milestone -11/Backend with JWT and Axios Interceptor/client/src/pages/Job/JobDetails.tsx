@@ -53,6 +53,7 @@ const JobDetails = () => {
     if (!acceptingBidRequest) return 'Not Accepting Bid Request';
     if (isJobPostedByUser) return 'You Posted This Job';
     if (alreadyPlacedABid) return 'Already Placed A Bid';
+    if (isJobDeadlinePassed) return 'Job Deadline Passed';
 
     return 'Place Bid';
   };
