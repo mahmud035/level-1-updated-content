@@ -11,10 +11,10 @@ export default function useLogout() {
 
   const logoutUser = () => {
     logout().then(() => {
-      clearTokensMutation.mutate();
+      clearTokensMutation.mutate(); // Clear accessToken & refreshToken from cookies
       queryClient.cancelQueries(); // Cancel ongoing queries
-      setUser(null);
-      navigate('/login');
+      setUser(null); // Set user to null
+      navigate('/login'); // Navigate user to login route
     });
   };
 

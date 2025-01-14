@@ -90,7 +90,8 @@ const AllJobs = () => {
         {/* Job Searching */}
         <form onSubmit={handleSearchJobs}>
           <div className="relative flex p-1 overflow-hidden border rounded-lg focus-within:ring focus-within:ring-opacity-40 focus-within:border-blue-400 focus-within:ring-blue-300">
-            {isFetching && searchQuery ? (
+            {/* If has searchQuery and query function is running */}
+            {searchQuery && isFetching ? (
               <span className="absolute loading loading-spinner loading-xs top-4 left-2"></span>
             ) : (
               <MdSearch size={20} className="absolute top-4 left-2" />

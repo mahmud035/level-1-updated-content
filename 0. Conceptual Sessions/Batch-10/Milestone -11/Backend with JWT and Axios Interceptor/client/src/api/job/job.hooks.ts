@@ -18,7 +18,7 @@ import {
 // Get all jobs with pagination, sorting, searching, and filtering
 export const useGetJobsQuery = (options?: IGetJobsQueryOptions) => {
   return useQuery({
-    queryKey: ['/jobs', options],
+    queryKey: ['jobs', options],
     queryFn: () => getJobs(options || {}),
     placeholderData: keepPreviousData,
   });

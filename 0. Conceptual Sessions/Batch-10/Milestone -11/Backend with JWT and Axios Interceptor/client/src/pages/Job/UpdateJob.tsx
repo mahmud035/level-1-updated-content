@@ -187,8 +187,18 @@ const UpdateJob = () => {
             ></textarea>
           </div>
           <div className="flex justify-end mt-6">
-            <button className="px-8 py-2.5 leading-5 text-white transition-colors duration-300  bg-gray-700 rounded-md hover:bg-gray-600 focus:outline-none focus:bg-gray-600">
-              Save
+            <button
+              disabled={updateJobMutation.isPending}
+              className="px-8 py-2.5 leading-5 text-white transition-colors duration-300  bg-gray-700 rounded-md hover:bg-gray-600 focus:outline-none focus:bg-gray-600"
+            >
+              {updateJobMutation.isPending ? (
+                <p className="flex items-center gap-1.5">
+                  <span className="loading loading-spinner loading-xs"></span>
+                  <span>Saving</span>
+                </p>
+              ) : (
+                'Save'
+              )}
             </button>
           </div>
         </form>
