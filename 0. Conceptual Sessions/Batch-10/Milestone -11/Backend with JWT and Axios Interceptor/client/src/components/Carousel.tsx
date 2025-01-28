@@ -30,7 +30,6 @@ export default function Carousel() {
           clickable: true,
         }}
         navigation={true}
-        className="mySwiper"
       >
         <SwiperSlide>
           <Slide
