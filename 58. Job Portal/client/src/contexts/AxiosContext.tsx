@@ -1,5 +1,4 @@
 import React, { createContext, useEffect } from 'react';
-// import toast from 'react-hot-toast';
 import { useRefreshAccessTokenMutation } from '../api/auth/auth.hooks';
 import axiosInstance from '../config/axios.config';
 import useLogout from '../hooks/useLogout';
