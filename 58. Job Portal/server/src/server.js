@@ -48,5 +48,3 @@ app.listen(PORT, () => {
 
 // TODO: Export the app for serverless deployment (vercel)
 export default app;
-
-console.log('Test commit');
