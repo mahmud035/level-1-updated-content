@@ -106,7 +106,7 @@ The Job Portal Server exposes several routes for job listing management, user au
 
 ### Job Routes
 
-- **GET `/jobs`**: Retrieve all job listings with optional query parameters for filtering, sorting, and pagination.
+- **GET `/jobs`**: Retrieve all job listings with optional query parameters for searching, filtering, sorting, and pagination.
 
   - **Query Parameters**:
     - `page`: The page number (default: `1`).
