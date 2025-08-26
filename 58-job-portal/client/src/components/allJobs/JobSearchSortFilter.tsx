@@ -22,8 +22,6 @@ export default function JobSearchSortFilter({
   setSortBy,
   handleSearch,
   handleFilter,
-  minSalary,
-  maxSalary,
   setMinSalary,
   setMaxSalary,
   setPage,
@@ -74,7 +72,6 @@ export default function JobSearchSortFilter({
           <div className="flex gap-4">
             <input
               type="number"
-              defaultValue={minSalary}
               onChange={(e) => {
                 setPage(1);
                 const value = e.target.value;
@@ -82,12 +79,9 @@ export default function JobSearchSortFilter({
               }}
               className="w-full max-w-72 input"
               placeholder="Min Salary"
-              min={MIN_SALARY}
-              max={MAX_SALARY}
             />
             <input
               type="number"
-              defaultValue={maxSalary}
               onChange={(e) => {
                 setPage(1);
                 const value = e.target.value;
@@ -95,8 +89,6 @@ export default function JobSearchSortFilter({
               }}
               className="w-full max-w-72 input"
               placeholder="Max Salary"
-              min={MIN_SALARY}
-              max={MAX_SALARY}
             />
           </div>
         </form>
