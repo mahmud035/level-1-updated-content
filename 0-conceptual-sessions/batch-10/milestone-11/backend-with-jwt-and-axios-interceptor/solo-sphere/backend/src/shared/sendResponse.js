@@ -1,0 +1,13 @@
+const sendResponse = (res, data) => {
+  const responseData = {
+    statusCode: data.statusCode,
+    success: data.success || null || undefined,
+    message: data.message,
+    meta: data.meta || null || undefined,
+    data: data.data || null || undefined,
+  };
+
+  res.status(data.statusCode).json(responseData);
+};
+
+export default sendResponse;
